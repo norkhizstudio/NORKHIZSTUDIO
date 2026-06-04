@@ -1,1 +1,397 @@
-{"all_file_count":"132"}
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سایت پورن گرافی - XXX Hub</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap');
+        
+        :root {
+            --primary: #ff2d55;
+            --dark: #0f0f0f;
+            --gray: #1a1a1a;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, #1a1a1a, #000);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 3px solid var(--primary);
+        }
+        
+        .top-bar {
+            background: #000;
+            padding: 8px 0;
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+            text-shadow: 0 0 10px var(--primary);
+        }
+        
+        .search-bar {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 20px;
+            position: relative;
+        }
+        
+        .search-bar input {
+            width: 100%;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 50px;
+            background: #222;
+            color: white;
+            font-size: 16px;
+        }
+        
+        .search-bar button {
+            position: absolute;
+            left: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--primary);
+            border: none;
+            padding: 8px 20px;
+            border-radius: 50px;
+            color: white;
+            cursor: pointer;
+        }
+        
+        .menu a {
+            color: #ddd;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+        
+        .menu a:hover {
+            color: var(--primary);
+        }
+        
+        /* Hero */
+        .hero {
+            height: 520px;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('https://picsum.photos/id/1015/1920/1080') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+        
+        .hero-content h1 {
+            font-size: 52px;
+            margin-bottom: 15px;
+        }
+        
+        .hero-content p {
+            font-size: 22px;
+            margin-bottom: 30px;
+        }
+        
+        /* Categories */
+        .categories {
+            padding: 40px 5%;
+            background: var(--gray);
+        }
+        
+        .section-title {
+            font-size: 28px;
+            margin-bottom: 25px;
+            color: var(--primary);
+            text-align: center;
+        }
+        
+        .cat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+        
+        .cat-card {
+            height: 120px;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: 0.4s;
+        }
+        
+        .cat-card:hover {
+            transform: scale(1.08);
+        }
+        
+        .cat-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .cat-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            padding: 15px;
+            font-weight: bold;
+        }
+        
+        /* Videos Grid */
+        .videos {
+            padding: 40px 5%;
+        }
+        
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        
+        .video-card {
+            background: #111;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+        
+        .video-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(255,45,85,0.3);
+        }
+        
+        .thumbnail {
+            position: relative;
+            height: 170px;
+        }
+        
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .duration {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.8);
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+        
+        .video-info {
+            padding: 15px;
+        }
+        
+        .video-info h3 {
+            font-size: 16px;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+        
+        .video-meta {
+            font-size: 13px;
+            color: #aaa;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        /* Footer */
+        footer {
+            background: #000;
+            padding: 50px 5% 30px;
+            text-align: center;
+            font-size: 14px;
+        }
+        
+        .premium {
+            background: linear-gradient(90deg, #ff2d55, #ff8c00);
+            padding: 20px;
+            text-align: center;
+            margin: 30px 0;
+            border-radius: 15px;
+            color: white;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <strong>۱۸+</strong> - محتوای بزرگسالان - فقط برای افراد بالای ۱۸ سال
+    </div>
+
+    <!-- Header -->
+    <header>
+        <nav>
+            <div class="logo">XXX<span style="color:#fff;">HUB</span></div>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="جستجوی ویدیو، دسته‌بندی یا بازیگر...">
+                <button>جستجو</button>
+            </div>
+            
+            <div class="menu">
+                <a href="#">خانه</a>
+                <a href="#">جدیدترین‌ها</a>
+                <a href="#">دسته‌بندی‌ها</a>
+                <a href="#">لایو</a>
+                <a href="#">پریمیوم</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>بهترین محتوای پورن فارسی و جهانی</h1>
+            <p>هزاران ویدیو HD و 4K - آپدیت روزانه</p>
+            <button style="background:var(--primary); color:white; border:none; padding:16px 40px; font-size:18px; border-radius:50px; cursor:pointer;">
+                شروع تماشا رایگان
+            </button>
+        </div>
+    </section>
+
+    <!-- Premium Banner -->
+    <div class="premium">
+        <h2>عضویت پریمیوم - بدون تبلیغات + دانلود + دسترسی نامحدود</h2>
+        <button style="background:#000; color:white; padding:12px 35px; border:none; border-radius:50px; margin-top:10px;">همین حالا ارتقا بده</button>
+    </div>
+
+    <!-- Categories -->
+    <section class="categories">
+        <h2 class="section-title">دسته‌بندی‌های محبوب</h2>
+        <div class="cat-grid">
+            <div class="cat-card">
+                <img src="https://picsum.photos/id/201/300/200" alt="ایرانی">
+                <div class="cat-overlay">ایرانی</div>
+            </div>
+            <div class="cat-card">
+                <img src="https://picsum.photos/id/237/300/200" alt="آماتور">
+                <div class="cat-overlay">آماتور</div>
+            </div>
+            <div class="cat-card">
+                <img src="https://picsum.photos/id/180/300/200" alt="لزبین">
+                <div class="cat-overlay">لزبین</div>
+            </div>
+            <div class="cat-card">
+                <img src="https://picsum.photos/id/1016/300/200" alt="MILF">
+                <div class="cat-overlay">MILF</div>
+            </div>
+            <div class="cat-card">
+                <img src="https://picsum.photos/id/133/300/200" alt="هاردکور">
+                <div class="cat-overlay">هاردکور</div>
+            </div>
+            <div class="cat-card">
+                <img src="https://picsum.photos/id/201/300/200" alt="فانتزی">
+                <div class="cat-overlay">فانتزی</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Videos -->
+    <section class="videos">
+        <h2 class="section-title">جدیدترین ویدیوها</h2>
+        <div class="video-grid">
+            <!-- Video Card 1 -->
+            <div class="video-card">
+                <div class="thumbnail">
+                    <img src="https://picsum.photos/id/1015/400/300" alt="ویدیو ۱">
+                    <div class="duration">12:45</div>
+                </div>
+                <div class="video-info">
+                    <h3>سکس داغ ایرانی با همسایه</h3>
+                    <div class="video-meta">
+                        <span>۱.۲M بازدید</span>
+                        <span>۲ ساعت پیش</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Video Card 2 -->
+            <div class="video-card">
+                <div class="thumbnail">
+                    <img src="https://picsum.photos/id/201/400/300" alt="ویدیو ۲">
+                    <div class="duration">08:22</div>
+                </div>
+                <div class="video-info">
+                    <h3>دختر دانشجو و استادش</h3>
+                    <div class="video-meta">
+                        <span>۸۹۴K بازدید</span>
+                        <span>۵ ساعت پیش</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Video Card 3 -->
+            <div class="video-card">
+                <div class="thumbnail">
+                    <img src="https://picsum.photos/id/237/400/300" alt="ویدیو ۳">
+                    <div class="duration">22:10</div>
+                </div>
+                <div class="video-info">
+                    <h3>ارگاسم چندگانه واقعی</h3>
+                    <div class="video-meta">
+                        <span>۲.۱M بازدید</span>
+                        <span>دیروز</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Add more cards as needed -->
+        </div>
+    </section>
+
+    <footer>
+        <p>© ۲۰۲۶ XXX Hub - تمام حقوق محفوظ است</p>
+        <p style="margin-top:10px; font-size:13px; opacity:0.7;">
+            این سایت فقط برای افراد بالای ۱۸ سال است. لطفاً مسئولیت استفاده را خودتان بپذیرید.
+        </p>
+    </footer>
+
+    <script>
+        // جستجوی ساده
+        document.querySelector('.search-bar button').addEventListener('click', () => {
+            alert('در نسخه کامل این قابلیت فعال است!');
+        });
+        
+        // Infinite scroll simulation
+        console.log('%c سایت پورن گرافی آماده است 🔥', 'color:#ff2d55; font-size:16px');
+    </script>
+</body>
+</html>
