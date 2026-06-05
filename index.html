@@ -1,397 +1,650 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="fa">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سایت پورن گرافی - XXX Hub</title>
+    <title>سکسی بات پیشرفته 🔥 | Sexy Advanced Bot</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&amp;family=Inter:wght@400;500;600&amp;display=swap');
         
         :root {
-            --primary: #ff2d55;
-            --dark: #0f0f0f;
-            --gray: #1a1a1a;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            --primary-red: #e11d48;
         }
         
         body {
-            font-family: 'Vazirmatn', sans-serif;
-            background: #0a0a0a;
-            color: #fff;
-            line-height: 1.6;
-            overflow-x: hidden;
+            font-family: 'Vazirmatn', 'Inter', system-ui, sans-serif;
         }
         
-        /* Header */
-        header {
-            background: linear-gradient(135deg, #1a1a1a, #000);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 3px solid var(--primary);
+        .sexy-bg {
+            background: linear-gradient(135deg, #18181b 0%, #27251f 100%);
         }
         
-        .top-bar {
-            background: #000;
-            padding: 8px 0;
-            font-size: 14px;
-            text-align: center;
+        .neon-red {
+            text-shadow: 0 0 10px #e11d48, 0 0 20px #e11d48;
         }
         
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 5%;
-            max-width: 1400px;
-            margin: 0 auto;
+        .chat-window {
+            scrollbar-width: thin;
+            scrollbar-color: #e11d48 #27251f;
         }
         
-        .logo {
-            font-size: 28px;
-            font-weight: 700;
-            color: var(--primary);
-            text-shadow: 0 0 10px var(--primary);
+        .message-bubble {
+            animation: fadeInUp 0.3s ease forwards;
         }
         
-        .search-bar {
-            flex: 1;
-            max-width: 500px;
-            margin: 0 20px;
-            position: relative;
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
-        .search-bar input {
-            width: 100%;
-            padding: 14px 20px;
-            border: none;
-            border-radius: 50px;
-            background: #222;
-            color: white;
-            font-size: 16px;
+        .category-btn {
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        .search-bar button {
-            position: absolute;
-            left: 8px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: var(--primary);
-            border: none;
-            padding: 8px 20px;
-            border-radius: 50px;
-            color: white;
-            cursor: pointer;
+        .category-btn:hover {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 10px 15px -3px rgb(225 29 72 / 0.2);
         }
         
-        .menu a {
-            color: #ddd;
-            margin: 0 15px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: 0.3s;
+        .sexy-glow {
+            box-shadow: 0 0 15px rgba(225, 29, 72, 0.3);
         }
         
-        .menu a:hover {
-            color: var(--primary);
+        .logo-glow {
+            animation: logoPulse 3s ease-in-out infinite;
         }
         
-        /* Hero */
-        .hero {
-            height: 520px;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('https://picsum.photos/id/1015/1920/1080') center/cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
+        .porn-image {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
-        .hero-content h1 {
-            font-size: 52px;
-            margin-bottom: 15px;
+        .porn-image:hover {
+            transform: scale(1.03);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
         }
         
-        .hero-content p {
-            font-size: 22px;
-            margin-bottom: 30px;
+        .modal {
+            animation: modalPop 0.2s ease forwards;
         }
         
-        /* Categories */
-        .categories {
-            padding: 40px 5%;
-            background: var(--gray);
+        .bot-avatar {
+            background: linear-gradient(135deg, #e11d48, #be123c);
         }
         
-        .section-title {
-            font-size: 28px;
-            margin-bottom: 25px;
-            color: var(--primary);
-            text-align: center;
+        .status-dot {
+            animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
         
-        .cat-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 15px;
-        }
-        
-        .cat-card {
-            height: 120px;
-            border-radius: 12px;
-            overflow: hidden;
-            position: relative;
-            cursor: pointer;
-            transition: 0.4s;
-        }
-        
-        .cat-card:hover {
-            transform: scale(1.08);
-        }
-        
-        .cat-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .cat-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.9));
-            padding: 15px;
-            font-weight: bold;
-        }
-        
-        /* Videos Grid */
-        .videos {
-            padding: 40px 5%;
-        }
-        
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-        
-        .video-card {
-            background: #111;
-            border-radius: 12px;
-            overflow: hidden;
-            transition: 0.3s;
-        }
-        
-        .video-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(255,45,85,0.3);
-        }
-        
-        .thumbnail {
-            position: relative;
-            height: 170px;
-        }
-        
-        .thumbnail img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .duration {
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            background: rgba(0,0,0,0.8);
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-size: 13px;
-        }
-        
-        .video-info {
-            padding: 15px;
-        }
-        
-        .video-info h3 {
-            font-size: 16px;
-            margin-bottom: 8px;
-            line-height: 1.4;
-        }
-        
-        .video-meta {
-            font-size: 13px;
-            color: #aaa;
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        /* Footer */
-        footer {
-            background: #000;
-            padding: 50px 5% 30px;
-            text-align: center;
-            font-size: 14px;
-        }
-        
-        .premium {
-            background: linear-gradient(90deg, #ff2d55, #ff8c00);
-            padding: 20px;
-            text-align: center;
-            margin: 30px 0;
-            border-radius: 15px;
-            color: white;
-            font-weight: bold;
+        .hot-text {
+            background: linear-gradient(90deg, #e11d48, #f43f5e);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
     </style>
 </head>
-<body>
-    <!-- Top Bar -->
-    <div class="top-bar">
-        <strong>۱۸+</strong> - محتوای بزرگسالان - فقط برای افراد بالای ۱۸ سال
-    </div>
-
+<body class="sexy-bg text-white min-h-screen">
     <!-- Header -->
-    <header>
-        <nav>
-            <div class="logo">XXX<span style="color:#fff;">HUB</span></div>
-            
-            <div class="search-bar">
-                <input type="text" placeholder="جستجوی ویدیو، دسته‌بندی یا بازیگر...">
-                <button>جستجو</button>
+    <header class="border-b border-red-900/50 bg-zinc-950/80 backdrop-blur-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center gap-x-4">
+                <div class="relative w-14 h-14 flex-shrink-0">
+                    <!-- Sexy Neon Logo SVG -->
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#e11d48"/>
+                                <stop offset="100%" style="stop-color:#be123c"/>
+                            </linearGradient>
+                            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                                <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        <!-- Neon frame -->
+                        <rect x="4" y="4" width="48" height="48" rx="12" ry="12" fill="none" stroke="#e11d48" stroke-width="3" filter="url(#glow)"/>
+                        
+                        <!-- Sexy woman silhouette -->
+                        <path d="M20 14 Q28 8 36 14 Q38 22 34 30 Q30 38 28 42 Q26 38 22 30 Q18 22 20 14" fill="#e11d48" opacity="0.9"/>
+                        <circle cx="28" cy="18" r="5" fill="#fff" opacity="0.95"/>
+                        
+                        <!-- Accent lines -->
+                        <path d="M16 26 Q28 20 40 26" stroke="#f43f5e" stroke-width="1.5" opacity="0.6"/>
+                    </svg>
+                    
+                    <!-- Active status ring -->
+                    <div class="absolute -top-1 -right-1 w-5 h-5 bg-emerald-500 rounded-full border-2 border-zinc-950 flex items-center justify-center">
+                        <div class="w-2 h-2 bg-white rounded-full status-dot"></div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h1 class="text-3xl font-bold tracking-tighter">سکسی بات <span class="hot-text">پیشرفته</span></h1>
+                    <p class="text-xs text-red-400/70 -mt-1">Sexy Advanced Bot • همیشه فعال 🔥</p>
+                </div>
             </div>
             
-            <div class="menu">
-                <a href="#">خانه</a>
-                <a href="#">جدیدترین‌ها</a>
-                <a href="#">دسته‌بندی‌ها</a>
-                <a href="#">لایو</a>
-                <a href="#">پریمیوم</a>
+            <!-- Status -->
+            <div class="flex items-center gap-x-3 px-4 py-2 bg-zinc-900 rounded-2xl border border-red-900/30">
+                <div class="flex items-center gap-x-2">
+                    <div class="w-3 h-3 bg-emerald-500 rounded-full status-dot"></div>
+                    <span class="text-sm font-medium text-emerald-400">آنلاین و فعال برای تو</span>
+                </div>
+                <div class="text-xs px-2.5 py-1 bg-zinc-800 rounded-xl text-zinc-400">چت خصوصی</div>
             </div>
-        </nav>
+        </div>
     </header>
 
-    <!-- Hero -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>بهترین محتوای پورن فارسی و جهانی</h1>
-            <p>هزاران ویدیو HD و 4K - آپدیت روزانه</p>
-            <button style="background:var(--primary); color:white; border:none; padding:16px 40px; font-size:18px; border-radius:50px; cursor:pointer;">
-                شروع تماشا رایگان
-            </button>
+    <div class="max-w-7xl mx-auto px-6 pt-8 pb-12">
+        <!-- Welcome Banner -->
+        <div class="mb-8 bg-zinc-900/70 border border-red-900/40 rounded-3xl p-6 flex flex-col md:flex-row items-center gap-6">
+            <div class="flex-1">
+                <div class="flex items-center gap-x-3 mb-3">
+                    <span class="text-4xl">😈</span>
+                    <h2 class="text-3xl font-bold">به پیشرفته‌ترین بات سکسی خوش اومدی!</h2>
+                </div>
+                <p class="text-lg text-zinc-300 max-w-md">
+                    هر پیامی که بفرستی، <span class="text-red-400 font-semibold">عکس یا گیف پورن رندوم و داغ</span> برات میاد. 
+                    دسته دلخواهت رو انتخاب کن یا چت کن...
+                </p>
+                <div class="flex items-center gap-x-4 mt-4 text-sm">
+                    <div class="flex items-center gap-x-1.5 text-emerald-400">
+                        <i class="fas fa-check-circle"></i>
+                        <span>همیشه آنلاین</span>
+                    </div>
+                    <div class="flex items-center gap-x-1.5 text-amber-400">
+                        <i class="fas fa-infinity"></i>
+                        <span>نامحدود</span>
+                    </div>
+                    <div class="flex items-center gap-x-1.5 text-pink-400">
+                        <i class="fas fa-heart"></i>
+                        <span>سکسی‌ترین محتوا</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hidden md:block">
+                <button onclick="sendRandomNow()" 
+                        class="px-8 py-3.5 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700 transition-all text-white font-semibold rounded-2xl flex items-center gap-x-3 shadow-lg shadow-red-950/50 active:scale-[0.985]">
+                    <i class="fas fa-bolt text-xl"></i>
+                    <span>همین الان عکس رندوم بگیر</span>
+                </button>
+            </div>
         </div>
-    </section>
 
-    <!-- Premium Banner -->
-    <div class="premium">
-        <h2>عضویت پریمیوم - بدون تبلیغات + دانلود + دسترسی نامحدود</h2>
-        <button style="background:#000; color:white; padding:12px 35px; border:none; border-radius:50px; margin-top:10px;">همین حالا ارتقا بده</button>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            
+            <!-- Categories Panel -->
+            <div class="lg:col-span-4 xl:col-span-3">
+                <div class="bg-zinc-900 border border-red-900/40 rounded-3xl p-5 sticky top-24">
+                    <div class="flex items-center justify-between mb-4 px-1">
+                        <h3 class="font-bold text-xl flex items-center gap-x-2">
+                            <i class="fas fa-list text-red-500"></i>
+                            <span>دسته‌های سکسی</span>
+                        </h3>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-3" id="categories-grid">
+                        <!-- Populated by JS -->
+                    </div>
+                    
+                    <div class="mt-6 pt-5 border-t border-red-900/30 text-center">
+                        <button onclick="clearChat()" 
+                                class="text-xs px-4 py-2 text-zinc-400 hover:text-red-400 transition flex items-center gap-x-2 mx-auto">
+                            <i class="fas fa-trash-alt"></i>
+                            <span>پاک کردن چت</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Chat Area -->
+            <div class="lg:col-span-8 xl:col-span-9">
+                <div class="bg-zinc-900 border border-red-900/40 rounded-3xl overflow-hidden flex flex-col h-[620px] shadow-2xl">
+                    
+                    <!-- Chat Header -->
+                    <div class="px-6 py-4 bg-zinc-950 border-b border-red-900/30 flex items-center justify-between">
+                        <div class="flex items-center gap-x-3">
+                            <div class="bot-avatar w-9 h-9 rounded-2xl flex items-center justify-center text-white text-xl shadow-inner">
+                                😈
+                            </div>
+                            <div>
+                                <div class="font-semibold">سکسی بات پیشرفته</div>
+                                <div class="text-[10px] text-emerald-400 flex items-center gap-x-1">
+                                    <span>آنلاین</span> • <span>در حال پاسخگویی</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-xs px-3 py-1 bg-zinc-800 rounded-2xl text-zinc-400 flex items-center gap-x-1">
+                            <i class="fas fa-shield-alt text-emerald-500"></i>
+                            <span>خصوصی</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Messages -->
+                    <div id="chat-window" 
+                         class="flex-1 p-6 overflow-y-auto chat-window space-y-6 bg-[radial-gradient(#3f3f46_0.5px,transparent_1px)] bg-[length:4px_4px]">
+                        <!-- Messages added dynamically by JS -->
+                    </div>
+                    
+                    <!-- Input Area -->
+                    <div class="p-4 bg-zinc-950 border-t border-red-900/30">
+                        <div class="flex gap-x-3">
+                            <div class="flex-1 relative">
+                                <input id="user-input" 
+                                       type="text" 
+                                       placeholder="هر پیامی بفرست... عکس رندوم پورنی میاد 😈"
+                                       class="w-full bg-zinc-900 border border-red-900/40 focus:border-red-600 transition px-5 py-3.5 rounded-2xl text-white placeholder:text-zinc-500 focus:outline-none"
+                                       onkeypress="if (event.key === 'Enter') sendUserMessage()">
+                            </div>
+                            
+                            <button onclick="sendUserMessage()" 
+                                    class="px-7 bg-red-600 hover:bg-red-700 active:bg-red-800 transition font-semibold rounded-2xl flex items-center justify-center gap-x-2 min-w-[110px]">
+                                <span>ارسال</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                            
+                            <button onclick="sendRandomNow()" 
+                                    class="px-5 bg-zinc-800 hover:bg-zinc-700 transition font-medium rounded-2xl flex items-center gap-x-2 border border-red-900/40"
+                                    title="عکس رندوم">
+                                <i class="fas fa-dice text-xl"></i>
+                            </button>
+                        </div>
+                        <p class="text-[10px] text-center text-zinc-500 mt-2">هر پیام = یک عکس یا گیف پورن داغ جدید • لوگو همیشه فعاله</p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
     </div>
 
-    <!-- Categories -->
-    <section class="categories">
-        <h2 class="section-title">دسته‌بندی‌های محبوب</h2>
-        <div class="cat-grid">
-            <div class="cat-card">
-                <img src="https://picsum.photos/id/201/300/200" alt="ایرانی">
-                <div class="cat-overlay">ایرانی</div>
-            </div>
-            <div class="cat-card">
-                <img src="https://picsum.photos/id/237/300/200" alt="آماتور">
-                <div class="cat-overlay">آماتور</div>
-            </div>
-            <div class="cat-card">
-                <img src="https://picsum.photos/id/180/300/200" alt="لزبین">
-                <div class="cat-overlay">لزبین</div>
-            </div>
-            <div class="cat-card">
-                <img src="https://picsum.photos/id/1016/300/200" alt="MILF">
-                <div class="cat-overlay">MILF</div>
-            </div>
-            <div class="cat-card">
-                <img src="https://picsum.photos/id/133/300/200" alt="هاردکور">
-                <div class="cat-overlay">هاردکور</div>
-            </div>
-            <div class="cat-card">
-                <img src="https://picsum.photos/id/201/300/200" alt="فانتزی">
-                <div class="cat-overlay">فانتزی</div>
+    <!-- Image Modal -->
+    <div id="image-modal" onclick="hideImageModal()" class="hidden fixed inset-0 bg-black/90 z-[100] flex items-center justify-center p-4">
+        <div onclick="event.stopImmediatePropagation()" class="relative max-w-5xl w-full">
+            <button onclick="hideImageModal()" 
+                    class="absolute -top-4 -right-4 w-10 h-10 bg-zinc-900 hover:bg-red-600 transition rounded-full flex items-center justify-center text-xl z-10">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <img id="modal-image" class="w-full max-h-[85vh] object-contain rounded-3xl shadow-2xl" alt="عکس سکسی">
+            
+            <div class="flex justify-center gap-x-4 mt-5">
+                <button onclick="downloadCurrentImage()" 
+                        class="flex items-center gap-x-2 px-6 py-3 bg-zinc-900 hover:bg-zinc-800 transition rounded-2xl text-sm font-medium border border-red-900/40">
+                    <i class="fas fa-download"></i>
+                    <span>دانلود عکس</span>
+                </button>
+                <button onclick="sendAnotherFromModal()" 
+                        class="flex items-center gap-x-2 px-6 py-3 bg-red-600 hover:bg-red-700 transition rounded-2xl text-sm font-medium">
+                    <i class="fas fa-redo"></i>
+                    <span>یکی دیگه بفرست</span>
+                </button>
             </div>
         </div>
-    </section>
-
-    <!-- Latest Videos -->
-    <section class="videos">
-        <h2 class="section-title">جدیدترین ویدیوها</h2>
-        <div class="video-grid">
-            <!-- Video Card 1 -->
-            <div class="video-card">
-                <div class="thumbnail">
-                    <img src="https://picsum.photos/id/1015/400/300" alt="ویدیو ۱">
-                    <div class="duration">12:45</div>
-                </div>
-                <div class="video-info">
-                    <h3>سکس داغ ایرانی با همسایه</h3>
-                    <div class="video-meta">
-                        <span>۱.۲M بازدید</span>
-                        <span>۲ ساعت پیش</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Video Card 2 -->
-            <div class="video-card">
-                <div class="thumbnail">
-                    <img src="https://picsum.photos/id/201/400/300" alt="ویدیو ۲">
-                    <div class="duration">08:22</div>
-                </div>
-                <div class="video-info">
-                    <h3>دختر دانشجو و استادش</h3>
-                    <div class="video-meta">
-                        <span>۸۹۴K بازدید</span>
-                        <span>۵ ساعت پیش</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Video Card 3 -->
-            <div class="video-card">
-                <div class="thumbnail">
-                    <img src="https://picsum.photos/id/237/400/300" alt="ویدیو ۳">
-                    <div class="duration">22:10</div>
-                </div>
-                <div class="video-info">
-                    <h3>ارگاسم چندگانه واقعی</h3>
-                    <div class="video-meta">
-                        <span>۲.۱M بازدید</span>
-                        <span>دیروز</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Add more cards as needed -->
-        </div>
-    </section>
-
-    <footer>
-        <p>© ۲۰۲۶ XXX Hub - تمام حقوق محفوظ است</p>
-        <p style="margin-top:10px; font-size:13px; opacity:0.7;">
-            این سایت فقط برای افراد بالای ۱۸ سال است. لطفاً مسئولیت استفاده را خودتان بپذیرید.
-        </p>
-    </footer>
+    </div>
 
     <script>
-        // جستجوی ساده
-        document.querySelector('.search-bar button').addEventListener('click', () => {
-            alert('در نسخه کامل این قابلیت فعال است!');
-        });
+        // Tailwind config
+        function initTailwind() {
+            document.documentElement.style.setProperty('--accent', '#e11d48');
+        }
         
-        // Infinite scroll simulation
-        console.log('%c سایت پورن گرافی آماده است 🔥', 'color:#ff2d55; font-size:16px');
+        // Categories with Persian names and API keys
+        const categories = {
+            "random": { name: "🔥 رندوم داغ", key: null, emoji: "🎲" },
+            "anal": { name: "🍑 آنال", key: "anal", emoji: "🍑" },
+            "blowjob": { name: "👅 بلوجاب", key: "blowjob", emoji: "👅" },
+            "cum": { name: "💦 کام شات", key: "cum", emoji: "💦" },
+            "fuck": { name: "🔥 فاک هارد", key: "fuck", emoji: "🔥" },
+            "solo": { name: "👩 سولو سکسی", key: "solo", emoji: "👩" },
+            "yuri": { name: "👭 لزبین (یوری)", key: "yuri", emoji: "👭" },
+            "threesome_fff": { name: "👩‍❤️‍👩 تریسام دخترانه", key: "threesome_fff", emoji: "👩‍❤️‍👩" },
+            "threesome_ffm": { name: "👫 تریسام FFM", key: "threesome_ffm", emoji: "👫" },
+            "pussylick": { name: "😼 لیسیدن", key: "pussylick", emoji: "😼" }
+        };
+        
+        let currentModalSrc = '';
+        
+        // Initialize categories buttons
+        function initCategories() {
+            const grid = document.getElementById('categories-grid');
+            grid.innerHTML = '';
+            
+            Object.keys(categories).forEach(catKey => {
+                const cat = categories[catKey];
+                const btn = document.createElement('button');
+                btn.className = `category-btn flex flex-col items-center justify-center gap-y-1.5 p-3.5 bg-zinc-800 hover:bg-zinc-700 border border-red-900/30 hover:border-red-600/60 rounded-2xl text-center active:scale-[0.97] transition`;
+                
+                btn.innerHTML = `
+                    <div class="text-3xl mb-0.5">${cat.emoji}</div>
+                    <div class="text-xs font-medium leading-tight">${cat.name}</div>
+                `;
+                
+                btn.onclick = () => selectCategory(catKey);
+                grid.appendChild(btn);
+            });
+        }
+        
+        // Fetch NSFW image from PurrBot API
+        async function fetchNSFW(categoryKey = null) {
+            let endpoint = 'solo/gif'; // default
+            
+            if (categoryKey && categories[categoryKey] && categories[categoryKey].key) {
+                endpoint = categories[categoryKey].key + '/gif';
+            } else {
+                // random from available
+                const keys = Object.keys(categories).filter(k => k !== 'random' && categories[k].key);
+                const randomKey = keys[Math.floor(Math.random() * keys.length)];
+                endpoint = categories[randomKey].key + '/gif';
+                categoryKey = randomKey;
+            }
+            
+            const apiUrl = `https://api.purrbot.site/v2/img/nsfw/${endpoint}`;
+            
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'GET',
+                    headers: {
+                        'Accept': 'application/json',
+                    }
+                });
+                
+                if (!response.ok) throw new Error('API error');
+                
+                const data = await response.json();
+                
+                if (data.link && !data.error) {
+                    return {
+                        link: data.link,
+                        key: categoryKey || 'random'
+                    };
+                }
+            } catch (error) {
+                console.error('Fetch error:', error);
+                // Fallback: try without /gif for some categories
+                try {
+                    const fallbackUrl = `https://api.purrbot.site/v2/img/nsfw/${endpoint.replace('/gif', '')}`;
+                    const fbResponse = await fetch(fallbackUrl);
+                    const fbData = await fbResponse.json();
+                    if (fbData.link && !fbData.error) {
+                        return { link: fbData.link, key: categoryKey || 'random' };
+                    }
+                } catch (e) {}
+            }
+            
+            return null;
+        }
+        
+        // Add message to chat
+        function addChatMessage(isUser, text, imageSrc = null, categoryLabel = '') {
+            const chat = document.getElementById('chat-window');
+            
+            const msgWrapper = document.createElement('div');
+            msgWrapper.className = `flex ${isUser ? 'justify-end' : 'justify-start'} message-bubble`;
+            
+            let contentHTML = '';
+            
+            if (isUser) {
+                contentHTML = `
+                    <div class="max-w-[75%] bg-gradient-to-br from-red-600 to-rose-600 text-white px-5 py-3.5 rounded-3xl rounded-br-none shadow-lg">
+                        <p class="leading-relaxed">${text}</p>
+                    </div>
+                `;
+            } else {
+                contentHTML = `
+                    <div class="max-w-[82%] flex gap-x-3">
+                        <div class="bot-avatar w-9 h-9 rounded-2xl flex-shrink-0 flex items-center justify-center text-xl shadow-inner ring-1 ring-red-900/50">
+                            😈
+                        </div>
+                        
+                        <div class="flex-1 min-w-0">
+                            <div class="bg-zinc-800 border border-red-900/30 px-5 py-3.5 rounded-3xl rounded-bl-none">
+                                <div class="flex items-center gap-x-2 mb-1.5">
+                                    <span class="font-semibold text-red-400 text-sm">سکسی بات پیشرفته</span>
+                                    <span class="text-[10px] px-1.5 py-px bg-red-950 text-red-400 rounded">آنلاین</span>
+                                </div>
+                                
+                                <p class="text-zinc-200 leading-relaxed">${text}</p>
+                                
+                                ${imageSrc ? `
+                                    <div class="mt-4 relative group">
+                                        <img src="${imageSrc}" 
+                                             class="porn-image w-full max-h-[380px] object-cover rounded-2xl cursor-pointer border border-red-900/30"
+                                             onclick="showImageModal('${imageSrc}')"
+                                             alt="عکس سکسی پورن">
+                                        <div class="absolute bottom-3 right-3 bg-black/70 text-white text-xs px-2.5 py-1 rounded-xl flex items-center gap-x-1 opacity-0 group-hover:opacity-100 transition">
+                                            <i class="fas fa-search-plus text-[10px]"></i>
+                                            <span class="text-[10px]">بزرگ‌نمایی</span>
+                                        </div>
+                                    </div>
+                                ` : ''}
+                            </div>
+                            
+                            ${categoryLabel ? `
+                                <div class="flex items-center gap-x-1.5 mt-1.5 px-1">
+                                    <span class="text-[10px] text-red-400/70">دسته:</span> 
+                                    <span class="text-xs bg-red-950 text-red-400 px-2.5 py-px rounded-full">${categoryLabel}</span>
+                                </div>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+            }
+            
+            msgWrapper.innerHTML = contentHTML;
+            chat.appendChild(msgWrapper);
+            chat.scrollTop = chat.scrollHeight;
+            
+            return msgWrapper;
+        }
+        
+        // Show image in modal
+        function showImageModal(src) {
+            currentModalSrc = src;
+            const modal = document.getElementById('image-modal');
+            const img = document.getElementById('modal-image');
+            img.src = src;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+        
+        function hideImageModal() {
+            const modal = document.getElementById('image-modal');
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+        }
+        
+        function downloadCurrentImage() {
+            if (!currentModalSrc) return;
+            
+            const link = document.createElement('a');
+            link.href = currentModalSrc;
+            link.download = `sexy-bot-${Date.now()}.jpg`;
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+        
+        function sendAnotherFromModal() {
+            hideImageModal();
+            setTimeout(() => {
+                sendRandomNow();
+            }, 300);
+        }
+        
+        // Select category
+        async function selectCategory(catKey) {
+            const catInfo = categories[catKey];
+            if (!catInfo) return;
+            
+            const chat = document.getElementById('chat-window');
+            
+            // User action message
+            addChatMessage(true, `دسته ${catInfo.name} رو انتخاب کردم`);
+            
+            // Bot thinking
+            const thinking = addChatMessage(false, 'در حال پیدا کردن عکس داغ از این دسته... 🔥');
+            
+            const result = await fetchNSFW(catKey);
+            
+            // Remove thinking message
+            if (thinking && thinking.parentNode) thinking.parentNode.removeChild(thinking);
+            
+            if (result && result.link) {
+                addChatMessage(false, 
+                    `😈 عکس ${catInfo.name} برات آماده‌ست! چقدر داغه... لذت ببر عزیزم`, 
+                    result.link, 
+                    catInfo.name
+                );
+            } else {
+                addChatMessage(false, 'متأسفانه الان نتونستم عکس بیارم. دوباره امتحان کن!');
+            }
+        }
+        
+        // Send user message (triggers random sexy photo)
+        async function sendUserMessage() {
+            const input = document.getElementById('user-input');
+            let text = input.value.trim();
+            
+            if (!text) {
+                text = 'عکس رندوم سکسی بده';
+            }
+            
+            addChatMessage(true, text);
+            input.value = '';
+            
+            // Bot response with random image
+            const thinking = addChatMessage(false, 'در حال جستجوی عکس پورن رندوم و سکسی برات... 😈');
+            
+            const result = await fetchNSFW(null); // random
+            
+            if (thinking && thinking.parentNode) thinking.parentNode.removeChild(thinking);
+            
+            if (result && result.link) {
+                const catName = categories[result.key] ? categories[result.key].name : 'رندوم داغ';
+                addChatMessage(false, 
+                    `🔥 این عکس رندوم پورنی رو ببین! بدنت داغ شد؟ هر چی بخوای بگو، همیشه برات فعالم...`, 
+                    result.link, 
+                    catName
+                );
+            } else {
+                addChatMessage(false, 'اوپس! مشکلی پیش اومد. دوباره پیام بده یا دکمه رندوم رو بزن.');
+            }
+        }
+        
+        // Quick random from button
+        async function sendRandomNow() {
+            const chat = document.getElementById('chat-window');
+            
+            addChatMessage(true, 'عکس رندوم پورنی بده');
+            
+            const thinking = addChatMessage(false, 'در حال انتخاب داغ‌ترین عکس رندوم...');
+            
+            const result = await fetchNSFW(null);
+            
+            if (thinking && thinking.parentNode) thinking.parentNode.removeChild(thinking);
+            
+            if (result && result.link) {
+                const catName = categories[result.key] ? categories[result.key].name : 'رندوم';
+                addChatMessage(false, 
+                    `😈 رندوم برات اومد! این یکی خیلی سکسیه... لذت ببر`, 
+                    result.link, 
+                    catName
+                );
+            } else {
+                addChatMessage(false, 'نتونستم پیدا کنم، دوباره بزن!');
+            }
+        }
+        
+        function clearChat() {
+            const chat = document.getElementById('chat-window');
+            chat.innerHTML = '';
+            // Re-add welcome
+            setTimeout(() => {
+                addChatMessage(false, 'چت پاک شد! دوباره شروع کنیم؟ 🔥 یکی از دسته‌ها رو بزن یا پیام بفرست.');
+            }, 200);
+        }
+        
+        // Welcome message on load
+        function showWelcome() {
+            const chat = document.getElementById('chat-window');
+            
+            setTimeout(() => {
+                addChatMessage(false, 
+                    `سلام عزیزم! 😈 من سکسی بات پیشرفته‌ام. لوگوی من همیشه فعاله و آنلاین برات.<br><br>
+                    هر پیامی که اینجا بفرستی، یه عکس یا گیف پورن رندوم و داغ میاد. <br>
+                    از منوی دسته‌ها هم می‌تونی انتخاب کنی. آماده‌ای؟`
+                );
+                
+                // Auto send one starter sexy image after welcome
+                setTimeout(async () => {
+                    const result = await fetchNSFW('solo');
+                    if (result && result.link) {
+                        addChatMessage(false, 
+                            `این اولین هدیه سکسی من به توئه... 🔥`, 
+                            result.link, 
+                            'سولو'
+                        );
+                    }
+                }, 1800);
+            }, 600);
+        }
+        
+        // Keyboard shortcuts
+        function setupKeyboard() {
+            document.addEventListener('keydown', function(e) {
+                if (e.key === '/' && document.activeElement.id !== 'user-input') {
+                    e.preventDefault();
+                    document.getElementById('user-input').focus();
+                }
+            });
+            
+            // Easter egg: type "sexy" for extra random
+            let typed = '';
+            document.addEventListener('keypress', function(e) {
+                typed += e.key.toLowerCase();
+                if (typed.length > 10) typed = typed.slice(-10);
+                if (typed.includes('sexy') || typed.includes('سکسی')) {
+                    typed = '';
+                    const input = document.getElementById('user-input');
+                    if (document.activeElement !== input) {
+                        sendRandomNow();
+                    }
+                }
+            });
+        }
+        
+        // Main init
+        function init() {
+            initTailwind();
+            initCategories();
+            setupKeyboard();
+            
+            // Welcome
+            showWelcome();
+            
+            // Focus input
+            setTimeout(() => {
+                document.getElementById('user-input').focus();
+            }, 2200);
+            
+            // Make sure logo is "active"
+            console.log('%c[سکسی بات] لوگو فعال و همیشه در حال پاسخگویی است 🔥', 'color:#e11d48');
+        }
+        
+        // Boot
+        window.onload = init;
+        
+        // Expose some functions for console fun (advanced)
+        window.SexyBot = {
+            sendRandom: () => sendRandomNow(),
+            clear: () => clearChat(),
+            getCategories: () => Object.keys(categories)
+        };
     </script>
 </body>
 </html>
