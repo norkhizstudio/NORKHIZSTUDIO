@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سکسی بات پیشرفته | لایبرری ویدیوهای پورن‌هاب 🔥</title>
+    <title>سکسی بات پیشرفته • ویدیو ویژه</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
@@ -11,597 +11,98 @@
         
         body {
             font-family: 'Vazirmatn', 'Inter', system-ui, sans-serif;
+            background: linear-gradient(180deg, #0a0a0b 0%, #121214 100%);
         }
         
-        .sexy-bg {
-            background: linear-gradient(180deg, #0f0f11 0%, #1a1816 100%);
+        .video-container {
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.5);
         }
         
-        .video-card {
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .neon-glow {
+            box-shadow: 0 0 20px rgba(225, 29, 72, 0.3);
         }
         
-        .video-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
-        }
-        
-        .video-card:hover .play-overlay {
-            opacity: 1;
-        }
-        
-        .play-overlay {
-            transition: opacity 0.2s ease;
-            opacity: 0.85;
-        }
-        
-        .category-pill {
-            transition: all 0.2s ease;
-        }
-        
-        .category-pill.active {
-            background-color: #e11d48;
-            color: white;
-            border-color: #e11d48;
-        }
-        
-        .modal {
-            animation: modalEnter 0.2s ease forwards;
-        }
-        
-        .neon-text {
-            text-shadow: 0 0 10px #e11d48, 0 0 20px #e11d48;
-        }
-        
-        .porn-grid {
-            scrollbar-width: thin;
-            scrollbar-color: #e11d48 #27251f;
-        }
-        
-        .video-thumbnail {
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-        
-        .section-header {
-            position: relative;
-        }
-        
-        .section-header::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            right: 0;
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(to left, #e11d48, transparent);
-            border-radius: 3px;
-        }
-        
-        .sexy-shadow {
-            box-shadow: 0 10px 15px -3px rgb(225 29 72 / 0.15), 0 4px 6px -4px rgb(225 29 72 / 0.15);
+        .logo-pulse {
+            animation: logoPulse 4s ease-in-out infinite;
         }
     </style>
 </head>
-<body class="sexy-bg text-white min-h-screen">
-    <!-- Header -->
-    <header class="sticky top-0 z-50 bg-zinc-950/95 backdrop-blur-xl border-b border-red-900/40">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
-            <div class="flex items-center gap-x-4">
-                <!-- Logo -->
-                <div class="flex items-center gap-x-3">
-                    <div class="relative w-12 h-12">
-                        <svg width="48" height="48" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#e11d48"/>
-                                    <stop offset="100%" style="stop-color:#be123c"/>
-                                </linearGradient>
-                            </defs>
-                            <rect x="4" y="4" width="48" height="48" rx="12" ry="12" fill="none" stroke="#e11d48" stroke-width="3"/>
-                            <path d="M20 14 Q28 8 36 14 Q38 22 34 30 Q30 38 28 42 Q26 38 22 30 Q18 22 20 14" fill="#e11d48"/>
-                            <circle cx="28" cy="18" r="5" fill="#fff"/>
-                        </svg>
-                        <div class="absolute -top-0.5 -right-0.5 w-4 h-4 bg-emerald-500 rounded-full border-[2.5px] border-zinc-950 flex items-center justify-center">
-                            <div class="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <h1 class="text-3xl font-bold tracking-tighter">سکسی بات <span class="text-red-500">پیشرفته</span></h1>
-                        <p class="text-[10px] text-red-400/70 -mt-1">Pornhub Video Library • همیشه آنلاین</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="flex items-center gap-x-4">
-                <div class="px-4 py-1.5 bg-zinc-900 rounded-2xl border border-red-900/30 text-sm flex items-center gap-x-2">
-                    <i class="fas fa-video text-red-500"></i>
-                    <span class="font-medium">بیش از ۳۰ ویدیو آماده • قابل گسترش تا ۱۰۰+</span>
-                </div>
-                
-                <button onclick="addNewVideoPrompt()" 
-                        class="flex items-center gap-x-2 px-5 py-2.5 bg-red-600 hover:bg-red-700 transition rounded-2xl text-sm font-semibold">
-                    <i class="fas fa-plus"></i>
-                    <span>افزودن ویدیو جدید</span>
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <div class="max-w-7xl mx-auto px-6 pt-8">
+<body class="min-h-screen text-white flex items-center justify-center p-6">
+    <div class="max-w-4xl w-full">
         
-        <!-- Hero -->
-        <div class="mb-10 text-center">
-            <h2 class="text-5xl font-bold tracking-tighter mb-3">لایبرری ویدیوهای پورن‌هاب</h2>
-            <p class="text-xl text-zinc-400 max-w-2xl mx-auto">همه سبک‌های سکسی • پخش مستقیم داخل سایت • نزدیک به ۱۰۰ لینک آماده برای گسترش</p>
-            
-            <div class="flex justify-center gap-x-3 mt-6">
-                <button onclick="playRandomVideo()" 
-                        class="px-8 py-3.5 bg-gradient-to-r from-red-600 to-rose-600 hover:from-red-700 hover:to-rose-700 transition font-semibold rounded-2xl flex items-center gap-x-3 text-lg shadow-xl shadow-red-950/60">
-                    <i class="fas fa-play mr-1"></i>
-                    <span>پخش رندوم داغ</span>
-                </button>
-                <button onclick="document.getElementById('search-input').focus()" 
-                        class="px-6 py-3.5 bg-zinc-900 hover:bg-zinc-800 border border-red-900/40 transition font-medium rounded-2xl flex items-center gap-x-2">
-                    <i class="fas fa-search"></i>
-                    <span>جستجو در ویدیوها</span>
-                </button>
-            </div>
-        </div>
-
-        <!-- Search + Filters -->
-        <div class="mb-8 flex flex-col lg:flex-row gap-4 items-center">
-            <div class="flex-1 relative">
-                <input id="search-input" 
-                       type="text" 
-                       placeholder="جستجو در عنوان ویدیوها (مثال: آنال، لزبین، MILF)..."
-                       class="w-full bg-zinc-900 border border-red-900/40 focus:border-red-600 px-6 py-3.5 rounded-2xl text-lg placeholder:text-zinc-500 focus:outline-none"
-                       onkeyup="filterVideos()">
-                <i class="fas fa-search absolute left-6 top-4 text-red-500/70 text-xl"></i>
-            </div>
-            
-            <div class="flex items-center gap-x-2 overflow-x-auto pb-2 lg:pb-0 w-full lg:w-auto">
-                <button onclick="filterByCategory('all')" id="cat-all"
-                        class="category-pill active px-5 py-2 text-sm font-medium whitespace-nowrap bg-red-600 text-white border border-red-600 rounded-2xl">همه</button>
-                
-                <button onclick="filterByCategory('آنال')" id="cat-آنال"
-                        class="category-pill px-5 py-2 text-sm font-medium whitespace-nowrap bg-zinc-900 hover:bg-zinc-800 border border-red-900/40 rounded-2xl">آنال</button>
-                
-                <button onclick="filterByCategory('بلوجاب')" id="cat-بلوجاب"
-                        class="category-pill px-5 py-2 text-sm font-medium whitespace-nowrap bg-zinc-900 hover:bg-zinc-800 border border-red-900/40 rounded-2xl">بلوجاب</button>
-                
-                <button onclick="filterByCategory('لزبین')" id="cat-لزبین"
-                        class="category-pill px-5 py-2 text-sm font-medium whitespace-nowrap bg-zinc-900 hover:bg-zinc-800 border border-red-900/40 rounded-2xl">لزبین</button>
-                
-                <button onclick="filterByCategory('MILF')" id="cat-MILF"
-                        class="category-pill px-5 py-2 text-sm font-medium whitespace-nowrap bg-zinc-900 hover:bg-zinc-800 border border-red-900/40 rounded-2xl">MILF</button>
-                
-                <button onclick="filterByCategory('تریسام')" id="cat-تریسام"
-                        class="category-pill px-5 py-2 text-sm font-medium whitespace-nowrap bg-zinc-900 hover:bg-zinc-800 border border-red-900/40 rounded-2xl">تریسام</button>
-                
-                <button onclick="filterByCategory('آماتور')" id="cat-آماتور"
-                        class="category-pill px-5 py-2 text-sm font-medium whitespace-nowrap bg-zinc-900 hover:bg-zinc-800 border border-red-900/40 rounded-2xl">آماتور</button>
-            </div>
-        </div>
-
-        <!-- Video Grid -->
-        <div id="video-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-5 porn-grid pb-16">
-            <!-- Video cards populated by JS -->
-        </div>
-
-        <div class="text-center py-8 text-zinc-500 text-sm">
-            برای رسیدن به نزدیک ۱۰۰ ویدیو، روی دکمه «افزودن ویدیو جدید» کلیک کن یا کد را ویرایش کن.<br>
-            تمام ویدیوها از پورن‌هاب هستند و لینک مستقیم پخش داخل سایت دارند.
-        </div>
-    </div>
-
-    <!-- Video Modal -->
-    <div id="video-modal" onclick="if (event.target.id === 'video-modal') hideVideoModal()" class="hidden fixed inset-0 bg-black/95 z-[100] flex items-center justify-center p-4">
-        <div onclick="event.stopImmediatePropagation()" class="relative w-full max-w-5xl bg-zinc-950 rounded-3xl overflow-hidden border border-red-900/40 shadow-2xl">
-            
-            <!-- Modal Header -->
-            <div class="flex items-center justify-between px-6 py-4 bg-zinc-900 border-b border-red-900/30">
+        <!-- Header / Logo -->
+        <div class="flex justify-center mb-8">
+            <div class="flex items-center gap-x-4">
+                <div class="relative w-14 h-14 logo-pulse">
+                    <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#e11d48"/>
+                                <stop offset="100%" style="stop-color:#be123c"/>
+                            </linearGradient>
+                        </defs>
+                        <rect x="4" y="4" width="48" height="48" rx="12" ry="12" fill="none" stroke="#e11d48" stroke-width="3"/>
+                        <path d="M20 14 Q28 8 36 14 Q38 22 34 30 Q30 38 28 42 Q26 38 22 30 Q18 22 20 14" fill="#e11d48"/>
+                        <circle cx="28" cy="18" r="5" fill="#fff"/>
+                    </svg>
+                    <div class="absolute -top-1 -right-1 w-5 h-5 bg-emerald-500 rounded-full border-[3px] border-zinc-950 flex items-center justify-center">
+                        <div class="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+                    </div>
+                </div>
                 <div>
-                    <h3 id="modal-title" class="text-2xl font-bold"></h3>
-                    <p id="modal-category" class="text-red-400 text-sm"></p>
+                    <h1 class="text-4xl font-bold tracking-tighter">سکسی بات <span class="text-red-500">پیشرفته</span></h1>
+                    <p class="text-red-400/70 text-sm -mt-1">ویدیو ویژه • همیشه فعال 🔥</p>
                 </div>
-                <div class="flex items-center gap-x-3">
-                    <button onclick="openInPornhub()" 
-                            class="flex items-center gap-x-2 px-4 py-2 text-sm bg-zinc-800 hover:bg-zinc-700 rounded-2xl border border-red-900/40">
-                        <i class="fas fa-external-link-alt"></i>
-                        <span>باز کردن در پورن‌هاب</span>
-                    </button>
-                    <button onclick="hideVideoModal()" 
-                            class="w-10 h-10 flex items-center justify-center text-2xl hover:bg-zinc-800 rounded-2xl transition">×</button>
-                </div>
-            </div>
-            
-            <!-- Video Player -->
-            <div class="aspect-video bg-black flex items-center justify-center" id="player-container">
-                <!-- iframe will be injected here -->
-            </div>
-            
-            <div class="p-5 bg-zinc-900 flex items-center justify-between text-sm">
-                <div class="flex items-center gap-x-4 text-zinc-400">
-                    <div><i class="fas fa-clock mr-1.5"></i> <span id="modal-duration"></span></div>
-                    <div><i class="fas fa-eye mr-1.5"></i> <span id="modal-views"></span></div>
-                </div>
-                <button onclick="addToFavoritesFromModal()" 
-                        class="flex items-center gap-x-2 px-4 py-2 hover:bg-red-950 transition rounded-2xl text-red-400 hover:text-red-300">
-                    <i class="fas fa-heart"></i>
-                    <span>افزودن به علاقه‌مندی‌ها</span>
-                </button>
             </div>
         </div>
+
+        <!-- Video Title -->
+        <div class="text-center mb-6">
+            <h2 class="text-3xl font-bold mb-2">همسایه مدت‌ها می‌خواست بمکه و کیرم تو پوسيش خیس بره</h2>
+            <p class="text-red-400">ویدیوی درخواستی تو • پخش مستقیم داخل سایت</p>
+        </div>
+
+        <!-- The Exact Embed You Sent -->
+        <div class="video-container max-w-[560px] mx-auto bg-zinc-950 border border-red-900/40 rounded-3xl overflow-hidden neon-glow">
+            <iframe 
+                src="https://www.pornhub.com/embed/ph60a3cb6a5ad50" 
+                frameborder="0" 
+                width="560" 
+                height="315" 
+                scrolling="no" 
+                allowfullscreen
+                class="w-full aspect-video">
+            </iframe>
+        </div>
+
+        <!-- Footer Info -->
+        <div class="mt-8 text-center">
+            <div class="inline-flex items-center gap-x-2 px-6 py-2 bg-zinc-900 border border-red-900/40 rounded-2xl text-sm text-zinc-400">
+                <i class="fas fa-play text-red-500"></i>
+                <span>پخش داخل سایت • پورن‌هاب</span>
+            </div>
+            
+            <p class="mt-4 text-xs text-zinc-500">
+                لوگوی همیشه فعال • فقط همین ویدیو • طراحی تمیز و سکسی
+            </p>
+        </div>
+
     </div>
 
     <script>
-        // Tailwind dark sexy config
-        function initTailwind() {
-            // Already handled by classes
-        }
+        // Tailwind + subtle effects
+        console.log('%c[سکسی بات] فقط همین یدونه ویدیو داخل سایت لود شد 🔥', 'color:#e11d48');
         
-        // Video Database - 35+ videos ready (expandable to 100+ easily)
-        let videos = [
-            // آنال
-            { id: 1, title: "آنال عمیق و وحشی با دختر مو قهوه‌ای", category: "آنال", embed: "https://www.pornhub.com/embed/ph5f8e4f0e0e0e0", pornhub: "https://www.pornhub.com/view_video.php?viewkey=ph5f8e4f0e0e0e0", duration: "18:42", views: "2.4M", thumbnail: "https://picsum.photos/id/1011/400/225" },
-            { id: 2, title: "دختر سکسی آنال اول بارش", category: "آنال", embed: "https://www.pornhub.com/embed/ph60a1b2c3d4e5f", pornhub: "https://www.pornhub.com/view_video.php?viewkey=ph60a1b2c3d4e5f", duration: "24:15", views: "1.8M", thumbnail: "https://picsum.photos/id/1005/400/225" },
-            { id: 3, title: "آنال گروهی سه نفره داغ", category: "آنال", embed: "https://www.pornhub.com/embed/ph61d2e3f4a5b6c", pornhub: "https://www.pornhub.com/view_video.php?viewkey=ph61d2e3f4a5b6c", duration: "31:07", views: "3.1M", thumbnail: "https://picsum.photos/id/1016/400/225" },
-            
-            // بلوجاب
-            { id: 4, title: "بلوجاب عمیق و مرطوب حرفه‌ای", category: "بلوجاب", embed: "https://www.pornhub.com/embed/ph5f9a2b3c4d5e6", pornhub: "https://www.pornhub.com/view_video.php?viewkey=ph5f9a2b3c4d5e6", duration: "12:55", views: "4.7M", thumbnail: "https://picsum.photos/id/102/400/225" },
-            { id: 5, title: "دختر چشم آبی بلوجاب گلو عمیق", category: "بلوجاب", embed: "https://www.pornhub.com/embed/ph62b3c4d5e6f7a", pornhub: "https://www.pornhub.com/view_video.php?viewkey=ph62b3c4d5e6f7a", duration: "15:30", views: "2.9M", thumbnail: "https://picsum.photos/id/103/400/225" },
-            
-            // لزبین
-            { id: 6, title: "لزبین داغ و خیس با اسباب بازی", category: "لزبین", embed: "https://www.pornhub.com/embed/ph5fa1b2c3d4e5f", pornhub: "https://www.pornhub.com/view_video.php?viewkey=ph5fa1b2c3d4e5f", duration: "22:18", views: "5.2M", thumbnail: "https://picsum.photos/id/104/400/225" },
-            { id: 7, title: "دو دختر زیبا لزبین در حمام", category: "لزبین", embed: "https://www.pornhub.com/embed/ph63c4d5e6f7a8b", pornhub: "https://www.pornhub.com/view_video.php?viewkey=ph63c4d5e6f7a8b", duration: "19:44", views: "3.6M", thumbnail: "https://picsum.photos/id/106/400/225" },
-            { id: 8, title: "لزبین MILF و دختر جوان", category: "لزبین", embed: "https://www.pornhub.com/embed/ph64d5e6f7a8b9c", pornhub: "https://www.pornhub.com/view_video.php?viewkey=ph64d5e6f7a8b9c", duration: "27:12", views: "2.1M", thumbnail: "https://picsum.photos/id/107/400/225" },
-            
-            // MILF
-            { id: 9, title: "MILF داغ با پسر همسایه", category: "MILF", embed: "https://www.pornhub.com/embed/ph5fb2c3d4e5f6a", pornhub: "https://www.pornhub.com/view_video.php?viewkey=ph5fb2c3d4e5f6a", duration: "33:50", views: "6.8M", thumbnail: "https://picsum.photos/id/108/400/225" },
-            { id: 10, title: "مادر دوست پسرم خیلی سکسیه", category: "MILF", embed: "https://www.pornhub.com/embed/ph65e6f7a8b9c0d", pornhub: "https://www.pornhub.com/view_video.php?viewkey=ph65e6f7a8b9c0d", duration: "21:09", views: "4.3M", thumbnail: "https://picsum.photos/id/109/400/225" },
-            
-            // تریسام
-            { id: 11, title: "تریسام FFM دخترانه داغ", category: "تریسام", embed: "https://www.pornhub.com/embed/ph5fc3d4e5f6a7b", pornhub: "https://www.pornhub.com/view_video.php?viewkey=ph5fc3d4e5f6a7b", duration: "28:35", views: "3.9M", thumbnail: "https://picsum.photos/id/110/400/225" },
-            { id: 12, title: "تریسام MMF با دو مرد", category: "تریسام", embed: "https://www.pornhub.com/embed/ph66f7a8b9c0d1e", pornhub: "https://www.pornhub.com/view_video.php?viewkey=ph66f7a8b9c0d1e", duration: "35:22", views: "2.7M", thumbnail: "https://picsum.photos/id/111/400/225" },
-            { id: 13, title: "تریسام لزبین + مرد", category: "تریسام", embed: "https://www.pornhub.com/embed/ph67a8b9c0d1e2f", pornhub: "https://www.pornhub.com/view_video.php?viewkey=ph67a8b9c0d1e2f", duration: "24:47", views: "4.1M", thumbnail: "https://picsum.photos/id/112/400/225" },
-            
-            // آماتور
-            { id: 14, title: "زوج آماتور واقعی در خانه", category: "آماتور", embed: "https://www.pornhub.com/embed/ph5fd4e5f6a7b8c", pornhub: "https://www.pornhub.com/view_video.php?viewkey=ph5fd4e5f6a7b8c", duration: "14:20", views: "1.5M", thumbnail: "https://picsum.photos/id/113/400/225" },
-            { id: 15, title: "دختر آماتور اول فیلمبرداری", category: "آماتور", embed: "https://www.pornhub.com/embed/ph68b9c0d1e2f3a", pornhub: "https://www.pornhub.com/view_video.php?viewkey=ph68b9c0d1e2f3a", duration: "16:55", views: "2.2M", thumbnail: "https://picsum.photos/id/114/400/225" },
-            
-            // More variety for ~35 videos
-            { id: 16, title: "دختر آسیایی سکسی و تنگ", category: "آماتور", embed: "https://www.pornhub.com/embed/ph5fe5f6a7b8c9d", pornhub: "https://www.pornhub.com/view_video.php?viewkey=ph5fe5f6a7b8c9d", duration: "19:30", views: "3.4M", thumbnail: "https://picsum.photos/id/115/400/225" },
-            { id: 17, title: "بزرگترین سینه‌های طبیعی", category: "MILF", embed: "https://www.pornhub.com/embed/ph69c0d1e2f3a4b", pornhub: "https://www.pornhub.com/view_video.php?viewkey=ph69c0d1e2f3a4b", duration: "23:11", views: "5.6M", thumbnail: "https://picsum.photos/id/116/400/225" },
-            { id: 18, title: "دختر مو بلوند آنال عمیق", category: "آنال", embed: "https://www.pornhub.com/embed/ph5ff6a7b8c9d0e", pornhub: "https://www.pornhub.com/view_video.php?viewkey=ph5ff6a7b8c9d0e", duration: "17:48", views: "2.8M", thumbnail: "https://picsum.photos/id/117/400/225" },
-            { id: 19, title: "لزبین با اسباب‌بازی بزرگ", category: "لزبین", embed: "https://www.pornhub.com/embed/ph6a0b1c2d3e4f5", pornhub: "https://www.pornhub.com/view_video.php?viewkey=ph6a0b1c2d3e4f5", duration: "20:05", views: "3.3M", thumbnail: "https://picsum.photos/id/118/400/225" },
-            { id: 20, title: "MILF معلم خصوصی", category: "MILF", embed: "https://www.pornhub.com/embed/ph6b1c2d3e4f5a6", pornhub: "https://www.pornhub.com/view_video.php?viewkey=ph6b1c2d3e4f5a6", duration: "29:40", views: "4.9M", thumbnail: "https://picsum.photos/id/119/400/225" },
-            { id: 21, title: "تریسام دخترانه وحشی", category: "تریسام", embed: "https://www.pornhub.com/embed/ph6c2d3e4f5a6b7", pornhub: "https://www.pornhub.com/view_video.php?viewkey=ph6c2d3e4f5a6b7", duration: "26:15", views: "2.6M", thumbnail: "https://picsum.photos/id/120/400/225" },
-            { id: 22, title: "بلوجاب و تیت‌فاک همزمان", category: "بلوجاب", embed: "https://www.pornhub.com/embed/ph6d3e4f5a6b7c8", pornhub: "https://www.pornhub.com/view_video.php?viewkey=ph6d3e4f5a6b7c8", duration: "11:22", views: "1.9M", thumbnail: "https://picsum.photos/id/121/400/225" },
-            { id: 23, title: "دختر سیاه‌پوست آنال", category: "آنال", embed: "https://www.pornhub.com/embed/ph6e4f5a6b7c8d9", pornhub: "https://www.pornhub.com/view_video.php?viewkey=ph6e4f5a6b7c8d9", duration: "25:33", views: "3.7M", thumbnail: "https://picsum.photos/id/122/400/225" },
-            { id: 24, title: "لزبین نوجوان ۱۸+", category: "لزبین", embed: "https://www.pornhub.com/embed/ph6f5a6b7c8d9e0", pornhub: "https://www.pornhub.com/view_video.php?viewkey=ph6f5a6b7c8d9e0", duration: "18:09", views: "2.4M", thumbnail: "https://picsum.photos/id/123/400/225" },
-            { id: 25, title: "MILF و دختر در سونا", category: "MILF", embed: "https://www.pornhub.com/embed/ph6a6b7c8d9e0f1", pornhub: "https://www.pornhub.com/view_video.php?viewkey=ph6a6b7c8d9e0f1", duration: "30:55", views: "3.2M", thumbnail: "https://picsum.photos/id/124/400/225" },
-            { id: 26, title: "تریسام آماتور واقعی", category: "تریسام", embed: "https://www.pornhub.com/embed/ph6b7c8d9e0f1a2", pornhub: "https://www.pornhub.com/view_video.php?viewkey=ph6b7c8d9e0f1a2", duration: "22:40", views: "1.7M", thumbnail: "https://picsum.photos/id/125/400/225" },
-            { id: 27, title: "دختر با سینه‌های بزرگ بلوجاب", category: "بلوجاب", embed: "https://www.pornhub.com/embed/ph6c8d9e0f1a2b3", pornhub: "https://www.pornhub.com/view_video.php?viewkey=ph6c8d9e0f1a2b3", duration: "13:45", views: "4.5M", thumbnail: "https://picsum.photos/id/126/400/225" },
-            { id: 28, title: "آنال در پوزیشن‌های مختلف", category: "آنال", embed: "https://www.pornhub.com/embed/ph6d9e0f1a2b3c4", pornhub: "https://www.pornhub.com/view_video.php?viewkey=ph6d9e0f1a2b3c4", duration: "20:18", views: "2.9M", thumbnail: "https://picsum.photos/id/127/400/225" },
-            { id: 29, title: "لزبین با ماساژ و لذت", category: "لزبین", embed: "https://www.pornhub.com/embed/ph6e0f1a2b3c4d5", pornhub: "https://www.pornhub.com/view_video.php?viewkey=ph6e0f1a2b3c4d5", duration: "34:22", views: "3.8M", thumbnail: "https://picsum.photos/id/128/400/225" },
-            { id: 30, title: "MILF تنها در خانه", category: "MILF", embed: "https://www.pornhub.com/embed/ph6f1a2b3c4d5e6", pornhub: "https://www.pornhub.com/view_video.php?viewkey=ph6f1a2b3c4d5e6", duration: "15:50", views: "2.3M", thumbnail: "https://picsum.photos/id/129/400/225" },
-            { id: 31, title: "تریسام لزبین وحشی", category: "تریسام", embed: "https://www.pornhub.com/embed/ph6a2b3c4d5e6f7", pornhub: "https://www.pornhub.com/view_video.php?viewkey=ph6a2b3c4d5e6f7", duration: "19:33", views: "4.2M", thumbnail: "https://picsum.photos/id/130/400/225" },
-            { id: 32, title: "بلوجاب در ماشین", category: "بلوجاب", embed: "https://www.pornhub.com/embed/ph6b3c4d5e6f7a8", pornhub: "https://www.pornhub.com/view_video.php?viewkey=ph6b3c4d5e6f7a8", duration: "9:47", views: "1.6M", thumbnail: "https://picsum.photos/id/131/400/225" },
-            { id: 33, title: "دختر آماتور آنال اول بار", category: "آنال", embed: "https://www.pornhub.com/embed/ph6c4d5e6f7a8b9", pornhub: "https://www.pornhub.com/view_video.php?viewkey=ph6c4d5e6f7a8b9", duration: "27:05", views: "3.5M", thumbnail: "https://picsum.photos/id/132/400/225" },
-            { id: 34, title: "لزبین در اتاق خواب", category: "لزبین", embed: "https://www.pornhub.com/embed/ph6d5e6f7a8b9c0", pornhub: "https://www.pornhub.com/view_video.php?viewkey=ph6d5e6f7a8b9c0", duration: "23:59", views: "2.8M", thumbnail: "https://picsum.photos/id/133/400/225" },
-            { id: 35, title: "MILF با دو مرد جوان", category: "تریسام", embed: "https://www.pornhub.com/embed/ph6e6f7a8b9c0d1", pornhub: "https://www.pornhub.com/view_video.php?viewkey=ph6e6f7a8b9c0d1", duration: "32:14", views: "5.1M", thumbnail: "https://picsum.photos/id/134/400/225" }
-        ]
-        
-        let currentFilter = 'all'
-        let currentVideo = null
-        let favorites = JSON.parse(localStorage.getItem('sexyBotFavorites') || '[]')
-        
-        // Render all videos
-        function renderVideos(filteredVideos) {
-            const grid = document.getElementById('video-grid')
-            grid.innerHTML = ''
-            
-            const toShow = filteredVideos || videos
-            
-            toShow.forEach(video => {
-                const isFav = favorites.includes(video.id)
-                
-                const card = document.createElement('div')
-                card.className = `video-card bg-zinc-900 border border-red-900/30 rounded-3xl overflow-hidden group cursor-pointer`
-                
-                card.innerHTML = `
-                    <div class="relative video-thumbnail h-48" style="background-image: url('${video.thumbnail}')">
-                        <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black/70"></div>
-                        
-                        <!-- Play overlay -->
-                        <div class="play-overlay absolute inset-0 flex items-center justify-center">
-                            <div class="w-16 h-16 bg-red-600/90 group-hover:bg-red-600 transition rounded-full flex items-center justify-center shadow-xl">
-                                <i class="fas fa-play text-white text-2xl ml-0.5"></i>
-                            </div>
-                        </div>
-                        
-                        <!-- Duration badge -->
-                        <div class="absolute bottom-3 right-3 bg-black/80 text-white text-xs px-2.5 py-px rounded font-mono">
-                            ${video.duration}
-                        </div>
-                        
-                        <!-- Category badge -->
-                        <div class="absolute top-3 left-3 px-3 py-0.5 text-xs font-medium bg-black/70 text-white rounded-full">
-                            ${video.category}
-                        </div>
-                        
-                        <!-- Favorite heart -->
-                        <div onclick="event.stopImmediatePropagation(); toggleFavorite(${video.id}, this)" 
-                             class="absolute top-3 right-3 w-8 h-8 flex items-center justify-center text-lg transition ${isFav ? 'text-red-500' : 'text-white/70 hover:text-white'}">
-                            <i class="fas fa-heart"></i>
-                        </div>
-                    </div>
-                    
-                    <div class="p-4">
-                        <h4 class="font-semibold text-base leading-tight line-clamp-2 mb-2 group-hover:text-red-400 transition">${video.title}</h4>
-                        
-                        <div class="flex items-center justify-between text-xs text-zinc-400">
-                            <div class="flex items-center gap-x-1">
-                                <i class="fas fa-eye"></i>
-                                <span>${video.views}</span>
-                            </div>
-                            
-                            <button onclick="event.stopImmediatePropagation(); playVideo(${video.id})" 
-                                    class="px-4 py-1 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded-2xl flex items-center gap-x-1 transition">
-                                <i class="fas fa-play text-[10px]"></i>
-                                <span>پخش</span>
-                            </button>
-                        </div>
-                    </div>
-                `
-                
-                // Click on card plays video
-                card.onclick = () => playVideo(video.id)
-                
-                grid.appendChild(card)
-            })
-        }
-        
-        // Filter videos
-        function filterVideos() {
-            const searchTerm = document.getElementById('search-input').value.toLowerCase().trim()
-            
-            let filtered = videos
-            
-            if (currentFilter !== 'all') {
-                filtered = filtered.filter(v => v.category === currentFilter)
+        // Make iframe responsive on mobile
+        window.onload = function() {
+            const iframe = document.querySelector('iframe');
+            if (iframe) {
+                iframe.style.maxWidth = '100%';
+                iframe.style.height = 'auto';
+                iframe.style.aspectRatio = '16 / 9';
             }
-            
-            if (searchTerm) {
-                filtered = filtered.filter(v => 
-                    v.title.toLowerCase().includes(searchTerm) || 
-                    v.category.toLowerCase().includes(searchTerm)
-                )
-            }
-            
-            renderVideos(filtered)
-        }
-        
-        function filterByCategory(category) {
-            currentFilter = category
-            
-            // Update active pill
-            document.querySelectorAll('.category-pill').forEach(el => el.classList.remove('active', 'bg-red-600', 'text-white', 'border-red-600'))
-            document.querySelectorAll('.category-pill').forEach(el => el.classList.add('bg-zinc-900', 'border-red-900/40'))
-            
-            const activeBtn = document.getElementById(`cat-${category}`)
-            if (activeBtn) {
-                activeBtn.classList.add('active', 'bg-red-600', 'text-white', 'border-red-600')
-                activeBtn.classList.remove('bg-zinc-900', 'border-red-900/40')
-            } else {
-                document.getElementById('cat-all').classList.add('active', 'bg-red-600', 'text-white', 'border-red-600')
-            }
-            
-            const searchTerm = document.getElementById('search-input').value.toLowerCase().trim()
-            let filtered = videos
-            
-            if (category !== 'all') {
-                filtered = filtered.filter(v => v.category === category)
-            }
-            
-            if (searchTerm) {
-                filtered = filtered.filter(v => v.title.toLowerCase().includes(searchTerm))
-            }
-            
-            renderVideos(filtered)
-        }
-        
-        // Play video in modal
-        function playVideo(videoId) {
-            const video = videos.find(v => v.id === videoId)
-            if (!video) return
-            
-            currentVideo = video
-            
-            document.getElementById('modal-title').innerText = video.title
-            document.getElementById('modal-category').innerText = video.category
-            document.getElementById('modal-duration').innerText = video.duration
-            document.getElementById('modal-views').innerText = video.views + ' بازدید'
-            
-            const playerContainer = document.getElementById('player-container')
-            playerContainer.innerHTML = ''
-            
-            if (video.embed && video.embed.includes('pornhub.com/embed')) {
-                // Real Pornhub embed
-                const iframe = document.createElement('iframe')
-                iframe.src = video.embed
-                iframe.width = '100%'
-                iframe.height = '100%'
-                iframe.frameBorder = '0'
-                iframe.allowFullscreen = true
-                iframe.allow = 'autoplay; encrypted-media'
-                iframe.style.borderRadius = '0'
-                playerContainer.appendChild(iframe)
-            } else {
-                // Fallback beautiful placeholder
-                playerContainer.innerHTML = `
-                    <div class="w-full h-full flex flex-col items-center justify-center bg-zinc-950 text-center p-8">
-                        <i class="fas fa-play-circle text-7xl text-red-600/80 mb-6"></i>
-                        <h4 class="text-2xl font-bold mb-2">ویدیو آماده پخش است</h4>
-                        <p class="text-zinc-400 max-w-md mb-6">برای پخش داخل سایت، کد embed پورن‌هاب را در آرایه videos اضافه کنید.</p>
-                        
-                        <div class="flex gap-x-3">
-                            <button onclick="openInPornhub()" 
-                                    class="px-6 py-3 bg-red-600 hover:bg-red-700 transition rounded-2xl font-semibold flex items-center gap-x-2">
-                                <i class="fas fa-external-link-alt"></i>
-                                <span>تماشا در پورن‌هاب</span>
-                            </button>
-                            <button onclick="copyEmbedCode()" 
-                                    class="px-6 py-3 bg-zinc-800 hover:bg-zinc-700 border border-red-900/40 transition rounded-2xl font-semibold flex items-center gap-x-2">
-                                <i class="fas fa-copy"></i>
-                                <span>کپی کد embed</span>
-                            </button>
-                        </div>
-                    </div>
-                `
-            }
-            
-            document.getElementById('video-modal').classList.remove('hidden')
-            document.getElementById('video-modal').classList.add('flex')
-        }
-        
-        function hideVideoModal() {
-            const modal = document.getElementById('video-modal')
-            modal.classList.remove('flex')
-            modal.classList.add('hidden')
-            
-            // Clear iframe to stop video
-            document.getElementById('player-container').innerHTML = ''
-        }
-        
-        function openInPornhub() {
-            if (currentVideo) {
-                window.open(currentVideo.pornhub, '_blank')
-            }
-        }
-        
-        function copyEmbedCode() {
-            if (!currentVideo) return
-            const embedCode = `<iframe src="${currentVideo.embed}" width="560" height="315" frameborder="0" allowfullscreen></iframe>`
-            navigator.clipboard.writeText(embedCode).then(() => {
-                const originalText = event.target.innerText || ''
-                alert('کد embed کپی شد! حالا می‌تونی در سایتت استفاده کنی.')
-            }).catch(() => {
-                prompt('کد embed:', embedCode)
-            })
-        }
-        
-        function toggleFavorite(videoId, heartElement) {
-            event.stopImmediatePropagation()
-            
-            if (favorites.includes(videoId)) {
-                favorites = favorites.filter(id => id !== videoId)
-                heartElement.classList.remove('text-red-500')
-                heartElement.classList.add('text-white/70', 'hover:text-white')
-            } else {
-                favorites.push(videoId)
-                heartElement.classList.add('text-red-500')
-                heartElement.classList.remove('text-white/70', 'hover:text-white')
-            }
-            
-            localStorage.setItem('sexyBotFavorites', JSON.stringify(favorites))
-        }
-        
-        function addToFavoritesFromModal() {
-            if (!currentVideo) return
-            
-            if (!favorites.includes(currentVideo.id)) {
-                favorites.push(currentVideo.id)
-                localStorage.setItem('sexyBotFavorites', JSON.stringify(favorites))
-                alert('به علاقه‌مندی‌ها اضافه شد!')
-            } else {
-                alert('قبلاً اضافه شده!')
-            }
-        }
-        
-        function playRandomVideo() {
-            const randomIndex = Math.floor(Math.random() * videos.length)
-            playVideo(videos[randomIndex].id)
-        }
-        
-        // Add new video (advanced feature)
-        function addNewVideoPrompt() {
-            const title = prompt('عنوان ویدیو را وارد کنید (مثال: دختر سکسی آنال):')
-            if (!title) return
-            
-            const category = prompt('دسته را وارد کنید (آنال / بلوجاب / لزبین / MILF / تریسام / آماتور):', 'آنال')
-            if (!category) return
-            
-            const embedUrl = prompt('لینک embed پورن‌هاب را وارد کنید (مثال: https://www.pornhub.com/embed/ph123456789):')
-            if (!embedUrl) return alert('لینک embed الزامی است!')
-            
-            const pornhubLink = prompt('لینک مستقیم پورن‌هاب (اختیاری):', embedUrl.replace('/embed/', '/view_video.php?viewkey='))
-            
-            const newVideo = {
-                id: Date.now(),
-                title: title,
-                category: category,
-                embed: embedUrl,
-                pornhub: pornhubLink || embedUrl.replace('/embed/', '/view_video.php?viewkey='),
-                duration: '??:??',
-                views: 'جدید',
-                thumbnail: 'https://picsum.photos/id/160/400/225' // default sexy placeholder
-            }
-            
-            videos.unshift(newVideo)
-            renderVideos()
-            
-            alert('ویدیو جدید با موفقیت اضافه شد! حالا می‌تونی پخش کنی.')
-        }
-        
-        // Initialize everything
-        function init() {
-            initTailwind()
-            
-            // Render initial videos
-            renderVideos()
-            
-            // Set "all" as active
-            document.getElementById('cat-all').classList.add('active', 'bg-red-600', 'text-white', 'border-red-600')
-            
-            // Search on type
-            const searchInput = document.getElementById('search-input')
-            searchInput.addEventListener('input', filterVideos)
-            
-            // Keyboard: press / to focus search
-            document.addEventListener('keydown', function(e) {
-                if (e.key === '/' && document.activeElement.tagName === 'BODY') {
-                    e.preventDefault()
-                    searchInput.focus()
-                }
-                if (e.key === 'Escape') {
-                    const modal = document.getElementById('video-modal')
-                    if (!modal.classList.contains('hidden')) {
-                        hideVideoModal()
-                    }
-                }
-            })
-            
-            // Welcome toast
-            setTimeout(() => {
-                console.log('%c[سکسی بات پیشرفته] لایبرری ویدیو پورن‌هاب آماده است. لوگو همیشه فعال 🔥', 'color:#e11d48')
-            }, 1500)
-            
-            // Make sure logo is pulsing (already in CSS)
-        }
-        
-        // Boot the app
-        window.onload = init
-        
-        // Expose for console (advanced)
-        window.SexyPornhub = {
-            addVideo: () => addNewVideoPrompt(),
-            playRandom: () => playRandomVideo(),
-            getVideos: () => videos.length,
-            clearFavorites: () => { favorites = []; localStorage.removeItem('sexyBotFavorites'); renderVideos(); }
         }
     </script>
 </body>
 </html>
+
