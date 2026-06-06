@@ -19,7 +19,6 @@
             color: #fff;
             display: flex;
             justify-content: center;
-            /* تغییر از center به flex-start تا در صفحات کوچک محتوا از بالا بریده نشود */
             align-items: flex-start; 
             min-height: 100vh;
             padding: 5vh 20px;
@@ -27,7 +26,6 @@
             position: relative;
         }
 
-        /* ----- انیمیشن پس‌زمینه نئونی ----- */
         .bg-animation {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
@@ -48,7 +46,6 @@
             100% { transform: translateY(-30px) translateX(30px) scale(1.05); }
         }
 
-        /* ----- لایه‌بندی اصلی (استراکچر اصولی) ----- */
         .layout-container {
             display: flex;
             flex-direction: row;
@@ -56,10 +53,9 @@
             width: 100%;
             max-width: 1300px;
             z-index: 10;
-            align-items: stretch; /* هم‌ارتفاع شدن پنل‌ها */
+            align-items: stretch;
         }
 
-        /* رسپانسیو برای تبلت و موبایل */
         @media (max-width: 1024px) {
             .layout-container {
                 flex-direction: column;
@@ -71,7 +67,6 @@
             }
         }
 
-        /* ----- پنل‌های شیشه‌ای ----- */
         .glass-panel {
             background: rgba(20, 10, 30, 0.3);
             backdrop-filter: blur(25px);
@@ -99,7 +94,6 @@
             flex-direction: column;
         }
 
-        /* ----- بخش نمونه کارها ----- */
         .portfolio-header {
             text-align: center; margin-bottom: 25px;
         }
@@ -111,10 +105,9 @@
         }
         .portfolio-header p { font-size: 0.95rem; color: #aaa; }
 
-        /* اسکرول‌بار داخلی و بهینه برای ۳۰ آیتم */
         .portfolio-wrapper {
             flex-grow: 1;
-            max-height: 580px; /* جلوگیری از دراز شدن پنل */
+            max-height: 580px;
             overflow-y: auto;
             padding-right: 15px;
         }
@@ -135,7 +128,7 @@
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 15px;
-            aspect-ratio: 1; /* ایجاد مربع کامل و دقیق */
+            aspect-ratio: 1;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             transition: all 0.3s ease; position: relative; overflow: hidden;
         }
@@ -160,7 +153,6 @@
             background: rgba(255,255,255,0.05); padding: 3px 10px; border-radius: 6px;
         }
 
-        /* ----- لوگو و فرم ----- */
         .logo-box { text-align: center; margin-bottom: 30px; }
         .logo-box img {
             width: 120px; height: 120px; border-radius: 50%;
@@ -194,7 +186,7 @@
         .submit-btn {
             width: 100%; background: linear-gradient(45deg, #00ffff, #ff00ff); color: #000; border: none;
             padding: 15px; font-size: 1.2rem; font-weight: 900; border-radius: 12px; cursor: pointer;
-            transition: all 0.4s ease; text-transform: uppercase; box-shadow: 0 10px 20px rgba(0, 255, 255, 0.2); margin-top: auto; /* چسبیدن دکمه به پایین */
+            transition: all 0.4s ease; text-transform: uppercase; box-shadow: 0 10px 20px rgba(0, 255, 255, 0.2); margin-top: auto;
         }
         .submit-btn:hover { box-shadow: 0 0 40px #00ffff, 0 0 60px #ff00ff; transform: translateY(-3px); color: #fff; }
 
@@ -202,7 +194,6 @@
         .alert-success { background: rgba(0, 255, 128, 0.15); border: 1px solid #00ff80; color: #00ff80; }
         .alert-danger { background: rgba(255, 0, 0, 0.15); border: 1px solid #ff0040; color: #ff0040; }
 
-        /* ----- مدال پخش ویدیو (پنجره پاپ‌آپ) ----- */
         .video-modal {
             display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); z-index: 9999;
@@ -290,28 +281,58 @@
             </div>
             <div class="portfolio-wrapper">
                 <div class="portfolio-grid" id="portfolioGrid">
-                    </div>
+                    <!-- اتاق‌ها اینجا با JS ساخته می‌شن -->
+                </div>
             </div>
         </div>
 
     </div>
 
     <script>
-        // آرایه ۳۰ تایی ویدیوها
-        const portfolioLinks = [
-            "https://www.w3schools.com/html/mov_bbb.mp4", // ۱
-            "https://s15.uupload.ir/files/aslidxx/InShot_20260606_154750424.mp4?play", "", "", "", "", "", "", "", "", // ۲ تا ۱۰
-            "", "", "", "", "", "", "", "", "", "", // ۱۱ تا ۲۰
-            "", "", "", "", "", "", "", "", "", ""  // ۲۱ تا ۳۰
+        // ==================== تعریف ۳۰ اتاق / پروژه به صورت کاملاً جدا ====================
+        const portfolioItems = [
+            { num: 1, link: "https://www.w3schools.com/html/mov_bbb.mp4" }, // پروژه ۱ - ویدیو تست
+            { num: 2, link: "" }, // پروژه ۲
+            { num: 3, link: "" }, // پروژه ۳
+            { num: 4, link: "" }, // پروژه ۴
+            { num: 5, link: "" }, // پروژه ۵
+            { num: 6, link: "" }, // پروژه ۶
+            { num: 7, link: "" }, // پروژه ۷
+            { num: 8, link: "" }, // پروژه ۸
+            { num: 9, link: "" }, // پروژه ۹
+            { num: 10, link: "" }, // پروژه ۱۰
+            { num: 11, link: "" }, // پروژه ۱۱
+            { num: 12, link: "" }, // پروژه ۱۲
+            { num: 13, link: "" }, // پروژه ۱۳
+            { num: 14, link: "" }, // پروژه ۱۴
+            { num: 15, link: "" }, // پروژه ۱۵
+            { num: 16, link: "" }, // پروژه ۱۶
+            { num: 17, link: "" }, // پروژه ۱۷
+            { num: 18, link: "" }, // پروژه ۱۸
+            { num: 19, link: "" }, // پروژه ۱۹
+            { num: 20, link: "" }, // پروژه ۲۰
+            { num: 21, link: "" }, // پروژه ۲۱
+            { num: 22, link: "" }, // پروژه ۲۲
+            { num: 23, link: "" }, // پروژه ۲۳
+            { num: 24, link: "" }, // پروژه ۲۴
+            { num: 25, link: "" }, // پروژه ۲۵
+            { num: 26, link: "" }, // پروژه ۲۶
+            { num: 27, link: "" }, // پروژه ۲۷
+            { num: 28, link: "" }, // پروژه ۲۸
+            { num: 29, link: "" }, // پروژه ۲۹
+            { num: 30, link: "" }  // پروژه ۳۰
         ];
 
         const gridContainer = document.getElementById('portfolioGrid');
-        portfolioLinks.forEach((link, index) => {
-            const item = document.createElement('div');
-            item.className = 'portfolio-item ' + (link.trim() !== "" ? 'active' : 'empty');
-            item.innerHTML = `<span>پروژه ${index + 1}</span>`;
-            if(link.trim() !== "") { item.onclick = () => openModal(link); }
-            gridContainer.appendChild(item);
+        portfolioItems.forEach(item => {
+            const el = document.createElement('div');
+            const hasLink = item.link.trim() !== "";
+            el.className = 'portfolio-item ' + (hasLink ? 'active' : 'empty');
+            el.innerHTML = `<span>پروژه ${item.num}</span>`;
+            if (hasLink) {
+                el.onclick = () => openModal(item.link);
+            }
+            gridContainer.appendChild(el);
         });
 
         const videoModal = document.getElementById('videoModal');
@@ -352,10 +373,10 @@
             const submitBtn = document.getElementById('btnSubmit');
             submitBtn.innerText = "در حال پردازش..."; submitBtn.style.opacity = "0.7"; submitBtn.disabled = true;
 
-            let message = `💎 <b>درخواست VIP نورخیز استودیو</b>\n\n👤 <b>نام:</b> ${name}\n🏢 <b>نوع:</b> ${entity}\n📞 <b>تماس:</b> <code>${phone}</code>\n📧 <b>ایمیل:</b> ${email}\n🎬 <b>خدمات:</b> ${servicesText}\n`;
+            let message = `💎 <b>درخواست VIP نورخیز استودیو</b>\n\n👤 <b>نام:</b> ${name}\n🏢 <b>نوع:</b> \( {entity}\n📞 <b>تماس:</b> <code> \){phone}</code>\n📧 <b>ایمیل:</b> ${email}\n🎬 <b>خدمات:</b> ${servicesText}\n`;
 
-            const proxyUrl = "https://your-proxy-name.your-username.workers.dev"; // آدرس کلاودفلر
-            const telegramUrl = `${proxyUrl}/bot${botToken}/sendMessage`;
+            const proxyUrl = "https://your-proxy-name.your-username.workers.dev";
+            const telegramUrl = `\( {proxyUrl}/bot \){botToken}/sendMessage`;
 
             fetch(telegramUrl, {
                 method: 'POST', headers: { 'Content-Type': 'application/json' },
