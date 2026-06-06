@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NORKHIZ STUDIO | VIP Order</title>
+    <title>NORKHIZ STUDIO | VIP Order & Portfolio</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700;900&display=swap');
         
@@ -21,7 +21,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 40px 20px;
             overflow-x: hidden;
             position: relative;
         }
@@ -46,33 +46,28 @@
             animation: float 10s infinite ease-in-out alternate;
         }
 
-        .circle:nth-child(1) {
-            width: 300px; height: 300px;
-            background: #00ffff;
-            top: 10%; left: 15%;
-            animation-duration: 12s;
-        }
-
-        .circle:nth-child(2) {
-            width: 400px; height: 400px;
-            background: #ff00ff;
-            bottom: 5%; right: 10%;
-            animation-duration: 15s;
-        }
-
-        .circle:nth-child(3) {
-            width: 200px; height: 200px;
-            background: #7000ff;
-            top: 40%; left: 60%;
-            animation-duration: 8s;
-        }
+        .circle:nth-child(1) { width: 300px; height: 300px; background: #00ffff; top: 10%; left: 15%; animation-duration: 12s; }
+        .circle:nth-child(2) { width: 400px; height: 400px; background: #ff00ff; bottom: 5%; right: 10%; animation-duration: 15s; }
+        .circle:nth-child(3) { width: 200px; height: 200px; background: #7000ff; top: 40%; left: 60%; animation-duration: 8s; }
 
         @keyframes float {
             0% { transform: translateY(0) translateX(0) scale(1); }
             100% { transform: translateY(-50px) translateX(50px) scale(1.1); }
         }
 
-        /* ----- فرم شیشه‌ای پیشرفته ----- */
+        /* ----- لایه‌بندی اصلی (فرم + نمونه کارها) ----- */
+        .layout-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            width: 100%;
+            max-width: 1200px;
+            z-index: 10;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        /* ----- پنل‌های شیشه‌ای ----- */
         .glass-panel {
             background: rgba(20, 10, 30, 0.3);
             backdrop-filter: blur(25px);
@@ -81,257 +76,341 @@
             border-top: 1px solid rgba(255, 255, 255, 0.3);
             border-left: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 25px;
-            padding: 45px 35px;
-            width: 100%;
+            padding: 40px 30px;
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(0, 255, 255, 0.05);
+            position: relative;
+        }
+
+        .form-panel {
+            flex: 1 1 450px;
             max-width: 550px;
-            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5), 
-                        inset 0 0 20px rgba(0, 255, 255, 0.05),
-                        inset 0 0 20px rgba(255, 0, 255, 0.05);
-            position: relative;
-            z-index: 10;
         }
 
-        /* ----- لوگو ----- */
-        .logo-box {
+        .portfolio-panel {
+            flex: 1 1 500px;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            max-height: 820px;
+        }
+
+        /* ----- بخش نمونه کارها (۳۰ اتاق) ----- */
+        .portfolio-header {
             text-align: center;
-            margin-bottom: 35px;
-            position: relative;
+            margin-bottom: 20px;
         }
-
-        .logo-box img {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            border: 3px solid transparent;
-            background: linear-gradient(#000, #000) padding-box, 
-                        linear-gradient(45deg, #00ffff, #ff00ff) border-box;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5), 0 0 40px rgba(255, 0, 255, 0.5);
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .logo-box img:hover {
-            transform: scale(1.05) rotate(5deg);
-        }
-
-        .logo-box h1 {
+        .portfolio-header h2 {
             font-size: 1.8rem;
-            font-weight: 900;
-            margin-top: 15px;
-            background: linear-gradient(90deg, #00ffff, #ff00ff);
+            background: linear-gradient(90deg, #ff00ff, #00ffff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(255, 0, 255, 0.4);
-            letter-spacing: 3px;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+            margin-bottom: 5px;
+        }
+        .portfolio-header p {
+            font-size: 0.9rem;
+            color: #aaa;
         }
 
-        /* ----- فیلدهای فرم ----- */
-        .form-group {
-            margin-bottom: 25px;
-            position: relative;
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 15px;
+            overflow-y: auto;
+            padding-right: 10px;
+            padding-bottom: 10px;
         }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 10px;
-            font-size: 0.95rem;
-            color: #e0e0e0;
-            font-weight: 300;
-            text-shadow: 0 0 5px rgba(255,255,255,0.2);
-        }
+        /* شخصی‌سازی اسکرول‌بار نئونی */
+        .portfolio-grid::-webkit-scrollbar { width: 8px; }
+        .portfolio-grid::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); border-radius: 10px; }
+        .portfolio-grid::-webkit-scrollbar-thumb { background: #00ffff; border-radius: 10px; box-shadow: 0 0 10px #00ffff; }
 
-        .form-control {
-            width: 100%;
+        .portfolio-item {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 14px 15px;
-            color: #fff;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            outline: none;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
-        }
-
-        .form-control::placeholder {
-            color: rgba(255, 255, 255, 0.3);
-        }
-
-        .form-control:focus {
-            background: rgba(0, 255, 255, 0.05);
-            border-color: #00ffff;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3), inset 0 0 10px rgba(0, 255, 255, 0.1);
-            transform: translateY(-2px);
-        }
-
-        /* ----- رادیو و چک‌باکس ----- */
-        .radio-group, .checkbox-group {
+            border-radius: 15px;
+            aspect-ratio: 1;
             display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            background: rgba(255, 255, 255, 0.02);
-            padding: 15px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .custom-label {
-            display: flex;
+            flex-direction: column;
+            justify-content: center;
             align-items: center;
-            cursor: pointer;
-            font-size: 0.9rem;
-            color: #ccc;
-            transition: 0.3s;
-            padding: 5px 10px;
-            border-radius: 8px;
-        }
-
-        .custom-label:hover {
-            background: rgba(255, 255, 255, 0.05);
-            color: #fff;
-        }
-
-        input[type="radio"], input[type="checkbox"] {
-            accent-color: #ff00ff;
-            width: 18px;
-            height: 18px;
-            margin-left: 10px;
-            cursor: pointer;
-            filter: drop-shadow(0 0 5px #ff00ff);
-        }
-
-        /* ----- دکمه ارسال ----- */
-        .submit-btn {
-            width: 100%;
-            background: linear-gradient(45deg, #00ffff, #ff00ff);
-            color: #000;
-            border: none;
-            padding: 16px;
-            font-size: 1.2rem;
-            font-weight: 900;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            text-transform: uppercase;
-            box-shadow: 0 10px 20px rgba(0, 255, 255, 0.2), 0 0 30px rgba(255, 0, 255, 0.2);
-            margin-top: 15px;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            z-index: 1;
         }
 
-        .submit-btn::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(45deg, #ff00ff, #00ffff);
-            z-index: -1;
-            transition: opacity 0.4s ease;
-            opacity: 0;
+        .portfolio-item span {
+            font-size: 0.85rem;
+            color: #ccc;
+            margin-bottom: 8px;
+            z-index: 2;
         }
 
-        .submit-btn:hover::before {
-            opacity: 1;
+        /* اتاق پر (دارای ویدیو) */
+        .portfolio-item.active {
+            cursor: pointer;
+            border-color: rgba(0, 255, 255, 0.3);
+        }
+        .portfolio-item.active::after {
+            content: '▶';
+            font-size: 1.8rem;
+            color: #00ffff;
+            text-shadow: 0 0 15px #00ffff;
+            z-index: 2;
+            transition: 0.3s;
+        }
+        .portfolio-item.active:hover {
+            background: rgba(0, 255, 255, 0.1);
+            border-color: #00ffff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.4), inset 0 0 15px rgba(0, 255, 255, 0.2);
+            transform: translateY(-5px);
+        }
+        .portfolio-item.active:hover::after {
+            transform: scale(1.2);
         }
 
-        .submit-btn:hover {
-            box-shadow: 0 0 40px #00ffff, 0 0 60px #ff00ff;
-            transform: translateY(-3px);
-            color: #fff;
-            text-shadow: 0 0 10px rgba(0,0,0,0.8);
+        /* اتاق خالی */
+        .portfolio-item.empty {
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        .portfolio-item.empty::after {
+            content: 'خالی';
+            font-size: 0.8rem;
+            color: #666;
+            background: rgba(255,255,255,0.1);
+            padding: 2px 8px;
+            border-radius: 5px;
         }
 
-        /* ----- پیام‌ها ----- */
-        .alert {
-            display: none;
-            padding: 15px;
-            border-radius: 12px;
-            margin-bottom: 25px;
-            text-align: center;
-            font-weight: bold;
-            backdrop-filter: blur(10px);
+        /* ----- لوگو و فرم ----- */
+        .logo-box { text-align: center; margin-bottom: 30px; }
+        .logo-box img {
+            width: 120px; height: 120px; border-radius: 50%;
+            border: 3px solid transparent;
+            background: linear-gradient(#000, #000) padding-box, linear-gradient(45deg, #00ffff, #ff00ff) border-box;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5), 0 0 40px rgba(255, 0, 255, 0.5);
+            object-fit: cover; transition: transform 0.4s ease;
+        }
+        .logo-box img:hover { transform: scale(1.05) rotate(5deg); }
+        .logo-box h1 {
+            font-size: 1.6rem; font-weight: 900; margin-top: 15px;
+            background: linear-gradient(90deg, #00ffff, #ff00ff);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(255, 0, 255, 0.4); letter-spacing: 2px;
         }
 
-        .alert-success {
-            background: rgba(0, 255, 128, 0.15);
-            border: 1px solid #00ff80;
-            color: #00ff80;
-            box-shadow: 0 0 20px rgba(0, 255, 128, 0.3);
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-size: 0.95rem; color: #e0e0e0; }
+        .form-control {
+            width: 100%; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px; padding: 12px 15px; color: #fff; font-size: 1rem; outline: none; transition: 0.3s;
+        }
+        .form-control:focus { background: rgba(0, 255, 255, 0.05); border-color: #00ffff; box-shadow: 0 0 15px rgba(0, 255, 255, 0.3); }
+
+        .radio-group, .checkbox-group {
+            display: flex; gap: 15px; flex-wrap: wrap; background: rgba(255, 255, 255, 0.02);
+            padding: 12px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .custom-label { display: flex; align-items: center; cursor: pointer; font-size: 0.9rem; color: #ccc; transition: 0.3s; }
+        .custom-label:hover { color: #fff; }
+        input[type="radio"], input[type="checkbox"] { accent-color: #ff00ff; width: 18px; height: 18px; margin-left: 8px; cursor: pointer; }
+
+        .submit-btn {
+            width: 100%; background: linear-gradient(45deg, #00ffff, #ff00ff); color: #000; border: none;
+            padding: 15px; font-size: 1.2rem; font-weight: 900; border-radius: 12px; cursor: pointer;
+            transition: all 0.4s ease; text-transform: uppercase; box-shadow: 0 10px 20px rgba(0, 255, 255, 0.2); margin-top: 10px;
+        }
+        .submit-btn:hover { box-shadow: 0 0 40px #00ffff, 0 0 60px #ff00ff; transform: translateY(-3px); color: #fff; }
+
+        .alert { display: none; padding: 15px; border-radius: 12px; margin-bottom: 20px; text-align: center; font-weight: bold; }
+        .alert-success { background: rgba(0, 255, 128, 0.15); border: 1px solid #00ff80; color: #00ff80; }
+        .alert-danger { background: rgba(255, 0, 0, 0.15); border: 1px solid #ff0040; color: #ff0040; }
+
+        /* ----- مدال پخش ویدیو (پنجره پاپ‌آپ) ----- */
+        .video-modal {
+            display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); z-index: 9999;
+            justify-content: center; align-items: center; padding: 20px; opacity: 0; transition: opacity 0.3s ease;
+        }
+        .video-modal.show { display: flex; opacity: 1; }
+        
+        .modal-content {
+            width: 100%; max-width: 900px; background: #000;
+            border: 2px solid #00ffff; box-shadow: 0 0 40px rgba(0, 255, 255, 0.4);
+            border-radius: 20px; overflow: hidden; position: relative;
+            transform: scale(0.9); transition: transform 0.3s ease;
+        }
+        .video-modal.show .modal-content { transform: scale(1); }
+
+        .modal-content video, .modal-content iframe {
+            width: 100%; height: 100%; aspect-ratio: 16/9; display: block; border: none;
         }
 
-        .alert-danger {
-            background: rgba(255, 0, 0, 0.15);
-            border: 1px solid #ff0040;
-            color: #ff0040;
-            box-shadow: 0 0 20px rgba(255, 0, 64, 0.3);
+        .close-modal {
+            position: absolute; top: 20px; right: 30px; font-size: 3rem; color: #fff;
+            cursor: pointer; z-index: 10000; text-shadow: 0 0 15px #ff00ff; transition: 0.3s; line-height: 1;
         }
+        .close-modal:hover { color: #ff00ff; transform: scale(1.1); }
     </style>
 </head>
 <body>
 
     <div class="bg-animation">
-        <div class="circle"></div>
-        <div class="circle"></div>
-        <div class="circle"></div>
+        <div class="circle"></div><div class="circle"></div><div class="circle"></div>
     </div>
 
-    <div class="glass-panel">
-        <div class="logo-box">
-            <img src="https://s25.uupload.ir/files/aslidxx/IMG_20260606_142036_816.jpg" alt="Norkhiz Studio Logo">
-            <h1>NORKHIZ STUDIO</h1>
+    <div class="video-modal" id="videoModal">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <div class="modal-content" id="modalVideoContainer">
+            </div>
+    </div>
+
+    <div class="layout-container">
+        
+        <div class="glass-panel form-panel">
+            <div class="logo-box">
+                <img src="https://s25.uupload.ir/files/aslidxx/IMG_20260606_142036_816.jpg" alt="Norkhiz Studio Logo">
+                <h1>NORKHIZ STUDIO</h1>
+            </div>
+
+            <div id="successAlert" class="alert alert-success">درخواست شما با موفقیت در سیستم ثبت شد! 🎉</div>
+            <div id="errorAlert" class="alert alert-danger">خطا در ارتباط با سرور. لطفاً دوباره تلاش کنید. ❌</div>
+
+            <form id="orderForm">
+                <div class="form-group">
+                    <label>نام و نام خانوادگی:</label>
+                    <input type="text" id="name" class="form-control" required placeholder="مثال: علی محمدی">
+                </div>
+                <div class="form-group">
+                    <label>ماهیت درخواست:</label>
+                    <div class="radio-group">
+                        <label class="custom-label"><input type="radio" name="entity" value="حقیقی (فردی)" checked required> حقیقی (فردی)</label>
+                        <label class="custom-label"><input type="radio" name="entity" value="حقوقی (شرکتی/تیم)"> حقوقی (شرکتی/تیم)</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>شماره تماس (جهت هماهنگی):</label>
+                    <input type="tel" id="phone" class="form-control" required placeholder="09123456789">
+                </div>
+                <div class="form-group">
+                    <label>ایمیل (اختیاری):</label>
+                    <input type="email" id="email" class="form-control" placeholder="info@example.com">
+                </div>
+                <div class="form-group">
+                    <label>کدام خدمات ما را نیاز دارید؟</label>
+                    <div class="checkbox-group">
+                        <label class="custom-label"><input type="checkbox" name="services" value="عکاسی تخصصی"> عکاسی تخصصی</label>
+                        <label class="custom-label"><input type="checkbox" name="services" value="فیلمبرداری"> فیلمبرداری</label>
+                        <label class="custom-label"><input type="checkbox" name="services" value="ادیت و تدوین"> ادیت و تدوین</label>
+                    </div>
+                </div>
+                <button type="submit" id="btnSubmit" class="submit-btn">ثبت سفارش</button>
+            </form>
         </div>
 
-        <div id="successAlert" class="alert alert-success">درخواست شما با موفقیت در سیستم نورخیز استودیو ثبت شد! 🎉</div>
-        <div id="errorAlert" class="alert alert-danger">خطا در ارتباط با سرور. لطفاً دوباره تلاش کنید. ❌</div>
-
-        <form id="orderForm">
-            <div class="form-group">
-                <label>نام و نام خانوادگی:</label>
-                <input type="text" id="name" class="form-control" required placeholder="مثال: علی محمدی">
+        <div class="glass-panel portfolio-panel">
+            <div class="portfolio-header">
+                <h2>🎬 گالری نمونه کارها</h2>
+                <p>برای پخش آنلاین روی هر اتاق کلیک کنید</p>
             </div>
-
-            <div class="form-group">
-                <label>ماهیت درخواست:</label>
-                <div class="radio-group">
-                    <label class="custom-label">
-                        <input type="radio" name="entity" value="حقیقی (فردی)" checked required> حقیقی (فردی)
-                    </label>
-                    <label class="custom-label">
-                        <input type="radio" name="entity" value="حقوقی (شرکتی/تیم)"> حقوقی (شرکتی/تیم)
-                    </label>
+            <div class="portfolio-grid" id="portfolioGrid">
                 </div>
-            </div>
+        </div>
 
-            <div class="form-group">
-                <label>شماره تماس (جهت هماهنگی):</label>
-                <input type="tel" id="phone" class="form-control" required placeholder="09123456789">
-            </div>
-
-            <div class="form-group">
-                <label>ایمیل (اختیاری):</label>
-                <input type="email" id="email" class="form-control" placeholder="info@example.com">
-            </div>
-
-            <div class="form-group">
-                <label>کدام خدمات ما را نیاز دارید؟</label>
-                <div class="checkbox-group">
-                    <label class="custom-label">
-                        <input type="checkbox" name="services" value="عکاسی تخصصی"> عکاسی تخصصی
-                    </label>
-                    <label class="custom-label">
-                        <input type="checkbox" name="services" value="فیلمبرداری"> فیلمبرداری
-                    </label>
-                    <label class="custom-label">
-                        <input type="checkbox" name="services" value="ادیت و تدوین"> ادیت و تدوین
-                    </label>
-                </div>
-            </div>
-
-            <button type="submit" id="btnSubmit" class="submit-btn">ثبت سفارش</button>
-        </form>
     </div>
 
     <script>
+        // ==========================================
+        // بخش تنظیمات نمونه کارها (۳۰ اتاق)
+        // ==========================================
+        
+        /* لینک ویدیوهای خود را در آرایه زیر قرار دهید.
+           - می‌توانید لینک مستقیم فایل mp4 بگذارید.
+           - یا می‌توانید کد iframe (مثل آپارات یا یوتیوب) را کامل داخل کوتیشن بگذارید.
+           - اگر اتاقی را خالی ("") بگذارید، در سایت بصورت "اتاق خالی" نمایش داده می‌شود.
+        */
+        const portfolioLinks = [
+            "https://www.w3schools.com/html/mov_bbb.mp4", // اتاق 1 (این یک نمونه تستی است، پاکش کن و لینک خودت رو بذار)
+            "https://s25.uupload.ir/files/aslidxx/VID_20260606_125006_011.mp4?play", // اتاق 2
+            "https://s25.uupload.ir/files/aslidxx/VID_20260606_132610_067.mp4?play", // اتاق 3
+            "", // اتاق 4
+            "", // اتاق 5
+            "", // اتاق 6
+            "", // اتاق 7
+            "", // اتاق 8
+            "", // اتاق 9
+            "", // اتاق 10
+            "", // اتاق 11
+            "", // اتاق 12
+            "", // اتاق 13
+            "", // اتاق 14
+            "", // اتاق 15
+            "", // اتاق 16
+            "", // اتاق 17
+            "", // اتاق 18
+            "", // اتاق 19
+            "", // اتاق 20
+            "", // اتاق 21
+            "", // اتاق 22
+            "", // اتاق 23
+            "", // اتاق 24
+            "", // اتاق 25
+            "", // اتاق 26
+            "", // اتاق 27
+            "", // اتاق 28
+            "", // اتاق 29
+            ""  // اتاق 30
+        ];
+
+        // ساخت خودکار ۳۰ اتاق در سایت
+        const gridContainer = document.getElementById('portfolioGrid');
+        
+        portfolioLinks.forEach((link, index) => {
+            const item = document.createElement('div');
+            item.className = 'portfolio-item ' + (link.trim() !== "" ? 'active' : 'empty');
+            
+            // شماره اتاق
+            item.innerHTML = `<span>پروژه ${index + 1}</span>`;
+            
+            // اگر لینک داشت، قابلیت کلیک بهش بده
+            if(link.trim() !== "") {
+                item.onclick = () => openModal(link);
+            }
+            
+            gridContainer.appendChild(item);
+        });
+
+        // توابع باز و بسته کردن ویدیو
+        const videoModal = document.getElementById('videoModal');
+        const modalContainer = document.getElementById('modalVideoContainer');
+
+        function openModal(link) {
+            // تشخیص اینکه لینک مستقیم هست یا کد iframe (مثل آپارات)
+            if(link.includes('<iframe')) {
+                modalContainer.innerHTML = link;
+            } else {
+                modalContainer.innerHTML = `<video controls autoplay><source src="${link}" type="video/mp4">مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.</video>`;
+            }
+            videoModal.classList.add('show');
+        }
+
+        function closeModal() {
+            videoModal.classList.remove('show');
+            // پاک کردن محتوا برای قطع شدن صدای ویدیو بعد از بستن
+            setTimeout(() => { modalContainer.innerHTML = ""; }, 300);
+        }
+
+        // بستن پاپ‌آپ با کلیک روی فضای خالی بیرون ویدیو
+        videoModal.addEventListener('click', function(e) {
+            if(e.target === videoModal) closeModal();
+        });
+
+
+        // ==========================================
+        // بخش ارسال اطلاعات به تلگرام
+        // ==========================================
         document.getElementById('orderForm').addEventListener('submit', function(e) {
             e.preventDefault(); 
 
@@ -361,16 +440,15 @@
             message += `📧 <b>ایمیل:</b> ${email}\n`;
             message += `🎬 <b>خدمات:</b> ${servicesText}\n`;
 
-            const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
+            // اگر پروکسی کلودفلر ساختی، آدرسش رو خط پایین جایگزین کن
+            const proxyUrl = "https://your-proxy-name.your-username.workers.dev"; 
+            
+            const telegramUrl = `${proxyUrl}/bot${botToken}/sendMessage`;
 
             fetch(telegramUrl, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    chat_id: chatId,
-                    text: message,
-                    parse_mode: 'HTML'
-                })
+                body: JSON.stringify({ chat_id: chatId, text: message, parse_mode: 'HTML' })
             })
             .then(response => {
                 document.getElementById('successAlert').style.display = 'none';
@@ -379,9 +457,6 @@
                 if (response.ok) {
                     document.getElementById('successAlert').style.display = 'block';
                     document.getElementById('orderForm').reset();
-                    // افکت پرش کوتاه فرم پس از موفقیت
-                    document.querySelector('.glass-panel').style.transform = "scale(1.02)";
-                    setTimeout(() => { document.querySelector('.glass-panel').style.transform = "scale(1)"; }, 200);
                 } else {
                     document.getElementById('errorAlert').style.display = 'block';
                 }
