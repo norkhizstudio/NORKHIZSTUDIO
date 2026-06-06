@@ -1,54 +1,9 @@
-<?php
-$success_msg = "";
-$error_msg = "";
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $token = "8108890135:AAHTAc0-kgynzUqkRWhniWFMJHXPBMMvT68";
-    $chat_id = "7403377873";
-
-    $name = htmlspecialchars($_POST['name'] ?? 'نامشخص');
-    $entity = htmlspecialchars($_POST['entity'] ?? 'نامشخص');
-    $phone = htmlspecialchars($_POST['phone'] ?? 'نامشخص');
-    $email = htmlspecialchars($_POST['email'] ?? 'نامشخص');
-    $services = isset($_POST['services']) ? implode('، ', $_POST['services']) : 'هیچکدام';
-
-    $text = "🔔 <b>سفارش جدید در NORKHIZ STUDIO</b>\n\n";
-    $text .= "👤 <b>نام و نام خانوادگی:</b> " . $name . "\n";
-    $text .= "🏢 <b>نوع شخص:</b> " . $entity . "\n";
-    $text .= "📞 <b>شماره تماس:</b> <code>" . $phone . "</code>\n";
-    $text .= "📧 <b>ایمیل:</b> " . $email . "\n";
-    $text .= "📸 <b>خدمات انتخابی:</b> " . $services . "\n";
-
-    $url = "https://api.telegram.org/bot" . $token . "/sendMessage";
-    $data = [
-        'chat_id' => $chat_id,
-        'text' => $text,
-        'parse_mode' => 'HTML'
-    ];
-
-    $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url);
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    $result = curl_exec($ch);
-    $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    curl_close($ch);
-
-    if ($httpcode == 200) {
-        $success_msg = "درخواست شما با موفقیت در سیستم نورخیز استودیو ثبت شد!";
-    } else {
-        $error_msg = "خطا در ارسال اطلاعات. لطفاً دوباره تلاش کنید.";
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NORKHIZ STUDIO | ثبت سفارش</title>
+    <title>NORKHIZ STUDIO | ثبت سفارش نئونی</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700&display=swap');
         
@@ -81,24 +36,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             box-shadow: 0 0 20px rgba(0, 255, 255, 0.1), inset 0 0 20px rgba(255, 0, 255, 0.05);
             position: relative;
             overflow: hidden;
-        }
-
-        .neon-container::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(transparent, transparent, transparent, #00ffff);
-            animation: rotate 4s linear infinite;
-            z-index: -1;
-            opacity: 0.1;
-        }
-
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
         }
 
         .logo-box {
@@ -200,6 +137,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         .alert {
+            display: none;
             padding: 15px;
             border-radius: 8px;
             margin-bottom: 20px;
@@ -230,25 +168,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <h1>NORKHIZ STUDIO</h1>
         </div>
 
-        <?php if (!empty($success_msg)): ?>
-            <div class="alert alert-success"><?= $success_msg ?></div>
-        <?php endif; ?>
-        
-        <?php if (!empty($error_msg)): ?>
-            <div class="alert alert-danger"><?= $error_msg ?></div>
-        <?php endif; ?>
+        <div id="successAlert" class="alert alert-success">درخواست شما با موفقیت در سیستم نورخیز استودیو ثبت شد!</div>
+        <div id="errorAlert" class="alert alert-danger">خطا در ارسال اطلاعات. لطفاً دوباره تلاش کنید.</div>
 
-        <form method="POST" action="">
+        <form id="orderForm">
             <div class="form-group">
                 <label>نام و نام خانوادگی:</label>
-                <input type="text" name="name" class="form-control" required placeholder="نام خود را وارد کنید...">
+                <input type="text" id="name" class="form-control" required placeholder="نام خود را وارد کنید...">
             </div>
 
             <div class="form-group">
                 <label>ماهیت درخواست (نوع شخص):</label>
                 <div class="radio-group">
                     <label class="radio-label">
-                        <input type="radio" name="entity" value="حقیقی (فردی)" required> حقیقی (فردی)
+                        <input type="radio" name="entity" value="حقیقی (فردی)" checked required> حقیقی (فردی)
                     </label>
                     <label class="radio-label">
                         <input type="radio" name="entity" value="حقوقی (شرکتی)"> حقوقی (شرکتی/تیم)
@@ -258,33 +191,102 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <div class="form-group">
                 <label>شماره تماس:</label>
-                <input type="tel" name="phone" class="form-control" required placeholder="09123456789">
+                <input type="tel" id="phone" class="form-control" required placeholder="09123456789">
             </div>
 
             <div class="form-group">
                 <label>ایمیل (اختیاری):</label>
-                <input type="email" name="email" class="form-control" placeholder="example@gmail.com">
+                <input type="email" id="email" class="form-control" placeholder="example@gmail.com">
             </div>
 
             <div class="form-group">
                 <label>انتخاب خدمات (می‌توانید چند مورد انتخاب کنید):</label>
                 <div class="checkbox-group">
                     <label class="check-label">
-                        <input type="checkbox" name="services[]" value="عکاسی تخصصی"> عکاسی تخصصی
+                        <input type="checkbox" name="services" value="عکاسی تخصصی"> عکاسی تخصصی
                     </label>
                     <label class="check-label">
-                        <input type="checkbox" name="services[]" value="فیلمبرداری"> فیلمبرداری
+                        <input type="checkbox" name="services" value="فیلمبرداری"> فیلمبرداری
                     </label>
                     <label class="check-label">
-                        <input type="checkbox" name="services[]" value="ادیت و تدوین"> ادیت و تدوین
+                        <input type="checkbox" name="services" value="ادیت و تدوین"> ادیت و تدوین
                     </label>
                 </div>
             </div>
 
-            <button type="submit" class="submit-btn">ثبت سفارش و ارسال</button>
+            <button type="submit" id="btnSubmit" class="submit-btn">ثبت سفارش و ارسال</button>
         </form>
     </div>
 
+    <script>
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // جلوگیری از ریلود شدن صفحه
+
+            const botToken = "8108890135:AAHTAc0-kgynzUqkRWhniWFMJHXPBMMvT68";
+            const chatId = "7403377873";
+
+            // دریافت مقادیر فرم
+            const name = document.getElementById('name').value;
+            const entity = document.querySelector('input[name="entity"]:checked').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value || 'ثبت نشده';
+            
+            // دریافت خدمات انتخاب شده
+            const selectedServices = [];
+            document.querySelectorAll('input[name="services"]:checked').forEach(function(checkbox) {
+                selectedServices.push(checkbox.value);
+            });
+            const servicesText = selectedServices.length > 0 ? selectedServices.join('، ') : 'هیچکدام';
+
+            // دکمه ثبت تغییر وضعیت بدهد
+            const submitBtn = document.getElementById('btnSubmit');
+            submitBtn.innerText = "در حال ارسال...";
+            submitBtn.disabled = true;
+
+            // ساخت متن نهایی برای ربات تلگرام
+            let message = `🔔 <b>سفارش جدید در NORKHIZ STUDIO</b>\n\n`;
+            message += `👤 <b>نام و نام خانوادگی:</b> ${name}\n`;
+            message += `🏢 <b>نوع شخص:</b> ${entity}\n`;
+            message += `📞 <b>شماره تماس:</b> <code>${phone}</code>\n`;
+            message += `📧 <b>ایمیل:</b> ${email}\n`;
+            message += `📸 <b>خدمات انتخابی:</b> ${servicesText}\n`;
+
+            // آدرس API تلگرام
+            const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
+
+            // ارسال درخواست با fetch
+            fetch(telegramUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    chat_id: chatId,
+                    text: message,
+                    parse_mode: 'HTML'
+                })
+            })
+            .then(response => {
+                // پنهان کردن هشدارهای قبلی
+                document.getElementById('successAlert').style.display = 'none';
+                document.getElementById('errorAlert').style.display = 'none';
+
+                if (response.ok) {
+                    document.getElementById('successAlert').style.display = 'block';
+                    document.getElementById('orderForm').reset(); // فرم خالی شود
+                } else {
+                    document.getElementById('errorAlert').style.display = 'block';
+                }
+            })
+            .catch(error => {
+                document.getElementById('successAlert').style.display = 'none';
+                document.getElementById('errorAlert').style.display = 'block';
+            })
+            .finally(() => {
+                submitBtn.innerText = "ثبت سفارش و ارسال";
+                submitBtn.disabled = false;
+            });
+        });
+    </script>
 </body>
 </html>
-
