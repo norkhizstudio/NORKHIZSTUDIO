@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NORKHIZ STUDIO | ثبت سفارش نئونی</title>
+    <title>NORKHIZ STUDIO | VIP Order</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700;900&display=swap');
         
         * {
             box-sizing: border-box;
@@ -15,251 +15,357 @@
         }
 
         body {
-            background-color: #050505;
-            background-image: radial-gradient(circle at 50% -20%, #1a0b2e, #050505);
+            background-color: #020005;
             color: #fff;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             padding: 20px;
+            overflow-x: hidden;
+            position: relative;
         }
 
-        .neon-container {
-            background: rgba(20, 20, 20, 0.6);
-            backdrop-filter: blur(15px);
+        /* ----- انیمیشن پس‌زمینه نئونی ----- */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            background: radial-gradient(circle at center, #0a001a 0%, #000 100%);
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(60px);
+            opacity: 0.6;
+            animation: float 10s infinite ease-in-out alternate;
+        }
+
+        .circle:nth-child(1) {
+            width: 300px; height: 300px;
+            background: #00ffff;
+            top: 10%; left: 15%;
+            animation-duration: 12s;
+        }
+
+        .circle:nth-child(2) {
+            width: 400px; height: 400px;
+            background: #ff00ff;
+            bottom: 5%; right: 10%;
+            animation-duration: 15s;
+        }
+
+        .circle:nth-child(3) {
+            width: 200px; height: 200px;
+            background: #7000ff;
+            top: 40%; left: 60%;
+            animation-duration: 8s;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) translateX(0) scale(1); }
+            100% { transform: translateY(-50px) translateX(50px) scale(1.1); }
+        }
+
+        /* ----- فرم شیشه‌ای پیشرفته ----- */
+        .glass-panel {
+            background: rgba(20, 10, 30, 0.3);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            border-left: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            padding: 45px 35px;
             width: 100%;
             max-width: 550px;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.1), inset 0 0 20px rgba(255, 0, 255, 0.05);
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5), 
+                        inset 0 0 20px rgba(0, 255, 255, 0.05),
+                        inset 0 0 20px rgba(255, 0, 255, 0.05);
             position: relative;
-            overflow: hidden;
+            z-index: 10;
         }
 
+        /* ----- لوگو ----- */
         .logo-box {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
+            position: relative;
         }
 
         .logo-box img {
-            width: 120px;
-            height: 120px;
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
-            border: 2px solid #00ffff;
-            box-shadow: 0 0 15px #00ffff, 0 0 30px #00ffff;
+            border: 3px solid transparent;
+            background: linear-gradient(#000, #000) padding-box, 
+                        linear-gradient(45deg, #00ffff, #ff00ff) border-box;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5), 0 0 40px rgba(255, 0, 255, 0.5);
             object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .logo-box img:hover {
+            transform: scale(1.05) rotate(5deg);
         }
 
         .logo-box h1 {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 900;
             margin-top: 15px;
-            color: #fff;
-            text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
-            letter-spacing: 2px;
+            background: linear-gradient(90deg, #00ffff, #ff00ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(255, 0, 255, 0.4);
+            letter-spacing: 3px;
         }
 
+        /* ----- فیلدهای فرم ----- */
         .form-group {
             margin-bottom: 25px;
+            position: relative;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 8px;
-            font-size: 0.9rem;
-            color: #ccc;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            color: #e0e0e0;
+            font-weight: 300;
+            text-shadow: 0 0 5px rgba(255,255,255,0.2);
         }
 
         .form-control {
             width: 100%;
-            background: transparent;
-            border: none;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
-            padding: 10px 5px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 14px 15px;
             color: #fff;
             font-size: 1rem;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             outline: none;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.3);
         }
 
         .form-control:focus {
-            border-bottom-color: #00ffff;
-            box-shadow: 0 4px 10px -4px #00ffff;
+            background: rgba(0, 255, 255, 0.05);
+            border-color: #00ffff;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.3), inset 0 0 10px rgba(0, 255, 255, 0.1);
+            transform: translateY(-2px);
         }
 
+        /* ----- رادیو و چک‌باکس ----- */
         .radio-group, .checkbox-group {
             display: flex;
-            gap: 20px;
+            gap: 15px;
             flex-wrap: wrap;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        .radio-label, .check-label {
+        .custom-label {
             display: flex;
             align-items: center;
             cursor: pointer;
             font-size: 0.9rem;
-            color: #ddd;
+            color: #ccc;
             transition: 0.3s;
+            padding: 5px 10px;
+            border-radius: 8px;
         }
 
-        .radio-label:hover, .check-label:hover {
-            color: #00ffff;
-            text-shadow: 0 0 5px #00ffff;
+        .custom-label:hover {
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
         }
 
         input[type="radio"], input[type="checkbox"] {
             accent-color: #ff00ff;
-            margin-left: 8px;
-            transform: scale(1.2);
+            width: 18px;
+            height: 18px;
+            margin-left: 10px;
+            cursor: pointer;
+            filter: drop-shadow(0 0 5px #ff00ff);
         }
 
+        /* ----- دکمه ارسال ----- */
         .submit-btn {
             width: 100%;
-            background: transparent;
-            color: #00ffff;
-            border: 2px solid #00ffff;
-            padding: 15px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            border-radius: 10px;
+            background: linear-gradient(45deg, #00ffff, #ff00ff);
+            color: #000;
+            border: none;
+            padding: 16px;
+            font-size: 1.2rem;
+            font-weight: 900;
+            border-radius: 12px;
             cursor: pointer;
-            transition: all 0.3s;
+            transition: all 0.4s ease;
             text-transform: uppercase;
-            box-shadow: 0 0 10px inset transparent;
-            margin-top: 10px;
+            box-shadow: 0 10px 20px rgba(0, 255, 255, 0.2), 0 0 30px rgba(255, 0, 255, 0.2);
+            margin-top: 15px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(45deg, #ff00ff, #00ffff);
+            z-index: -1;
+            transition: opacity 0.4s ease;
+            opacity: 0;
+        }
+
+        .submit-btn:hover::before {
+            opacity: 1;
         }
 
         .submit-btn:hover {
-            background: #00ffff;
-            color: #050505;
-            box-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff;
+            box-shadow: 0 0 40px #00ffff, 0 0 60px #ff00ff;
+            transform: translateY(-3px);
+            color: #fff;
+            text-shadow: 0 0 10px rgba(0,0,0,0.8);
         }
 
+        /* ----- پیام‌ها ----- */
         .alert {
             display: none;
             padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 20px;
+            border-radius: 12px;
+            margin-bottom: 25px;
             text-align: center;
             font-weight: bold;
+            backdrop-filter: blur(10px);
         }
 
         .alert-success {
-            background: rgba(0, 255, 128, 0.1);
+            background: rgba(0, 255, 128, 0.15);
             border: 1px solid #00ff80;
             color: #00ff80;
-            box-shadow: 0 0 10px #00ff80;
+            box-shadow: 0 0 20px rgba(0, 255, 128, 0.3);
         }
 
         .alert-danger {
-            background: rgba(255, 0, 0, 0.1);
-            border: 1px solid #ff0000;
-            color: #ff0000;
-            box-shadow: 0 0 10px #ff0000;
+            background: rgba(255, 0, 0, 0.15);
+            border: 1px solid #ff0040;
+            color: #ff0040;
+            box-shadow: 0 0 20px rgba(255, 0, 64, 0.3);
         }
     </style>
 </head>
 <body>
 
-    <div class="neon-container">
+    <div class="bg-animation">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+    </div>
+
+    <div class="glass-panel">
         <div class="logo-box">
             <img src="https://s25.uupload.ir/files/aslidxx/IMG_20260606_142036_816.jpg" alt="Norkhiz Studio Logo">
             <h1>NORKHIZ STUDIO</h1>
         </div>
 
-        <div id="successAlert" class="alert alert-success">درخواست شما با موفقیت در سیستم نورخیز استودیو ثبت شد!</div>
-        <div id="errorAlert" class="alert alert-danger">خطا در ارسال اطلاعات. لطفاً دوباره تلاش کنید.</div>
+        <div id="successAlert" class="alert alert-success">درخواست شما با موفقیت در سیستم نورخیز استودیو ثبت شد! 🎉</div>
+        <div id="errorAlert" class="alert alert-danger">خطا در ارتباط با سرور. لطفاً دوباره تلاش کنید. ❌</div>
 
         <form id="orderForm">
             <div class="form-group">
                 <label>نام و نام خانوادگی:</label>
-                <input type="text" id="name" class="form-control" required placeholder="نام خود را وارد کنید...">
+                <input type="text" id="name" class="form-control" required placeholder="مثال: علی محمدی">
             </div>
 
             <div class="form-group">
-                <label>ماهیت درخواست (نوع شخص):</label>
+                <label>ماهیت درخواست:</label>
                 <div class="radio-group">
-                    <label class="radio-label">
+                    <label class="custom-label">
                         <input type="radio" name="entity" value="حقیقی (فردی)" checked required> حقیقی (فردی)
                     </label>
-                    <label class="radio-label">
-                        <input type="radio" name="entity" value="حقوقی (شرکتی)"> حقوقی (شرکتی/تیم)
+                    <label class="custom-label">
+                        <input type="radio" name="entity" value="حقوقی (شرکتی/تیم)"> حقوقی (شرکتی/تیم)
                     </label>
                 </div>
             </div>
 
             <div class="form-group">
-                <label>شماره تماس:</label>
+                <label>شماره تماس (جهت هماهنگی):</label>
                 <input type="tel" id="phone" class="form-control" required placeholder="09123456789">
             </div>
 
             <div class="form-group">
                 <label>ایمیل (اختیاری):</label>
-                <input type="email" id="email" class="form-control" placeholder="example@gmail.com">
+                <input type="email" id="email" class="form-control" placeholder="info@example.com">
             </div>
 
             <div class="form-group">
-                <label>انتخاب خدمات (می‌توانید چند مورد انتخاب کنید):</label>
+                <label>کدام خدمات ما را نیاز دارید؟</label>
                 <div class="checkbox-group">
-                    <label class="check-label">
+                    <label class="custom-label">
                         <input type="checkbox" name="services" value="عکاسی تخصصی"> عکاسی تخصصی
                     </label>
-                    <label class="check-label">
+                    <label class="custom-label">
                         <input type="checkbox" name="services" value="فیلمبرداری"> فیلمبرداری
                     </label>
-                    <label class="check-label">
+                    <label class="custom-label">
                         <input type="checkbox" name="services" value="ادیت و تدوین"> ادیت و تدوین
                     </label>
                 </div>
             </div>
 
-            <button type="submit" id="btnSubmit" class="submit-btn">ثبت سفارش و ارسال</button>
+            <button type="submit" id="btnSubmit" class="submit-btn">ثبت سفارش</button>
         </form>
     </div>
 
     <script>
         document.getElementById('orderForm').addEventListener('submit', function(e) {
-            e.preventDefault(); // جلوگیری از ریلود شدن صفحه
+            e.preventDefault(); 
 
             const botToken = "8108890135:AAHTAc0-kgynzUqkRWhniWFMJHXPBMMvT68";
             const chatId = "7403377873";
 
-            // دریافت مقادیر فرم
             const name = document.getElementById('name').value;
             const entity = document.querySelector('input[name="entity"]:checked').value;
             const phone = document.getElementById('phone').value;
             const email = document.getElementById('email').value || 'ثبت نشده';
             
-            // دریافت خدمات انتخاب شده
             const selectedServices = [];
             document.querySelectorAll('input[name="services"]:checked').forEach(function(checkbox) {
                 selectedServices.push(checkbox.value);
             });
             const servicesText = selectedServices.length > 0 ? selectedServices.join('، ') : 'هیچکدام';
 
-            // دکمه ثبت تغییر وضعیت بدهد
             const submitBtn = document.getElementById('btnSubmit');
-            submitBtn.innerText = "در حال ارسال...";
+            submitBtn.innerText = "در حال پردازش...";
+            submitBtn.style.opacity = "0.7";
             submitBtn.disabled = true;
 
-            // ساخت متن نهایی برای ربات تلگرام
-            let message = `🔔 <b>سفارش جدید در NORKHIZ STUDIO</b>\n\n`;
-            message += `👤 <b>نام و نام خانوادگی:</b> ${name}\n`;
-            message += `🏢 <b>نوع شخص:</b> ${entity}\n`;
-            message += `📞 <b>شماره تماس:</b> <code>${phone}</code>\n`;
+            let message = `💎 <b>درخواست VIP نورخیز استودیو</b>\n\n`;
+            message += `👤 <b>نام:</b> ${name}\n`;
+            message += `🏢 <b>نوع:</b> ${entity}\n`;
+            message += `📞 <b>تماس:</b> <code>${phone}</code>\n`;
             message += `📧 <b>ایمیل:</b> ${email}\n`;
-            message += `📸 <b>خدمات انتخابی:</b> ${servicesText}\n`;
+            message += `🎬 <b>خدمات:</b> ${servicesText}\n`;
 
-            // آدرس API تلگرام
             const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
 
-            // ارسال درخواست با fetch
             fetch(telegramUrl, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
+                headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
                     chat_id: chatId,
                     text: message,
@@ -267,13 +373,15 @@
                 })
             })
             .then(response => {
-                // پنهان کردن هشدارهای قبلی
                 document.getElementById('successAlert').style.display = 'none';
                 document.getElementById('errorAlert').style.display = 'none';
 
                 if (response.ok) {
                     document.getElementById('successAlert').style.display = 'block';
-                    document.getElementById('orderForm').reset(); // فرم خالی شود
+                    document.getElementById('orderForm').reset();
+                    // افکت پرش کوتاه فرم پس از موفقیت
+                    document.querySelector('.glass-panel').style.transform = "scale(1.02)";
+                    setTimeout(() => { document.querySelector('.glass-panel').style.transform = "scale(1)"; }, 200);
                 } else {
                     document.getElementById('errorAlert').style.display = 'block';
                 }
@@ -283,7 +391,8 @@
                 document.getElementById('errorAlert').style.display = 'block';
             })
             .finally(() => {
-                submitBtn.innerText = "ثبت سفارش و ارسال";
+                submitBtn.innerText = "ثبت سفارش";
+                submitBtn.style.opacity = "1";
                 submitBtn.disabled = false;
             });
         });
