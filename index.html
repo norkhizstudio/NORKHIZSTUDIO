@@ -19,9 +19,10 @@
             color: #fff;
             display: flex;
             justify-content: center;
-            align-items: center;
+            /* تغییر از center به flex-start تا در صفحات کوچک محتوا از بالا بریده نشود */
+            align-items: flex-start; 
             min-height: 100vh;
-            padding: 40px 20px;
+            padding: 5vh 20px;
             overflow-x: hidden;
             position: relative;
         }
@@ -29,42 +30,45 @@
         /* ----- انیمیشن پس‌زمینه نئونی ----- */
         .bg-animation {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            z-index: -1;
-            overflow: hidden;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1; overflow: hidden;
             background: radial-gradient(circle at center, #0a001a 0%, #000 100%);
         }
 
         .circle {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(60px);
-            opacity: 0.6;
-            animation: float 10s infinite ease-in-out alternate;
+            position: absolute; border-radius: 50%; filter: blur(60px);
+            opacity: 0.6; animation: float 10s infinite ease-in-out alternate;
         }
-
         .circle:nth-child(1) { width: 300px; height: 300px; background: #00ffff; top: 10%; left: 15%; animation-duration: 12s; }
         .circle:nth-child(2) { width: 400px; height: 400px; background: #ff00ff; bottom: 5%; right: 10%; animation-duration: 15s; }
         .circle:nth-child(3) { width: 200px; height: 200px; background: #7000ff; top: 40%; left: 60%; animation-duration: 8s; }
 
         @keyframes float {
             0% { transform: translateY(0) translateX(0) scale(1); }
-            100% { transform: translateY(-50px) translateX(50px) scale(1.1); }
+            100% { transform: translateY(-30px) translateX(30px) scale(1.05); }
         }
 
-        /* ----- لایه‌بندی اصلی (فرم + نمونه کارها) ----- */
+        /* ----- لایه‌بندی اصلی (استراکچر اصولی) ----- */
         .layout-container {
             display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
+            flex-direction: row;
+            gap: 40px;
             width: 100%;
-            max-width: 1200px;
+            max-width: 1300px;
             z-index: 10;
-            justify-content: center;
-            align-items: flex-start;
+            align-items: stretch; /* هم‌ارتفاع شدن پنل‌ها */
+        }
+
+        /* رسپانسیو برای تبلت و موبایل */
+        @media (max-width: 1024px) {
+            .layout-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .form-panel, .portfolio-panel {
+                width: 100%;
+                max-width: 600px !important;
+            }
         }
 
         /* ----- پنل‌های شیشه‌ای ----- */
@@ -76,122 +80,92 @@
             border-top: 1px solid rgba(255, 255, 255, 0.3);
             border-left: 1px solid rgba(255, 255, 255, 0.3);
             border-radius: 25px;
-            padding: 40px 30px;
+            padding: 40px;
             box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(0, 255, 255, 0.05);
             position: relative;
         }
 
         .form-panel {
-            flex: 1 1 450px;
-            max-width: 550px;
+            flex: 1;
+            max-width: 500px;
+            display: flex;
+            flex-direction: column;
         }
 
         .portfolio-panel {
-            flex: 1 1 500px;
-            max-width: 600px;
+            flex: 1.5;
+            max-width: 800px;
             display: flex;
             flex-direction: column;
-            max-height: 820px;
         }
 
-        /* ----- بخش نمونه کارها (۳۰ اتاق) ----- */
+        /* ----- بخش نمونه کارها ----- */
         .portfolio-header {
-            text-align: center;
-            margin-bottom: 20px;
+            text-align: center; margin-bottom: 25px;
         }
         .portfolio-header h2 {
             font-size: 1.8rem;
             background: linear-gradient(90deg, #ff00ff, #00ffff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
-            margin-bottom: 5px;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.3); margin-bottom: 5px;
         }
-        .portfolio-header p {
-            font-size: 0.9rem;
-            color: #aaa;
+        .portfolio-header p { font-size: 0.95rem; color: #aaa; }
+
+        /* اسکرول‌بار داخلی و بهینه برای ۳۰ آیتم */
+        .portfolio-wrapper {
+            flex-grow: 1;
+            max-height: 580px; /* جلوگیری از دراز شدن پنل */
+            overflow-y: auto;
+            padding-right: 15px;
         }
+
+        .portfolio-wrapper::-webkit-scrollbar { width: 8px; }
+        .portfolio-wrapper::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); border-radius: 10px; }
+        .portfolio-wrapper::-webkit-scrollbar-thumb { background: rgba(0, 255, 255, 0.6); border-radius: 10px; }
+        .portfolio-wrapper::-webkit-scrollbar-thumb:hover { background: #00ffff; }
 
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
             gap: 15px;
-            overflow-y: auto;
-            padding-right: 10px;
-            padding-bottom: 10px;
+            padding-bottom: 20px;
         }
-
-        /* شخصی‌سازی اسکرول‌بار نئونی */
-        .portfolio-grid::-webkit-scrollbar { width: 8px; }
-        .portfolio-grid::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); border-radius: 10px; }
-        .portfolio-grid::-webkit-scrollbar-thumb { background: #00ffff; border-radius: 10px; box-shadow: 0 0 10px #00ffff; }
 
         .portfolio-item {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 15px;
-            aspect-ratio: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
+            aspect-ratio: 1; /* ایجاد مربع کامل و دقیق */
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            transition: all 0.3s ease; position: relative; overflow: hidden;
         }
 
-        .portfolio-item span {
-            font-size: 0.85rem;
-            color: #ccc;
-            margin-bottom: 8px;
-            z-index: 2;
-        }
+        .portfolio-item span { font-size: 0.85rem; color: #ccc; margin-bottom: 8px; z-index: 2; font-weight: bold; }
 
-        /* اتاق پر (دارای ویدیو) */
-        .portfolio-item.active {
-            cursor: pointer;
-            border-color: rgba(0, 255, 255, 0.3);
-        }
+        .portfolio-item.active { cursor: pointer; border-color: rgba(0, 255, 255, 0.3); }
         .portfolio-item.active::after {
-            content: '▶';
-            font-size: 1.8rem;
-            color: #00ffff;
-            text-shadow: 0 0 15px #00ffff;
-            z-index: 2;
-            transition: 0.3s;
+            content: '▶'; font-size: 1.8rem; color: #00ffff;
+            text-shadow: 0 0 15px #00ffff; z-index: 2; transition: 0.3s;
         }
         .portfolio-item.active:hover {
-            background: rgba(0, 255, 255, 0.1);
-            border-color: #00ffff;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.4), inset 0 0 15px rgba(0, 255, 255, 0.2);
+            background: rgba(0, 255, 255, 0.08); border-color: #00ffff;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3), inset 0 0 15px rgba(0, 255, 255, 0.1);
             transform: translateY(-5px);
         }
-        .portfolio-item.active:hover::after {
-            transform: scale(1.2);
-        }
+        .portfolio-item.active:hover::after { transform: scale(1.2); }
 
-        /* اتاق خالی */
-        .portfolio-item.empty {
-            cursor: not-allowed;
-            opacity: 0.6;
-        }
+        .portfolio-item.empty { cursor: not-allowed; opacity: 0.5; }
         .portfolio-item.empty::after {
-            content: 'خالی';
-            font-size: 0.8rem;
-            color: #666;
-            background: rgba(255,255,255,0.1);
-            padding: 2px 8px;
-            border-radius: 5px;
+            content: 'خالی'; font-size: 0.8rem; color: #777;
+            background: rgba(255,255,255,0.05); padding: 3px 10px; border-radius: 6px;
         }
 
         /* ----- لوگو و فرم ----- */
         .logo-box { text-align: center; margin-bottom: 30px; }
         .logo-box img {
             width: 120px; height: 120px; border-radius: 50%;
-            border: 3px solid transparent;
-            background: linear-gradient(#000, #000) padding-box, linear-gradient(45deg, #00ffff, #ff00ff) border-box;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5), 0 0 40px rgba(255, 0, 255, 0.5);
-            object-fit: cover; transition: transform 0.4s ease;
+            border: 3px solid transparent; background: linear-gradient(#000, #000) padding-box, linear-gradient(45deg, #00ffff, #ff00ff) border-box;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5); object-fit: cover; transition: transform 0.4s ease;
         }
         .logo-box img:hover { transform: scale(1.05) rotate(5deg); }
         .logo-box h1 {
@@ -202,7 +176,7 @@
         }
 
         .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; font-size: 0.95rem; color: #e0e0e0; }
+        .form-group label { display: block; margin-bottom: 8px; font-size: 0.95rem; color: #e0e0e0; font-weight: 300;}
         .form-control {
             width: 100%; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 12px; padding: 12px 15px; color: #fff; font-size: 1rem; outline: none; transition: 0.3s;
@@ -220,7 +194,7 @@
         .submit-btn {
             width: 100%; background: linear-gradient(45deg, #00ffff, #ff00ff); color: #000; border: none;
             padding: 15px; font-size: 1.2rem; font-weight: 900; border-radius: 12px; cursor: pointer;
-            transition: all 0.4s ease; text-transform: uppercase; box-shadow: 0 10px 20px rgba(0, 255, 255, 0.2); margin-top: 10px;
+            transition: all 0.4s ease; text-transform: uppercase; box-shadow: 0 10px 20px rgba(0, 255, 255, 0.2); margin-top: auto; /* چسبیدن دکمه به پایین */
         }
         .submit-btn:hover { box-shadow: 0 0 40px #00ffff, 0 0 60px #ff00ff; transform: translateY(-3px); color: #fff; }
 
@@ -237,10 +211,10 @@
         .video-modal.show { display: flex; opacity: 1; }
         
         .modal-content {
-            width: 100%; max-width: 900px; background: #000;
-            border: 2px solid #00ffff; box-shadow: 0 0 40px rgba(0, 255, 255, 0.4);
+            width: 100%; max-width: 1000px; background: #000;
+            border: 1px solid rgba(0, 255, 255, 0.5); box-shadow: 0 0 50px rgba(0, 255, 255, 0.2);
             border-radius: 20px; overflow: hidden; position: relative;
-            transform: scale(0.9); transition: transform 0.3s ease;
+            transform: scale(0.95); transition: transform 0.3s ease;
         }
         .video-modal.show .modal-content { transform: scale(1); }
 
@@ -249,7 +223,7 @@
         }
 
         .close-modal {
-            position: absolute; top: 20px; right: 30px; font-size: 3rem; color: #fff;
+            position: absolute; top: 15px; right: 25px; font-size: 3rem; color: #fff;
             cursor: pointer; z-index: 10000; text-shadow: 0 0 15px #ff00ff; transition: 0.3s; line-height: 1;
         }
         .close-modal:hover { color: #ff00ff; transform: scale(1.1); }
@@ -263,8 +237,7 @@
 
     <div class="video-modal" id="videoModal">
         <span class="close-modal" onclick="closeModal()">&times;</span>
-        <div class="modal-content" id="modalVideoContainer">
-            </div>
+        <div class="modal-content" id="modalVideoContainer"></div>
     </div>
 
     <div class="layout-container">
@@ -275,10 +248,10 @@
                 <h1>NORKHIZ STUDIO</h1>
             </div>
 
-            <div id="successAlert" class="alert alert-success">درخواست شما با موفقیت در سیستم ثبت شد! 🎉</div>
+            <div id="successAlert" class="alert alert-success">درخواست شما با موفقیت ثبت شد! 🎉</div>
             <div id="errorAlert" class="alert alert-danger">خطا در ارتباط با سرور. لطفاً دوباره تلاش کنید. ❌</div>
 
-            <form id="orderForm">
+            <form id="orderForm" style="display: flex; flex-direction: column; flex-grow: 1;">
                 <div class="form-group">
                     <label>نام و نام خانوادگی:</label>
                     <input type="text" id="name" class="form-control" required placeholder="مثال: علی محمدی">
@@ -291,15 +264,15 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>شماره تماس (جهت هماهنگی):</label>
+                    <label>شماره تماس:</label>
                     <input type="tel" id="phone" class="form-control" required placeholder="09123456789">
                 </div>
                 <div class="form-group">
                     <label>ایمیل (اختیاری):</label>
                     <input type="email" id="email" class="form-control" placeholder="info@example.com">
                 </div>
-                <div class="form-group">
-                    <label>کدام خدمات ما را نیاز دارید؟</label>
+                <div class="form-group" style="margin-bottom: 30px;">
+                    <label>خدمات مورد نیاز:</label>
                     <div class="checkbox-group">
                         <label class="custom-label"><input type="checkbox" name="services" value="عکاسی تخصصی"> عکاسی تخصصی</label>
                         <label class="custom-label"><input type="checkbox" name="services" value="فیلمبرداری"> فیلمبرداری</label>
@@ -313,162 +286,92 @@
         <div class="glass-panel portfolio-panel">
             <div class="portfolio-header">
                 <h2>🎬 گالری نمونه کارها</h2>
-                <p>برای پخش آنلاین روی هر اتاق کلیک کنید</p>
+                <p>برای پخش آنلاین روی پروژه‌ها کلیک کنید</p>
             </div>
-            <div class="portfolio-grid" id="portfolioGrid">
-                </div>
+            <div class="portfolio-wrapper">
+                <div class="portfolio-grid" id="portfolioGrid">
+                    </div>
+            </div>
         </div>
 
     </div>
 
     <script>
-        // ==========================================
-        // بخش تنظیمات نمونه کارها (۳۰ اتاق)
-        // ==========================================
-        
-        /* لینک ویدیوهای خود را در آرایه زیر قرار دهید.
-           - می‌توانید لینک مستقیم فایل mp4 بگذارید.
-           - یا می‌توانید کد iframe (مثل آپارات یا یوتیوب) را کامل داخل کوتیشن بگذارید.
-           - اگر اتاقی را خالی ("") بگذارید، در سایت بصورت "اتاق خالی" نمایش داده می‌شود.
-        */
+        // آرایه ۳۰ تایی ویدیوها
         const portfolioLinks = [
-            "https://www.w3schools.com/html/mov_bbb.mp4", // اتاق 1 (این یک نمونه تستی است، پاکش کن و لینک خودت رو بذار)
-            "https://s25.uupload.ir/files/aslidxx/VID_20260606_125006_011.mp4?play", // اتاق 2
-            "https://s25.uupload.ir/files/aslidxx/VID_20260606_132610_067.mp4?play", // اتاق 3
-            "", // اتاق 4
-            "", // اتاق 5
-            "", // اتاق 6
-            "", // اتاق 7
-            "", // اتاق 8
-            "", // اتاق 9
-            "", // اتاق 10
-            "", // اتاق 11
-            "", // اتاق 12
-            "", // اتاق 13
-            "", // اتاق 14
-            "", // اتاق 15
-            "", // اتاق 16
-            "", // اتاق 17
-            "", // اتاق 18
-            "", // اتاق 19
-            "", // اتاق 20
-            "", // اتاق 21
-            "", // اتاق 22
-            "", // اتاق 23
-            "", // اتاق 24
-            "", // اتاق 25
-            "", // اتاق 26
-            "", // اتاق 27
-            "", // اتاق 28
-            "", // اتاق 29
-            ""  // اتاق 30
+            "https://www.w3schools.com/html/mov_bbb.mp4", // ۱
+            "https://s15.uupload.ir/files/aslidxx/InShot_20260606_154750424.mp4?play", "", "", "", "", "", "", "", "", // ۲ تا ۱۰
+            "", "", "", "", "", "", "", "", "", "", // ۱۱ تا ۲۰
+            "", "", "", "", "", "", "", "", "", ""  // ۲۱ تا ۳۰
         ];
 
-        // ساخت خودکار ۳۰ اتاق در سایت
         const gridContainer = document.getElementById('portfolioGrid');
-        
         portfolioLinks.forEach((link, index) => {
             const item = document.createElement('div');
             item.className = 'portfolio-item ' + (link.trim() !== "" ? 'active' : 'empty');
-            
-            // شماره اتاق
             item.innerHTML = `<span>پروژه ${index + 1}</span>`;
-            
-            // اگر لینک داشت، قابلیت کلیک بهش بده
-            if(link.trim() !== "") {
-                item.onclick = () => openModal(link);
-            }
-            
+            if(link.trim() !== "") { item.onclick = () => openModal(link); }
             gridContainer.appendChild(item);
         });
 
-        // توابع باز و بسته کردن ویدیو
         const videoModal = document.getElementById('videoModal');
         const modalContainer = document.getElementById('modalVideoContainer');
 
         function openModal(link) {
-            // تشخیص اینکه لینک مستقیم هست یا کد iframe (مثل آپارات)
             if(link.includes('<iframe')) {
                 modalContainer.innerHTML = link;
             } else {
-                modalContainer.innerHTML = `<video controls autoplay><source src="${link}" type="video/mp4">مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.</video>`;
+                modalContainer.innerHTML = `<video controls autoplay><source src="${link}" type="video/mp4">مرورگر شما پشتیبانی نمی‌کند.</video>`;
             }
             videoModal.classList.add('show');
         }
 
         function closeModal() {
             videoModal.classList.remove('show');
-            // پاک کردن محتوا برای قطع شدن صدای ویدیو بعد از بستن
             setTimeout(() => { modalContainer.innerHTML = ""; }, 300);
         }
 
-        // بستن پاپ‌آپ با کلیک روی فضای خالی بیرون ویدیو
         videoModal.addEventListener('click', function(e) {
             if(e.target === videoModal) closeModal();
         });
 
-
-        // ==========================================
-        // بخش ارسال اطلاعات به تلگرام
-        // ==========================================
+        // ارسال فرم به تلگرام
         document.getElementById('orderForm').addEventListener('submit', function(e) {
             e.preventDefault(); 
-
             const botToken = "8108890135:AAHTAc0-kgynzUqkRWhniWFMJHXPBMMvT68";
             const chatId = "7403377873";
-
             const name = document.getElementById('name').value;
             const entity = document.querySelector('input[name="entity"]:checked').value;
             const phone = document.getElementById('phone').value;
             const email = document.getElementById('email').value || 'ثبت نشده';
             
             const selectedServices = [];
-            document.querySelectorAll('input[name="services"]:checked').forEach(function(checkbox) {
-                selectedServices.push(checkbox.value);
-            });
+            document.querySelectorAll('input[name="services"]:checked').forEach(cb => selectedServices.push(cb.value));
             const servicesText = selectedServices.length > 0 ? selectedServices.join('، ') : 'هیچکدام';
 
             const submitBtn = document.getElementById('btnSubmit');
-            submitBtn.innerText = "در حال پردازش...";
-            submitBtn.style.opacity = "0.7";
-            submitBtn.disabled = true;
+            submitBtn.innerText = "در حال پردازش..."; submitBtn.style.opacity = "0.7"; submitBtn.disabled = true;
 
-            let message = `💎 <b>درخواست VIP نورخیز استودیو</b>\n\n`;
-            message += `👤 <b>نام:</b> ${name}\n`;
-            message += `🏢 <b>نوع:</b> ${entity}\n`;
-            message += `📞 <b>تماس:</b> <code>${phone}</code>\n`;
-            message += `📧 <b>ایمیل:</b> ${email}\n`;
-            message += `🎬 <b>خدمات:</b> ${servicesText}\n`;
+            let message = `💎 <b>درخواست VIP نورخیز استودیو</b>\n\n👤 <b>نام:</b> ${name}\n🏢 <b>نوع:</b> ${entity}\n📞 <b>تماس:</b> <code>${phone}</code>\n📧 <b>ایمیل:</b> ${email}\n🎬 <b>خدمات:</b> ${servicesText}\n`;
 
-            // اگر پروکسی کلودفلر ساختی، آدرسش رو خط پایین جایگزین کن
-            const proxyUrl = "https://your-proxy-name.your-username.workers.dev"; 
-            
+            const proxyUrl = "https://your-proxy-name.your-username.workers.dev"; // آدرس کلاودفلر
             const telegramUrl = `${proxyUrl}/bot${botToken}/sendMessage`;
 
             fetch(telegramUrl, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                method: 'POST', headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ chat_id: chatId, text: message, parse_mode: 'HTML' })
             })
             .then(response => {
-                document.getElementById('successAlert').style.display = 'none';
-                document.getElementById('errorAlert').style.display = 'none';
-
+                document.getElementById('successAlert').style.display = 'none'; document.getElementById('errorAlert').style.display = 'none';
                 if (response.ok) {
-                    document.getElementById('successAlert').style.display = 'block';
-                    document.getElementById('orderForm').reset();
-                } else {
-                    document.getElementById('errorAlert').style.display = 'block';
-                }
+                    document.getElementById('successAlert').style.display = 'block'; document.getElementById('orderForm').reset();
+                } else { document.getElementById('errorAlert').style.display = 'block'; }
             })
-            .catch(error => {
-                document.getElementById('successAlert').style.display = 'none';
-                document.getElementById('errorAlert').style.display = 'block';
+            .catch(() => {
+                document.getElementById('successAlert').style.display = 'none'; document.getElementById('errorAlert').style.display = 'block';
             })
             .finally(() => {
-                submitBtn.innerText = "ثبت سفارش";
-                submitBtn.style.opacity = "1";
-                submitBtn.disabled = false;
+                submitBtn.innerText = "ثبت سفارش"; submitBtn.style.opacity = "1"; submitBtn.disabled = false;
             });
         });
     </script>
