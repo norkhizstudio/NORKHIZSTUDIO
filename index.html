@@ -3,295 +3,460 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NORKHIZ STUDIO | VIP Order & Portfolio</title>
+    <title>منوی دیجیتال پیتزا پروشات</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700;900&display=swap');
-        
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Vazirmatn', sans-serif; }
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700&display=swap');
+
+        :root {
+            --bg-color: #0f0f12;
+            --card-bg: #18181c;
+            --accent-color: #ff5e3a;
+            --gold-color: #ffb830;
+            --text-main: #ffffff;
+            --text-muted: #a0a0aa;
+            --border-color: #2a2a32;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Vazirmatn', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
         body {
-            background-color: #020005; color: #fff; display: flex; justify-content: center;
-            align-items: flex-start; min-height: 100vh; padding: 5vh 20px; overflow-x: hidden; position: relative;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            padding-bottom: 40px;
+            overflow-x: hidden;
         }
-        .bg-animation {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; overflow: hidden;
-            background: radial-gradient(circle at center, #0a001a 0%, #000 100%);
+
+        /* Hero Header Section */
+        header {
+            position: relative;
+            background: linear-gradient(rgba(15, 15, 18, 0.6), rgba(15, 15, 18, 1)), 
+                        url('https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1200&q=80') no-repeat center center/cover;
+            height: 260px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
         }
-        .circle { position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.6; animation: float 10s infinite ease-in-out alternate; }
-        .circle:nth-child(1) { width: 300px; height: 300px; background: #00ffff; top: 10%; left: 15%; animation-duration: 12s; }
-        .circle:nth-child(2) { width: 400px; height: 400px; background: #ff00ff; bottom: 5%; right: 10%; animation-duration: 15s; }
-        .circle:nth-child(3) { width: 200px; height: 200px; background: #7000ff; top: 40%; left: 60%; animation-duration: 8s; }
-        @keyframes float {
-            0% { transform: translateY(0) translateX(0) scale(1); }
-            100% { transform: translateY(-30px) translateX(30px) scale(1.05); }
+
+        .brand-logo {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+            text-shadow: 0 4px 10px rgba(0,0,0,0.7);
+            margin-bottom: 5px;
+            letter-spacing: 1px;
         }
-        .layout-container { display: flex; flex-direction: row; gap: 40px; width: 100%; max-width: 1300px; z-index: 10; align-items: stretch; }
-        @media (max-width: 1024px) {
-            .layout-container { flex-direction: column; align-items: center; }
-            .form-panel, .portfolio-panel { width: 100%; max-width: 600px !important; }
+
+        .brand-logo span {
+            color: var(--accent-color);
         }
-        .glass-panel {
-            background: rgba(20, 10, 30, 0.3); backdrop-filter: blur(25px); -webkit-backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.1); border-top: 1px solid rgba(255, 255, 255, 0.3);
-            border-left: 1px solid rgba(255, 255, 255, 0.3); border-radius: 25px; padding: 40px;
-            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(0, 255, 255, 0.05); position: relative;
+
+        .brand-tagline {
+            font-size: 1rem;
+            color: var(--gold-color);
+            font-weight: 300;
+            opacity: 0.9;
         }
-        .form-panel { flex: 1; max-width: 500px; display: flex; flex-direction: column; }
-        .portfolio-panel { flex: 1.5; max-width: 800px; display: flex; flex-direction: column; }
-        .portfolio-header { text-align: center; margin-bottom: 25px; }
-        .portfolio-header h2 {
-            font-size: 1.8rem; background: linear-gradient(90deg, #ff00ff, #00ffff);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(0, 255, 255, 0.3); margin-bottom: 5px;
+
+        /* Category Navigation (Tabs) */
+        .category-nav {
+            position: sticky;
+            top: 0;
+            background-color: rgba(15, 15, 18, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            padding: 15px 10px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: none; /* Firefox */
         }
-        .portfolio-header p { font-size: 0.95rem; color: #aaa; }
-        .portfolio-wrapper { flex-grow: 1; max-height: 580px; overflow-y: auto; padding-right: 15px; }
-        .portfolio-wrapper::-webkit-scrollbar { width: 8px; }
-        .portfolio-wrapper::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.05); border-radius: 10px; }
-        .portfolio-wrapper::-webkit-scrollbar-thumb { background: rgba(0, 255, 255, 0.6); border-radius: 10px; }
-        .portfolio-wrapper::-webkit-scrollbar-thumb:hover { background: #00ffff; }
-        .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 15px; padding-bottom: 20px; }
-        .portfolio-item {
-            background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 15px; aspect-ratio: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;
-            transition: all 0.3s ease; position: relative; overflow: hidden;
+
+        .category-nav::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
         }
-        .portfolio-item span { font-size: 0.85rem; color: #ccc; margin-bottom: 8px; z-index: 2; font-weight: bold; }
-        .portfolio-item.active { cursor: pointer; border-color: rgba(0, 255, 255, 0.3); }
-        .portfolio-item.active::after {
-            content: '▶'; font-size: 1.8rem; color: #00ffff; text-shadow: 0 0 15px #00ffff; z-index: 2; transition: 0.3s;
+
+        .tab-btn {
+            background-color: #222227;
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
-        .portfolio-item.active:hover {
-            background: rgba(0, 255, 255, 0.08); border-color: #00ffff;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3), inset 0 0 15px rgba(0, 255, 255, 0.1); transform: translateY(-5px);
+
+        .tab-btn.active {
+            background-color: var(--accent-color);
+            color: #fff;
+            border-color: var(--accent-color);
+            box-shadow: 0 4px 12px rgba(255, 94, 58, 0.3);
         }
-        .portfolio-item.active:hover::after { transform: scale(1.2); }
-        .portfolio-item.empty { cursor: not-allowed; opacity: 0.5; }
-        .portfolio-item.empty::after {
-            content: 'خالی'; font-size: 0.8rem; color: #777;
-            background: rgba(255,255,255,0.05); padding: 3px 10px; border-radius: 6px;
+
+        /* Menu Container */
+        .menu-container {
+            max-width: 1100px;
+            margin: 25px auto;
+            padding: 0 15px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
         }
-        .logo-box { text-align: center; margin-bottom: 30px; }
-        .logo-box img {
-            width: 120px; height: 120px; border-radius: 50%;
-            border: 3px solid transparent; background: linear-gradient(#000, #000) padding-box, linear-gradient(45deg, #00ffff, #ff00ff) border-box;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5); object-fit: cover; transition: transform 0.4s ease;
+
+        /* Menu Item Card */
+        .menu-item {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .logo-box img:hover { transform: scale(1.05) rotate(5deg); }
-        .logo-box h1 {
-            font-size: 1.6rem; font-weight: 900; margin-top: 15px;
-            background: linear-gradient(90deg, #00ffff, #ff00ff);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(255, 0, 255, 0.4); letter-spacing: 2px;
+
+        .menu-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
         }
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; font-size: 0.95rem; color: #e0e0e0; font-weight: 300; }
-        .form-control {
-            width: 100%; background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px; padding: 12px 15px; color: #fff; font-size: 1rem; outline: none; transition: 0.3s;
+
+        .item-image-wrapper {
+            position: relative;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
         }
-        .form-control:focus { background: rgba(0, 255, 255, 0.05); border-color: #00ffff; box-shadow: 0 0 15px rgba(0, 255, 255, 0.3); }
-        .radio-group, .checkbox-group {
-            display: flex; gap: 15px; flex-wrap: wrap; background: rgba(255, 255, 255, 0.02);
-            padding: 12px; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.05);
+
+        .item-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
         }
-        .custom-label { display: flex; align-items: center; cursor: pointer; font-size: 0.9rem; color: #ccc; transition: 0.3s; }
-        .custom-label:hover { color: #fff; }
-        input[type="radio"], input[type="checkbox"] { accent-color: #ff00ff; width: 18px; height: 18px; margin-left: 8px; cursor: pointer; }
-        .submit-btn {
-            width: 100%; background: linear-gradient(45deg, #00ffff, #ff00ff); color: #000; border: none;
-            padding: 15px; font-size: 1.2rem; font-weight: 900; border-radius: 12px; cursor: pointer;
-            transition: all 0.4s ease; text-transform: uppercase; box-shadow: 0 10px 20px rgba(0, 255, 255, 0.2); margin-top: auto;
+
+        .menu-item:hover .item-image {
+            transform: scale(1.06);
         }
-        .submit-btn:hover { box-shadow: 0 0 40px #00ffff, 0 0 60px #ff00ff; transform: translateY(-3px); color: #fff; }
-        .alert { display: none; padding: 15px; border-radius: 12px; margin-bottom: 20px; text-align: center; font-weight: bold; }
-        .alert-success { background: rgba(0, 255, 128, 0.15); border: 1px solid #00ff80; color: #00ff80; }
-        .alert-danger { background: rgba(255, 0, 0, 0.15); border: 1px solid #ff0040; color: #ff0040; }
-        .video-modal {
-            display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); z-index: 9999;
-            justify-content: center; align-items: center; padding: 20px; opacity: 0; transition: opacity 0.3s ease;
+
+        .item-badge {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background-color: rgba(24, 24, 28, 0.85);
+            color: var(--gold-color);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            border: 1px solid var(--gold-color);
+            backdrop-filter: blur(5px);
         }
-        .video-modal.show { display: flex; opacity: 1; }
-        .modal-content {
-            width: 100%; max-width: 1000px; background: #000;
-            border: 1px solid rgba(0, 255, 255, 0.5); box-shadow: 0 0 50px rgba(0, 255, 255, 0.2);
-            border-radius: 20px; overflow: hidden; position: relative; transform: scale(0.95); transition: transform 0.3s ease;
+
+        .item-details {
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
         }
-        .video-modal.show .modal-content { transform: scale(1); }
-        .modal-content video, .modal-content iframe { width: 100%; height: 100%; aspect-ratio: 16/9; display: block; border: none; }
-        .close-modal {
-            position: absolute; top: 15px; right: 25px; font-size: 3rem; color: #fff;
-            cursor: pointer; z-index: 10000; text-shadow: 0 0 15px #ff00ff; transition: 0.3s; line-height: 1;
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 8px;
         }
-        .close-modal:hover { color: #ff00ff; transform: scale(1.1); }
+
+        .item-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .item-title-en {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 300;
+            margin-top: 2px;
+        }
+
+        .item-description {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .item-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px dashed var(--border-color);
+            padding-top: 12px;
+        }
+
+        .item-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--gold-color);
+        }
+
+        .item-price span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            margin-right: 4px;
+        }
+
+        .order-btn {
+            background-color: transparent;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+
+        .order-btn:hover {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        /* Footer Info */
+        .menu-footer {
+            text-align: center;
+            padding: 30px 15px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border-color);
+            margin-top: 40px;
+        }
+
+        /* Responsive Fixes */
+        @media (max-width: 480px) {
+            .brand-logo { font-size: 2rem; }
+            .menu-container { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="bg-animation">
-        <div class="circle"></div><div class="circle"></div><div class="circle"></div>
-    </div>
+    <!-- Header Section -->
+    <header>
+        <h1 class="brand-logo">پیتزا <span>پروشات</span></h1>
+        <p class="brand-tagline">تجربه طعمی اصیل با مواد اولیه فوق‌العاده تازه</p>
+    </header>
 
-    <div class="video-modal" id="videoModal">
-        <span class="close-modal" onclick="closeModal()">&times;</span>
-        <div class="modal-content" id="modalVideoContainer"></div>
-    </div>
+    <!-- Category Selector (Dynamic Filter) -->
+    <nav class="category-nav">
+        <button class="tab-btn active" onclick="filterCategory('all', this)">✨ همه آیتم‌ها</button>
+        <button class="tab-btn" onclick="filterCategory('napoli', this)">🍕 ناپولیتن</button>
+        <button class="tab-btn" onclick="filterCategory('american', this)">🇺🇸 آمریکایی</button>
+        <button class="tab-btn" onclick="filterCategory('appetizer', this)">🥗 پیش‌غذا و سالاد</button>
+        <button class="tab-btn" onclick="filterCategory('drinks', this)">🥤 نوشیدنی</button>
+    </nav>
 
-    <div class="layout-container">
-        <div class="glass-panel form-panel">
-            <div class="logo-box">
-                <img src="https://s25.uupload.ir/files/aslidxx/IMG_20260606_142036_816.jpg" alt="Norkhiz Studio Logo">
-                <h1>NORKHIZ STUDIO</h1>
+    <!-- Menu Items Grid -->
+    <main class="menu-container">
+
+        <!-- Item 1: Napoli Special -->
+        <article class="menu-item" data-category="napoli">
+            <div class="item-image-wrapper">
+                <img class="item-image" src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=500&q=80" alt="پیتزا مخصوص پروشات">
+                <span class="item-badge">پیشنهاد سرآشپز</span>
             </div>
-
-            <div id="successAlert" class="alert alert-success">درخواست شما با موفقیت ثبت شد! 🎉</div>
-            <div id="errorAlert" class="alert alert-danger">خطا در ارتباط با سرور. لطفاً دوباره تلاش کنید. ❌</div>
-
-            <form id="orderForm" style="display: flex; flex-direction: column; flex-grow: 1;">
-                <div class="form-group">
-                    <label>نام و نام خانوادگی:</label>
-                    <input type="text" id="name" class="form-control" required placeholder="مثال: علی محمدی">
+            <div class="item-details">
+                <div class="item-header">
+                    <h2 class="item-title">پیتزا مخصوص پروشات<span class="item-title-en">Poroushat Special</span></h2>
                 </div>
-                <div class="form-group">
-                    <label>ماهیت درخواست:</label>
-                    <div class="radio-group">
-                        <label class="custom-label"><input type="radio" name="entity" value="حقیقی (فردی)" checked required> حقیقی (فردی)</label>
-                        <label class="custom-label"><input type="radio" name="entity" value="حقوقی (شرکتی/تیم)"> حقوقی (شرکتی/تیم)</label>
-                    </div>
+                <p class="item-description">استیک راسته گوساله، مرغ مرینت شده، قارچ، فلفل دلمه‌ای رنگی، پنیر موزارلا بلند اختصاصی پروشات، سس سير.</p>
+                <div class="item-footer">
+                    <div class="item-price">۴۴۰,۰۰۰ <span>تومان</span></div>
+                    <button class="order-btn">افزودن</button>
                 </div>
-                <div class="form-group">
-                    <label>شماره تماس:</label>
-                    <input type="tel" id="phone" class="form-control" required placeholder="09123456789">
-                </div>
-                <div class="form-group">
-                    <label>ایمیل (اختیاری):</label>
-                    <input type="email" id="email" class="form-control" placeholder="info@example.com">
-                </div>
-                <div class="form-group" style="margin-bottom: 30px;">
-                    <label>خدمات مورد نیاز:</label>
-                    <div class="checkbox-group">
-                        <label class="custom-label"><input type="checkbox" name="services" value="عکاسی تخصصی"> عکاسی تخصصی</label>
-                        <label class="custom-label"><input type="checkbox" name="services" value="فیلمبرداری"> فیلمبرداری</label>
-                        <label class="custom-label"><input type="checkbox" name="services" value="ادیت و تدوین"> ادیت و تدوین</label>
-                    </div>
-                </div>
-                <button type="submit" id="btnSubmit" class="submit-btn">ثبت سفارش</button>
-            </form>
-        </div>
-
-        <div class="glass-panel portfolio-panel">
-            <div class="portfolio-header">
-                <h2>🎬 گالری نمونه کارها</h2>
-                <p>برای پخش آنلاین روی پروژه‌ها کلیک کنید</p>
             </div>
-            <div class="portfolio-wrapper">
-                <div class="portfolio-grid" id="portfolioGrid"></div>
-            </div>
-        </div>
-    </div>
+        </article>
 
+        <!-- Item 2: Pepperoni -->
+        <article class="menu-item" data-category="napoli">
+            <div class="item-image-wrapper">
+                <img class="item-image" src="https://images.unsplash.com/photo-1628840042765-356cda07504e?w=500&q=80" alt="پیتزا پپرونی کلاسیک">
+                <span class="item-badge">تند و لذیذ</span>
+            </div>
+            <div class="item-details">
+                <div class="item-header">
+                    <h2 class="item-title">پیتزا پپرونی کلاسیک<span class="item-title-en">Classic Pepperoni</span></h2>
+                </div>
+                <p class="item-description">پپرونی ۸۴٪ درصد باکیفیت، پنیر موزارلا تازه، سس گوجه فرنگی دست‌ساز (مارینارا)، هالپینو.</p>
+                <div class="item-footer">
+                    <div class="item-price">۳۸۰,۰۰۰ <span>تومان</span></div>
+                    <button class="order-btn">افزودن</button>
+                </div>
+            </div>
+        </article>
+
+        <!-- Item 3: Margarita -->
+        <article class="menu-item" data-category="napoli">
+            <div class="item-image-wrapper">
+                <img class="item-image" src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=500&q=80" alt="پیتزا مارگاریتا">
+            </div>
+            <div class="item-details">
+                <div class="item-header">
+                    <h2 class="item-title">پیتزا مارگاریتا<span class="item-title-en">Margarita Pizza</span></h2>
+                </div>
+                <p class="item-description">سس گوجه فرنگی ویژه، پنیر موزارلا گیلاسی، ریحان تازه، روغن زیتون بکر.</p>
+                <div class="item-footer">
+                    <div class="item-price">۲۹۰,۰۰۰ <span>تومان</span></div>
+                    <button class="order-btn">افزودن</button>
+                </div>
+            </div>
+        </article>
+
+        <!-- Item 4: Steak & Mushroom -->
+        <article class="menu-item" data-category="american">
+            <div class="item-image-wrapper">
+                <img class="item-image" src="https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=500&q=80" alt="پیتزا استیک و قارچ">
+                <span class="item-badge">محبوب</span>
+            </div>
+            <div class="item-details">
+                <div class="item-header">
+                    <h2 class="item-title">پیتزا استیک و قارچ<span class="item-title-en">Steak & Mushroom</span></h2>
+                </div>
+                <p class="item-description">گوشت فیله گوساله ورقه‌ای، قارچ اسلایس شده، پیاز کاراملی، پنیر فراوان، سس آلفردو.</p>
+                <div class="item-footer">
+                    <div class="item-price">۴۶۰,۰۰۰ <span>تومان</span></div>
+                    <button class="order-btn">افزودن</button>
+                </div>
+            </div>
+        </article>
+
+        <!-- Item 5: BBQ Chicken -->
+        <article class="menu-item" data-category="american">
+            <div class="item-image-wrapper">
+                <img class="item-image" src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&q=80" alt="پیتزا چیکن باربیکیو">
+            </div>
+            <div class="item-details">
+                <div class="item-header">
+                    <h2 class="item-title">پیتزا چیکن باربیکیو<span class="item-title-en">BBQ Chicken Pizza</span></h2>
+                </div>
+                <p class="item-description">سینه مرغ گریل شده، سس باربیکیو دودی، پیاز قرمز، ذرت، پنیر موزارلا و گودا.</p>
+                <div class="item-footer">
+                    <div class="item-price">۳۹۰,۰۰۰ <span>تومان</span></div>
+                    <button class="order-btn">افزودن</button>
+                </div>
+            </div>
+        </article>
+
+        <!-- Item 6: Fries -->
+        <article class="menu-item" data-category="appetizer">
+            <div class="item-image-wrapper">
+                <img class="item-image" src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=500&q=80" alt="سیب‌زمینی سرخ‌کرده با پنیر">
+            </div>
+            <div class="item-details">
+                <div class="item-header">
+                    <h2 class="item-title">سیب‌زمینی با دیپ چدار<span class="item-title-en">Cheese Fries</span></h2>
+                </div>
+                <p class="item-description">سیب‌زمینی خلال درشت، دیپ پنیر چدار داغ، پودر پاپریکا.</p>
+                <div class="item-footer">
+                    <div class="item-price">۱۴۰,۰۰۰ <span>تومان</span></div>
+                    <button class="order-btn">افزودن</button>
+                </div>
+            </div>
+        </article>
+
+        <!-- Item 7: Caesar Salad -->
+        <article class="menu-item" data-category="appetizer">
+            <div class="item-image-wrapper">
+                <img class="item-image" src="https://images.unsplash.com/photo-1550304943-4f24f54ddde9?w=500&q=80" alt="سالاد سزار">
+            </div>
+            <div class="item-details">
+                <div class="item-header">
+                    <h2 class="item-title">سالاد سزار با مرغ سوخاری<span class="item-title-en">Caesar Salad</span></h2>
+                </div>
+                <p class="item-description">کاهو رسمی، فیله سوخاری، نان تست سیردار، سس سزار رسپی اختصاصی پروشات.</p>
+                <div class="item-footer">
+                    <div class="item-price">۲۲۰,۰۰۰ <span>تومان</span></div>
+                    <button class="order-btn">افزودن</button>
+                </div>
+            </div>
+        </article>
+
+        <!-- Item 8: Garlic Bread -->
+        <article class="menu-item" data-category="appetizer">
+            <div class="item-image-wrapper">
+                <img class="item-image" src="https://images.unsplash.com/photo-1573145959290-3491c64b6385?w=500&q=80" alt="نان سیر پروشات">
+            </div>
+            <div class="item-details">
+                <div class="item-header">
+                    <h2 class="item-title">نان سیر پروشات<span class="item-title-en">Garlic Bread</span></h2>
+                </div>
+                <p class="item-description">خمیر دست‌ساز ناپولیتن، کره سیر، پنیر موزارلا ذوب شده و جعفری تازه.</p>
+                <div class="item-footer">
+                    <div class="item-price">۱۶۰,۰۰۰ <span>تومان</span></div>
+                    <button class="order-btn">افزودن</button>
+                </div>
+            </div>
+        </article>
+
+        <!-- Item 9: Mojito -->
+        <article class="menu-item" data-category="drinks">
+            <div class="item-image-wrapper">
+                <img class="item-image" src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=500&q=80" alt="موخیتو">
+            </div>
+            <div class="item-details">
+                <div class="item-header">
+                    <h2 class="item-title">موخیتو طبیعی پروشات<span class="item-title-en">Homemade Mojito</span></h2>
+                </div>
+                <p class="item-description">ترکیب شاداب‌کننده نعنا تازه، لیمو ترش، سودا و یخ فراوان.</p>
+                <div class="item-footer">
+                    <div class="item-price">۸۵,۰۰۰ <span>تومان</span></div>
+                    <button class="order-btn">افزودن</button>
+                </div>
+            </div>
+        </article>
+
+    </main>
+
+    <!-- Footer Information -->
+    <footer class="menu-footer">
+        <p>📍 آدرس رستوران پروشات | تلفن پشتیبانی: ۰۲۱-XXXXXXXX</p>
+        <p style="margin-top: 8px; opacity: 0.6;">طراحی شده با ❤️ برای منوی دیجیتال پروشات</p>
+    </footer>
+
+    <!-- JavaScript for Filtering Topics -->
     <script>
-        // ==================== ۳۰ اتاق / پروژه جداگانه ====================
-        const portfolioItems = [
-            { num: 1, link: "https://s15.uupload.ir/files/aslidxx/InShot_20260606_154812712.mp4?play" }, // پروژه ۱ - ویدیو تست
-            { num: 2, link: "https://s15.uupload.ir/files/aslidxx/InShot_20260606_154750424.mp4?play" }, { ادیت200رهرو: 3, link: "https://my.uupload.ir/p/JgwBoGJQ" }, { num: 4, link: "" }, { num: 5, link: "" },
-            { num: 6, link: "" }, { num: 7, link: "" }, { num: 8, link: "" }, { num: 9, link: "" }, { num: 10, link: "" },
-            { num: 11, link: "" }, { num: 12, link: "" }, { num: 13, link: "" }, { num: 14, link: "" }, { num: 15, link: "" },
-            { num: 16, link: "" }, { num: 17, link: "" }, { num: 18, link: "" }, { num: 19, link: "" }, { num: 20, link: "" },
-            { num: 21, link: "" }, { num: 22, link: "" }, { num: 23, link: "" }, { num: 24, link: "" }, { num: 25, link: "" },
-            { num: 26, link: "" }, { num: 27, link: "" }, { num: 28, link: "" }, { num: 29, link: "" }, { num: 30, link: "" }
-        ];
+        function filterCategory(category, buttonElement) {
+            // 1. Update Active Class on Buttons
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            buttonElement.classList.add('active');
 
-        const gridContainer = document.getElementById('portfolioGrid');
-        portfolioItems.forEach(item => {
-            const el = document.createElement('div');
-            const hasLink = item.link.trim() !== "";
-            el.className = 'portfolio-item ' + (hasLink ? 'active' : 'empty');
-            el.innerHTML = `<span>پروژه ${item.num}</span>`;
-            if (hasLink) el.onclick = () => openModal(item.link);
-            gridContainer.appendChild(el);
-        });
-
-        const videoModal = document.getElementById('videoModal');
-        const modalContainer = document.getElementById('modalVideoContainer');
-
-        function openModal(link) {
-            if (link.includes('<iframe')) {
-                modalContainer.innerHTML = link;
-            } else {
-                modalContainer.innerHTML = `<video controls autoplay><source src="${link}" type="video/mp4">مرورگر شما پشتیبانی نمی‌کند.</video>`;
-            }
-            videoModal.classList.add('show');
-        }
-
-        function closeModal() {
-            videoModal.classList.remove('show');
-            setTimeout(() => { modalContainer.innerHTML = ""; }, 300);
-        }
-
-        videoModal.addEventListener('click', function(e) {
-            if (e.target === videoModal) closeModal();
-        });
-
-        // ==================== ارسال فرم به تلگرام (نسخه مستقیم - کار می‌کنه) ====================
-        document.getElementById('orderForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const botToken = "8108890135:AAHTAc0-kgynzUqkRWhniWFMJHXPBMMvT68";
-            const chatId = "7403377873";
-
-            const name = document.getElementById('name').value;
-            const entity = document.querySelector('input[name="entity"]:checked').value;
-            const phone = document.getElementById('phone').value;
-            const email = document.getElementById('email').value || 'ثبت نشده';
-
-            const selectedServices = [];
-            document.querySelectorAll('input[name="services"]:checked').forEach(cb => selectedServices.push(cb.value));
-            const servicesText = selectedServices.length > 0 ? selectedServices.join('، ') : 'هیچکدام';
-
-            const submitBtn = document.getElementById('btnSubmit');
-            submitBtn.innerText = "در حال ارسال...";
-            submitBtn.style.opacity = "0.7";
-            submitBtn.disabled = true;
-
-            const message = `💎 <b>درخواست VIP نورخیز استودیو</b>\n\n👤 <b>نام:</b> ${name}\n🏢 <b>نوع:</b> \( {entity}\n📞 <b>تماس:</b> <code> \){phone}</code>\n📧 <b>ایمیل:</b> ${email}\n🎬 <b>خدمات:</b> ${servicesText}\n`;
-
-            // مستقیم به تلگرام (بدون پراکسی)
-            const telegramUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
-
-            fetch(telegramUrl, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    chat_id: chatId,
-                    text: message,
-                    parse_mode: 'HTML'
-                })
-            })
-            .then(res => res.json())
-            .then(data => {
-                document.getElementById('successAlert').style.display = 'none';
-                document.getElementById('errorAlert').style.display = 'none';
-
-                if (data.ok) {
-                    document.getElementById('successAlert').style.display = 'block';
-                    document.getElementById('orderForm').reset();
+            // 2. Filter Cards
+            const items = document.querySelectorAll('.menu-item');
+            items.forEach(item => {
+                if (category === 'all' || item.getAttribute('data-category') === category) {
+                    item.style.display = 'flex';
                 } else {
-                    console.error('تلگرام ارور داد:', data);
-                    document.getElementById('errorAlert').style.display = 'block';
+                    item.style.display = 'none';
                 }
-            })
-            .catch(err => {
-                console.error(err);
-                document.getElementById('successAlert').style.display = 'none';
-                document.getElementById('errorAlert').style.display = 'block';
-            })
-            .finally(() => {
-                submitBtn.innerText = "ثبت سفارش";
-                submitBtn.style.opacity = "1";
-                submitBtn.disabled = false;
             });
-        });
+        }
     </script>
 </body>
 </html>
+
