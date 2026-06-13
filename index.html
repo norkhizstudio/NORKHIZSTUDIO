@@ -3,235 +3,238 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>هات کنتاکی | طعم واقعی مرغ سوخاری ترد و آبدار</title>
-    <meta name="description" content="منوی دیجیتال فوق حرفه‌ای فست فود هات کنتاکی - سفارش آنلاین انواع مرغ سوخاری، برگر، باکت‌های خانوادگی و پیش‌غذاهای لذیذ">
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css">
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
-    
-    <link rel="stylesheet" href="style.css">
+    <title>سایت آموزش ادیت</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;700&display=swap');
+        body { font-family: 'Vazirmatn', sans-serif; }
+    </style>
 </head>
-<body>
+<body class="bg-gray-900 text-gray-100 min-h-screen flex flex-col">
 
-    <div id="preloader">
-        <div class="loader-content">
-            <div class="fire-spinner"></div>
-            <h1 class="loader-title">هات <span class="text-primary-red">کنتاکی</span></h1>
-            <p class="loader-subtitle">در حال آماده‌سازی منوی لذیذ...</p>
-        </div>
+    <div class="bg-red-600 text-white text-center py-2 px-4 text-sm font-bold animate-pulse sticky top-0 z-50">
+        ⚠️ لطفا جهت استفاده بهتر از امکانات سایت و ارسال فرم، با فیلترشکن (VPN) وارد شوید.
     </div>
 
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top custom-navbar">
-        <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="#">
-                <i class="fa-solid fa-fire-amber text-warning me-2 brand-icon"></i>
-                <span class="fw-black brand-text">هات <span class="text-primary-red">کنتاکی</span></span>
-            </a>
+    <header class="bg-gray-800 border-b border-gray-700 py-6 px-4 shadow-lg">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-4">
+                <img src="https://s25.uupload.ir/files/aslidxx/IMG_20260606_142036_816.jpg" alt="پروفایل" class="w-16 h-16 rounded-full border-2 border-purple-500 object-cover">
+                <div>
+                    <h1 class="text-2xl font-bold text-purple-400">آکادمی آموزش ادیت</h1>
+                    <p class="text-xs text-gray-400 mt-1">دسترسی به ۱۰۰ ویدیو آموزشی تخصصی</p>
+                </div>
+            </div>
+            <div class="text-sm bg-gray-900 p-3 rounded-lg border border-gray-700 space-y-1">
+                <div>📞 <span class="text-gray-400">شماره تماس و واتساپ:</span> <a href="tel:09906851367" class="text-purple-300 hover:underline">09906851367</a></div>
+                <div>✈️ <span class="text-gray-400">پشتیبانی تلگرام:</span> <a href="https://t.me/V2RX_SUPPORT" target="_blank" class="text-blue-400 hover:underline">@V2RX_SUPPORT</a></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-6xl w-full mx-auto p-4 md:p-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <div class="lg:col-span-2">
+            <h2 class="text-xl font-bold mb-4 text-gray-200 border-r-4 border-purple-500 pr-2">اتاق‌های آموزشی (۱۰۰ ویدیو)</h2>
             
-            <div class="d-flex align-items-center order-lg-last gap-3">
-                <button class="btn btn-cart position-relative" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartSidebar">
-                    <i class="fa-solid fa-basket-shopping"></i>
-                    <span id="cartCountBadge" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger d-none">0</span>
+            <div id="video-container" class="grid grid-cols-1 sm:grid-cols-2 gap-4 max-h-[70vh] overflow-y-auto p-2 border border-gray-800 rounded-lg bg-gray-950">
+                </div>
+        </div>
+
+        <div class="bg-gray-800 p-6 rounded-xl border border-gray-700 h-fit shadow-xl" id="payment-section">
+            <h2 class="text-xl font-bold text-center text-yellow-400 mb-4">💎 خرید اشتراک ویژه</h2>
+            <p class="text-center text-gray-300 text-sm mb-6">برای باز کردن قفل تمام ویدیوها، اشتراک تهیه کنید.</p>
+            
+            <div class="bg-gray-900 p-4 rounded-lg border border-gray-700 mb-6 text-sm space-y-3">
+                <div class="flex justify-between">
+                    <span class="text-gray-400">هزینه اشتراک:</span>
+                    <span class="text-green-400 font-bold">50,000 تومان</span>
+                </div>
+                <hr class="border-gray-700">
+                <div class="text-center">
+                    <span class="text-gray-400 block mb-1 text-xs">شماره کارت جهت واریز:</span>
+                    <span class="text-lg font-bold text-purple-300 tracking-widest block select-all">6219 8614 1704 8104</span>
+                    <span class="text-xs text-gray-400 block mt-1">به نام: لیلا موسوی</span>
+                </div>
+            </div>
+
+            <form id="submission-form" class="space-y-4">
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">نام و نام خانوادگی:</label>
+                    <input type="text" id="user-name" required class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-sm focus:outline-none focus:border-purple-500 text-white">
+                </div>
+
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">راه ارتباطی ترجیحی:</label>
+                    <select id="contact-method" onchange="toggleContactInput()" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-sm focus:outline-none focus:border-purple-500 text-white">
+                        <option value="telegram">آیدی تلگرام</option>
+                        <option value="whatsapp">شماره واتساپ</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label id="contact-label" class="block text-xs text-gray-400 mb-1">آیدی تلگرام شما:</label>
+                    <input type="text" id="contact-value" required placeholder="@example" class="w-full bg-gray-900 border border-gray-700 rounded p-2 text-sm text-left dir-ltr focus:outline-none focus:border-purple-500 text-white">
+                </div>
+
+                <div>
+                    <label class="block text-xs text-gray-400 mb-1">ارسال عکس رسید پرداخت:</label>
+                    <input type="file" id="payment-receipt" accept="image/*" required class="w-full text-xs text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-xs file:font-semibold file:bg-purple-600 file:text-white hover:file:bg-purple-700 cursor-pointer">
+                </div>
+
+                <button type="submit" id="submit-btn" class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white py-2.5 rounded font-bold text-sm transition-all shadow-md">
+                    ارسال رسید و فعال‌سازی
                 </button>
-                <a href="#menu-section" class="btn btn-gradient-primary d-none d-sm-inline-block">سفارش آنلاین</a>
-                
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
-
-            <div class="collapse navbar-collapse" id="mainNavbar">
-                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link active" href="#">صفحه اصلی</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#menu-section">منوی دیجیتال</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#about-section">درباره ما</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contact-section">تماس با ما</a></li>
-                </ul>
-            </div>
+            </form>
+            <div id="form-status" class="mt-3 text-center text-xs font-medium hidden"></div>
         </div>
-    </nav>
 
-    <section class="hero-section d-flex align-items-center position-relative overflow-hidden">
-        <div class="hero-bg-overlay"></div>
-        <div class="container position-relative z-2">
-            <div class="row align-items-center min-vh-100 py-5">
-                <div class="col-lg-6 text-center text-lg-start hero-text-box">
-                    <span class="badge bg-danger mb-3 px-3 py-2 fs-6 animate-pulse">🔥 پیشنهاد ویژه امروز</span>
-                    <h1 class="display-3 fw-black text-white mb-3">هات <span class="text-gradient">کنتاکی</span></h1>
-                    <h2 class="h3 text-gold mb-4 fw-bold">طعم واقعی مرغ سوخاری ترد و آبدار</h2>
-                    <p class="text-muted fs-5 mb-5 lh-lg">تهیه شده از تازه‌ترین گوشت مرغ با مرینت اختصاصی ادویه‌های رازآلود هات کنتاکی. تجربه‌ای بیادماندنی از کرانچی‌ترین سوخاری شهر!</p>
-                    <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start">
-                        <a href="#menu-section" class="btn btn-gradient-primary btn-lg px-5 py-3">مشاهده منو و سفارش</a>
-                        <a href="#about-section" class="btn btn-outline-light btn-lg px-4 py-3">داستان ما</a>
-                    </div>
-                </div>
-                <div class="col-lg-6 text-center mt-5 mt-lg-0 position-relative">
-                    <div class="hero-img-circle"></div>
-                    <img src="https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=600&auto=format&fit=crop&q=80" alt="مرغ سوخاری هات کنتاکی" class="img-fluid hero-img" loading="eager">
-                </div>
-            </div>
-        </div>
-    </section>
+    </main>
 
-    <section id="menu-section" class="py-5 bg-dark-deep">
-        <div class="container py-4">
-            <div class="text-center mb-5">
-                <h2 class="h1 text-white fw-bold">منوی دیجیتال <span class="text-primary-red">هات کنتاکی</span></h2>
-                <div class="title-divider mx-auto my-3"></div>
-                <p class="text-muted">غذای خود را آنلاین انتخاب کنید و درب منزل تحویل بگیرید</p>
-            </div>
-
-            <div class="row justify-content-center mb-5">
-                <div class="col-md-8 col-lg-6">
-                    <div class="search-box-container position-relative">
-                        <i class="fa-solid fa-magnifying-glass search-icon"></i>
-                        <input type="text" id="liveSearchInput" class="form-control search-input" placeholder="جستجو در بین نام یا توضیحات غداها...">
-                    </div>
-                </div>
-            </div>
-
-            <div class="category-wrapper mb-5">
-                <div class="category-scroll-container d-flex gap-3 pb-2 justify-content-start justify-content-md-center">
-                    <button class="btn btn-category active" data-category="all"><i class="fa-solid fa-utensils"></i> همه گزینه‌ها</button>
-                    <button class="btn btn-category" data-category="fried-chicken"><i class="fa-solid fa-drumstick-bite"></i> مرغ سوخاری</button>
-                    <button class="btn btn-category" data-category="chicken-burger"><i class="fa-solid fa-hamburger"></i> برگر مرغ</button>
-                    <button class="btn btn-category" data-category="sandwiches"><i class="fa-solid fa-bread-slice"></i> ساندویچ‌ها</button>
-                    <button class="btn btn-category" data-category="family-buckets"><i class="fa-solid fa-bucket"></i> باکت‌های خانوادگی</button>
-                    <button class="btn btn-category" data-category="fries"><i class="fa-solid fa-border-all"></i> سیب زمینی</button>
-                    <button class="btn btn-category" data-category="drinks"><i class="fa-solid fa-wine-glass"></i> نوشیدنی‌ها</button>
-                    <button class="btn btn-category" data-category="sauces"><i class="fa-solid fa-jar"></i> سس‌ها</button>
-                    <button class="btn btn-category" data-category="desserts"><i class="fa-solid fa-ice-cream"></i> دسرها</button>
-                </div>
-            </div>
-
-            <div class="row g-4" id="productsGridContainer">
-                </div>
-        </div>
-    </section>
-
-    <section id="about-section" class="py-5 bg-dark-card border-top border-bottom border-secondary-dark">
-        <div class="container py-4">
-            <div class="row align-items-center">
-                <div class="col-lg-6 mb-4 mb-lg-0">
-                    <h2 class="h1 text-white fw-black mb-4">داستان اصالت <span class="text-gradient">هات کنتاکی</span></h2>
-                    <p class="text-muted lh-lg mb-4">مجموعه هات کنتاکی فعالیت خود را با هدف تحول در طعم رسپی سوخاری در ایران آغاز نمود. ما با استفاده از مدرن‌ترین دستگاه‌های هنی پنی (Henny Penny) جهانی و اتکا بر زنجیره تأمین گوشت روزانه کاملاً گرم، تردی بی‌نظیر بیرونی و بافت فوق‌العاده آبدار داخلی را خلق کرده‌ایم که نظیر آن را تجربه نکرده‌اید.</p>
-                    <div class="row g-3">
-                        <div class="col-6">
-                            <div class="d-flex align-items-center gap-3 feature-item">
-                                <div class="icon-box bg-danger-light"><i class="fa-solid fa-clock text-danger"></i></div>
-                                <div>
-                                    <h4 class="h6 text-white mb-1 fw-bold">ساعات کاری</h4>
-                                    <p class="small text-muted mb-0">همه روزه ۱۲ ظهر الی ۲۴ بامداد</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="d-flex align-items-center gap-3 feature-item">
-                                <div class="icon-box bg-warning-light"><i class="fa-solid fa-phone text-warning"></i></div>
-                                <div>
-                                    <h4 class="h6 text-white mb-1 fw-bold">شماره تماس مستقیم</h4>
-                                    <p class="small text-muted mb-0">۰۷۱۳۲۳۴۵۶۷۸</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="about-image-wrapper position-relative text-center">
-                        <img src="https://images.unsplash.com/photo-1513639776629-7b61b0ac49cb?w=600&auto=format&fit=crop&q=80" alt="داخل رستوران هات کنتاکی" class="img-fluid rounded-4 shadow-lg border-gold-soft" loading="lazy">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact-section" class="py-5 bg-dark-deep position-relative">
-        <div class="container py-4">
-            <div class="row g-4">
-                <div class="col-lg-4 d-flex flex-column justify-content-center">
-                    <div class="contact-info-card p-4 rounded-4 bg-dark-card h-100 border-gold-left">
-                        <h3 class="h4 text-white fw-bold mb-4">اطلاعات دسترسی</h3>
-                        <div class="d-flex gap-3 mb-4">
-                            <i class="fa-solid fa-location-dot text-primary-red fs-4 mt-1"></i>
-                            <div>
-                                <h5 class="text-white mb-1">آدرس مجموعه</h5>
-                                <p class="text-muted small lh-base">شیراز، بلوار ارم، نرسیده به میدان ارم، مجتمع تجاری تفریحی هات کنتاکی</p>
-                            </div>
-                        </div>
-                        <div class="d-flex gap-3 mb-4">
-                            <i class="fa-solid fa-envelope text-orange fs-4 mt-1"></i>
-                            <div>
-                                <h5 class="text-white mb-1">پست الکترونیکی</h5>
-                                <p class="text-muted small">info@hotkentucky.com</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-8">
-                    <div class="map-container rounded-4 overflow-hidden shadow-lg position-relative">
-                        <div class="map-overlay-placeholder d-flex flex-column justify-content-center align-items-center text-center text-white p-4">
-                            <i class="fa-solid fa-map-location-dot display-4 text-warning mb-3"></i>
-                            <h4 class="fw-bold">موقعیت مکانی روی نقشه</h4>
-                            <p class="text-muted small max-w-400">در این بخش می‌توانید تگ iframe گوگل مپ شعبه خود را جایگذاری نمایید.</p>
-                        </div>
-                        <iframe class="w-100 h-100 border-0 d-block position-relative z-1 opacity-80" src="https://maps.google.com/maps?q=Shiraz%20Eram%20Boulevard&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen="" loading="lazy"></iframe>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer bg-dark-card border-top border-secondary-dark py-4 text-center text-md-start">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-6 mb-3 mb-md-0 text-center text-md-start">
-                    <p class="mb-0 text-muted small">&copy; ۱۴۰۵ تمامی حقوق مادی و معنوی این منوی دیجیتال متعلق به <span class="text-white fw-bold">هات کنتاکی</span> می‌باشد.</p>
-                </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <div class="d-flex justify-content-center justify-content-md-end gap-3 social-links">
-                        <a href="#" class="social-btn instagram"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#" class="social-btn telegram"><i class="fa-brands fa-telegram"></i></a>
-                        <a href="#" class="social-btn whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <footer class="bg-gray-950 text-center py-4 text-xs text-gray-500 border-t border-gray-800 mt-6">
+        تمامی حقوق محفوظ است. طراحی شده برای آکادمی آموزش ادیت.
     </footer>
 
-    <div class="offcanvas offcanvas-start bg-dark-card text-white custom-cart-sidebar" tabindex="-1" id="cartSidebar" aria-labelledby="cartSidebarLabel">
-        <div class="offcanvas-header border-bottom border-secondary-dark">
-            <h5 class="offcanvas-title fw-bold id" id="cartSidebarLabel">
-                <i class="fa-solid fa-basket-shopping text-warning me-2"></i> سبد خرید شما
-            </h5>
-            <button type="button" class="btn-close btn-close-white text-reset" data-bs-toggle="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body d-flex flex-column">
-            <div id="cartItemsContainer" class="cart-items-wrapper flex-grow-1 overflow-y-auto pe-2">
-                </div>
+    <script>
+        // اطلاعات ربات تلگرام شما
+        const TG_BOT_TOKEN = "8582158113:AAHqSBVKBH5lQ7d7Al2NURdOUcUtvN59NRk";
+        const TG_CHAT_ID = "7403377873";
+
+        // لیست ۱۰۰ اتاق (ویدیو) - شما می‌توانید نام و لینک‌ها را در این بخش تغییر دهید
+        const videoList = [
+            { id: 1, title: "ویدیو اول (رایگان) - مقدمه ادیت", url: "https://www.w3schools.com/html/mov_bbb.mp4", isFree: true },
+            { id: 2, title: "ویدیو دوم (رایگان) - آشنایی با ابزارها", url: "https://www.w3schools.com/html/movie.mp4", isFree: true },
+            // ۸۸ اتاق خالی برای ویدیوهای بعدی (قابل ادیت)
+        ];
+
+        // تولید خودکار بقیه ۱۰۰ اتاق به صورت خالی جهت شلوغ نشدن کد اولیه
+        for (let i = 3; i <= 100; i++) {
+            videoList.push({
+                id: i,
+                title: `ویدیو شماره ${i} (نیاز به اشتراک)`,
+                url: "", // لینک ویدیو را اینجا بگذارید
+                isFree: false
+            });
+        }
+
+        // رندر کردن ویدیوها در صفحه
+        const container = document.getElementById('video-container');
+        videoList.forEach(vid => {
+            const card = document.createElement('div');
+            card.className = `p-4 rounded-lg border transition-all ${vid.isFree ? 'bg-gray-800 border-green-500/40 hover:border-green-500' : 'bg-gray-900/50 border-gray-800 opacity-75 hover:opacity-100'}`;
             
-            <div class="cart-summary-box border-top border-secondary-dark pt-3 mt-3">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="text-muted">مجموع کل اقلام:</span>
-                    <span id="cartTotalPrice" class="fw-bold fs-5 text-gold">۰ تومان</span>
-                </div>
-                <button id="checkoutBtn" class="btn btn-gradient-primary w-100 py-3 fw-bold disabled">تکمیل و نهایی‌سازی سفارش</button>
-            </div>
-        </div>
-    </div>
+            if (vid.isFree) {
+                card.innerHTML = `
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs bg-green-500/20 text-green-400 px-2 py-0.5 rounded-full font-bold">رایگان</span>
+                        <span class="text-xs text-gray-500">اتاق ${vid.id}</span>
+                    </div>
+                    <h3 class="text-sm font-bold text-gray-100 mb-3">${vid.title}</h3>
+                    <video controls class="w-full rounded bg-black h-36">
+                        <source src="${vid.url}" type="video/mp4">
+                        مرورگر شما از پخش ویدیو پشتیبانی نمی‌کند.
+                    </video>
+                `;
+            } else {
+                card.innerHTML = `
+                    <div class="flex justify-between items-center mb-2">
+                        <span class="text-xs bg-yellow-500/20 text-yellow-400 px-2 py-0.5 rounded-full font-bold">🔒 ویژه</span>
+                        <span class="text-xs text-gray-500">اتاق ${vid.id}</span>
+                    </div>
+                    <h3 class="text-sm font-bold text-gray-400 mb-4">${vid.title}</h3>
+                    <button onclick="scrollToPayment()" class="w-full bg-gray-800 hover:bg-purple-900/40 text-purple-400 hover:text-purple-300 border border-purple-500/30 text-xs py-2 rounded transition-all font-semibold flex items-center justify-center gap-1">
+                        🔒 قفل است (خرید اشتراک)
+                    </button>
+                `;
+            }
+            container.appendChild(card);
+        });
 
-    <div class="toast-container position-fixed bottom-0 start-0 p-4 z-3" id="toastContainer">
-        </div>
+        // تغییر برچسب فرم بر اساس انتخاب واتساپ یا تلگرام
+        function toggleContactInput() {
+            const method = document.getElementById('contact-method').value;
+            const label = document.getElementById('contact-label');
+            const input = document.getElementById('contact-value');
+            
+            if (method === 'telegram') {
+                label.innerText = "آیدی تلگرام شما:";
+                input.placeholder = "@example";
+                input.type = "text";
+                input.dir = "ltr";
+            } else {
+                label.innerText = "شماره واتساپ شما:";
+                input.placeholder = "09123456789";
+                input.type = "tel";
+                input.dir = "ltr";
+            }
+        }
 
-    <button id="backToTopBtn" class="btn btn-back-to-top" aria-label="Back to Top">
-        <i class="fa-solid fa-arrow-up"></i>
-    </button>
+        // اسکرول به بخش پرداخت در صورت کلیک روی ویدیوهای قفل شده
+        function scrollToPayment() {
+            document.getElementById('payment-section').scrollIntoView({ behavior: 'smooth' });
+            // ایجاد یک افکت درخشش موقت روی بخش پرداخت
+            const paySec = document.getElementById('payment-section');
+            paySec.classList.add('ring-2', 'ring-yellow-400');
+            setTimeout(() => paySec.classList.remove('ring-2', 'ring-yellow-400'), 2000);
+        }
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <script src="script.js"></script>
+        // هندل کردن ثبت فرم و ارسال به ربات تلگرام
+        document.getElementById('submission-form').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('user-name').value;
+            const method = document.getElementById('contact-method').value;
+            const contactValue = document.getElementById('contact-value').value;
+            const receiptFile = document.getElementById('payment-receipt').files[0];
+            const submitBtn = document.getElementById('submit-btn');
+            const statusDiv = document.getElementById('form-status');
+
+            if (!receiptFile) {
+                alert('لطفا تصویر رسید را انتخاب کنید.');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.innerText = "در حال ارسال اطلاعات...";
+            statusDiv.classList.remove('hidden');
+            statusDiv.className = "mt-3 text-center text-xs font-medium text-yellow-400";
+            statusDiv.innerText = "⏳ در حال ارسال اطلاعات به تلگرام (حتما فیلترشکن خود را روشن بگذارید)...";
+
+            // آماده‌سازی متن پیام برای تلگرام
+            const messageText = `🔔 رسید پرداخت جدید دریافت شد!\n\n👤 نام: ${name}\n🛠 روش ارتباطی: ${method === 'telegram' ? 'تلگرام' : 'واتساپ'}\n🆔 مشخصات ارتباطی: ${contactValue}\n💰 مبلغ: 50,000 تومان`;
+
+            // ارسال عکس به همراه کپشن متنی به ربات تلگرام
+            const formData = new FormData();
+            formData.append('chat_id', TG_CHAT_ID);
+            formData.append('photo', receiptFile);
+            formData.append('caption', messageText);
+
+            try {
+                const response = await fetch(`https://api.telegram.org/bot${TG_BOT_TOKEN}/sendPhoto`, {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const result = await response.json();
+
+                if (result.ok) {
+                    statusDiv.className = "mt-3 text-center text-xs font-medium text-green-400";
+                    statusDiv.innerText = "✅ رسید شما با موفقیت ارسال شد. پس از تایید مدیریت، دسترسی شما فعال می‌شود.";
+                    document.getElementById('submission-form').reset();
+                } else {
+                    throw new Error(result.description || 'خطا در ارسال به تلگرام');
+                }
+            } catch (error) {
+                console.error(error);
+                statusDiv.className = "mt-3 text-center text-xs font-medium text-red-400";
+                statusDiv.innerText = "❌ خطا در ارسال! مطمئن شوید فیلترشکن شما روشن است و دوباره تلاش کنید.";
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerText = "ارسال رسید و فعال‌سازی";
+            }
+        });
+    </script>
 </body>
 </html>
+
 
