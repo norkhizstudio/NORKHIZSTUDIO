@@ -1,919 +1,331 @@
-/* ============================================================
-   HOT KENTUCKY — Digital Menu JavaScript
-   Production-Ready | Persian RTL | Full-Featured
-   ============================================================ */
+/**
+ * هاب داده‌های محصولات منو فست فود هات کنتاکی (مجموعاً شامل ۳۰ محصول کاملاً ساختاریافته)
+ */
+const PRODUCTS_DATABASE = [
+    // مرغ سوخاری
+    { id: 1, category: 'fried-chicken', title: 'مرغ سوخاری ۲ تکه نرمال', desc: 'دو تکه مرغ سوخاری کلاسیک همراه با سیب زمینی سرخ‌کرده و یک عدد نان کلمپونی کوچک', price: 185000, tag: 'none', img: 'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=500&auto=format&fit=crop&q=60' },
+    { id: 2, category: 'fried-chicken', title: 'مرغ سوخاری ۳ تکه اسپایسی', desc: 'سه تکه مرغ سوخاری تند و رگه‌دار شده با سس هابانرو همراه با سیب زمینی و سالاد کلم', price: 245000, tag: 'best', img: 'https://images.unsplash.com/photo-1569058242253-92a9c755a0ec?w=500&auto=format&fit=crop&q=60' },
+    { id: 3, category: 'fried-chicken', title: 'مرغ سوخاری ۴ تکه میکس', desc: 'دو تکه نرمال و دو تکه اسپایسی تند کرانچی همراه سیب زمینی سرخ کرده و ۲ عدد نان', price: 310000, tag: 'special', img: 'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=500&auto=format&fit=crop&q=60' },
+    { id: 4, category: 'fried-chicken', title: 'فیله استریپس ۴ تکه', desc: 'چهار تکه فیله مرغ بدون استخوان ترد شده با آرد مخصوص کنتاکی و سس دست‌ساز سیر', price: 195000, tag: 'none', img: 'https://images.unsplash.com/photo-1562967914-608f82629710?w=500&auto=format&fit=crop&q=60' },
+    { id: 5, category: 'fried-chicken', title: 'فیله استریپس ۶ تکه اسپایسی', desc: 'ششم تکه فیله مرغ تند بدون استخوان پولکی ترد به همراه سالاد کلم و سس چدار', price: 275000, tag: 'best', img: 'https://images.unsplash.com/photo-1562967914-608f82629710?w=500&auto=format&fit=crop&q=60' },
 
-'use strict';
+    // برگر مرغ
+    { id: 6, category: 'chicken-burger', title: 'چیکن برگر کلاسیک', desc: 'فیله مرغ سوخاری، کاهو، گوجه فرنگی، خیارشور و سس مایونز مخصوص در نان مکدونالدی', price: 165000, tag: 'none', img: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&auto=format&fit=crop&q=60' },
+    { id: 7, category: 'chicken-burger', title: 'اسپایسی چیکن چیزبرگر', desc: 'مرغ سوخاری تند، پنیر گودا ذوب شده، کاهو فرانسوی، هالاپینو و سس تند آتشین', price: 185000, tag: 'special', img: 'https://images.unsplash.com/photo-1525059696034-4967a8e1dca2?w=500&auto=format&fit=crop&q=60' },
+    { id: 8, category: 'chicken-burger', title: 'دبل چیکن برگر سوپر لوکس', desc: 'دو لایه فیله سوخاری کرانچی، دو ورق پنیر چدار، پیاز حلقه‌ای و سس تارتار ویژه', price: 240000, tag: 'best', img: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&auto=format&fit=crop&q=60' },
+    { id: 9, category: 'chicken-burger', title: 'مستر چیکن زاپاتا', desc: 'فیله سوخاری گریل شده همراه با کالباس ۹۰٪، قارچ بلانچ شده و پنیر پیتزا فراوان', price: 210000, tag: 'none', img: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&auto=format&fit=crop&q=60' },
 
-/* -------- PRODUCT DATABASE -------- */
-const PRODUCTS = [
-  // ===== مرغ سوخاری =====
-  {
-    id: 1,
-    name: 'مرغ سوخاری کلاسیک',
-    desc: 'قطعه ران مرغ با پوشش ترد ادویه‌دار، طرز تهیه اصیل هات کنتاکی',
-    price: 89000,
-    category: 'fried-chicken',
-    icon: '🍗',
-    badges: ['hot'],
-    color: '#ff6b00'
-  },
-  {
-    id: 2,
-    name: 'مرغ سوخاری تند ویژه',
-    desc: 'ترکیب فلفل قرمز و ادویه‌های تند اختصاصی برای عاشقان طعم آتشین',
-    price: 95000,
-    category: 'fried-chicken',
-    icon: '🌶️',
-    badges: ['hot', 'special'],
-    color: '#c8102e'
-  },
-  {
-    id: 3,
-    name: 'باله مرغ سوخاری',
-    desc: 'باله مرغ با پوشش طلایی ترد، برشته در روغن آفتاب‌گردان',
-    price: 75000,
-    category: 'fried-chicken',
-    icon: '🍗',
-    badges: [],
-    color: '#ff8c38'
-  },
-  {
-    id: 4,
-    name: 'مرغ سوخاری سینه',
-    desc: 'سینه مرغ کامل سوخاری، پُر آب و آبدار با پوشش دو لایه',
-    price: 105000,
-    category: 'fried-chicken',
-    icon: '🍗',
-    badges: ['special'],
-    color: '#d4a017'
-  },
-  {
-    id: 5,
-    name: 'ران مرغ سوخاری خانگی',
-    desc: 'ران کامل مرغ با ادویه محرمانه ۱۱ چاشنی، بدون پوست',
-    price: 99000,
-    category: 'fried-chicken',
-    icon: '🍗',
-    badges: [],
-    color: '#ff6b00'
-  },
+    // ساندویچ‌ها
+    { id: 10, category: 'sandwiches', title: 'توییستر ساندویچ (رپ مرغ)', desc: 'دو عدد فیله سوخاری پیچیده شده در نان تورتیلا مدیترانه‌ای به همراه کاهو و سس مایونز سیر', price: 155000, tag: 'none', img: 'https://images.unsplash.com/photo-1509722747041-616f39b57569?w=500&auto=format&fit=crop&q=60' },
+    { id: 11, category: 'sandwiches', title: 'ساندویچ فیله تنوری', desc: 'فیله مرغ خرد شده تنوری با سس قارچ و پنیر و پیاز جعفری در نان باگت سنتی', price: 175000, tag: 'none', img: 'https://images.unsplash.com/photo-1509722747041-616f39b57569?w=500&auto=format&fit=crop&q=60' },
+    { id: 12, category: 'sandwiches', title: 'ساندویچ هالومی چیکن ویژه', desc: 'فیله سوخاری پولکی همراه با پنیر هالومی کبابی غنی شده و کاهو پیچ اسپانیایی', price: 198000, tag: 'special', img: 'https://images.unsplash.com/photo-1509722747041-616f39b57569?w=500&auto=format&fit=crop&q=60' },
 
-  // ===== برگر مرغ =====
-  {
-    id: 6,
-    name: 'برگر مرغ کلاسیک',
-    desc: 'فیله مرغ سوخاری، کاهو، گوجه و سس مایونز در نان کنجدی',
-    price: 125000,
-    category: 'burger',
-    icon: '🍔',
-    badges: ['hot'],
-    color: '#ff6b00'
-  },
-  {
-    id: 7,
-    name: 'دابل برگر مرغ',
-    desc: 'دو لایه فیله مرغ سوخاری با پنیر ذوب شده و سس اختصاصی',
-    price: 165000,
-    category: 'burger',
-    icon: '🍔',
-    badges: ['special', 'hot'],
-    color: '#c8102e'
-  },
-  {
-    id: 8,
-    name: 'برگر اسپایسی',
-    desc: 'فیله مرغ تند با جالاپنیو، سس سریراچا و پنیر تیلسیتر',
-    price: 145000,
-    category: 'burger',
-    icon: '🌶️',
-    badges: ['hot'],
-    color: '#c8102e'
-  },
-  {
-    id: 9,
-    name: 'برگر مکزیکی',
-    desc: 'مرغ سوخاری با گواکامولی، ذرت و سس چیپوتل تند',
-    price: 155000,
-    category: 'burger',
-    icon: '🍔',
-    badges: ['new'],
-    color: '#ff8c38'
-  },
-  {
-    id: 10,
-    name: 'برگر گلد',
-    desc: 'فیله طلایی مرغ، پنیر گودا، باکن و سس مخصوص هات کنتاکی',
-    price: 175000,
-    category: 'burger',
-    icon: '👑',
-    badges: ['special'],
-    color: '#d4a017'
-  },
+    // باکت‌های خانوادگی
+    { id: 13, category: 'family-buckets', title: 'باکت اکونومی (۶ تکه)', desc: '۶ تکه مرغ سوخاری نرمال و اسپایسی، ۱ سیب زمینی بزرگ، ۲ سالاد کلم کوچک و نوشابه خانواده', price: 540000, tag: 'none', img: 'https://images.unsplash.com/photo-1513639776629-7b61b0ac49cb?w=500&auto=format&fit=crop&q=60' },
+    { id: 14, category: 'family-buckets', title: 'سوپر باکت هات (۹ تکه)', desc: '۹ تکه مرغ سوخاری مخلوط، ۲ سیب زمینی سرخ کرده، ۳ نان بروچ، سالاد کلم بزرگ و سس دبل سیر', price: 780000, tag: 'best', img: 'https://images.unsplash.com/photo-1513639776629-7b61b0ac49cb?w=500&auto=format&fit=crop&q=60' },
+    { id: 15, category: 'family-buckets', title: 'مگا پارتی باکس (۱۲ تکه)', desc: '۱۲ تکه مرغ سوخاری کرانچی، ۶ تکه فیله استریپس، قارچ سوخاری غول‌آسا، سیب زمینی خانواده و ۳ عدد سس بزرگ مخصوص', price: 1150000, tag: 'special', img: 'https://images.unsplash.com/photo-1513639776629-7b61b0ac49cb?w=500&auto=format&fit=crop&q=60' },
 
-  // ===== ساندویچ =====
-  {
-    id: 11,
-    name: 'ساندویچ فیله مرغ',
-    desc: 'فیله نازک مرغ سوخاری در نان باگت با کاهو و گوجه',
-    price: 98000,
-    category: 'sandwich',
-    icon: '🥖',
-    badges: [],
-    color: '#ff8c38'
-  },
-  {
-    id: 12,
-    name: 'ساندویچ کریسپی',
-    desc: 'مرغ کریسپی دو لایه با خیارشور، کاهو بنفش و سس تارتار',
-    price: 118000,
-    category: 'sandwich',
-    icon: '🥪',
-    badges: ['hot'],
-    color: '#ff6b00'
-  },
-  {
-    id: 13,
-    name: 'ساندویچ کبابی',
-    desc: 'مرغ گریل شده با کدو، فلفل دلمه و سس پستو',
-    price: 109000,
-    category: 'sandwich',
-    icon: '🥗',
-    badges: ['new'],
-    color: '#25d366'
-  },
-  {
-    id: 14,
-    name: 'ساندویچ ترکی',
-    desc: 'فیله مرغ ترکی با بادمجان کبابی، فلفل و ادویه ترکی',
-    price: 115000,
-    category: 'sandwich',
-    icon: '🥙',
-    badges: [],
-    color: '#ff8c38'
-  },
+    // سیب زمینی و پیش غذا
+    { id: 16, category: 'fries', title: 'سیب زمینی سرخ کرده کلاسیک', desc: 'خلال سیب زمینی بلژیکی ترد و طلایی با ادویه مخصوص کجین هات کنتاکی', price: 75000, tag: 'none', img: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=500&auto=format&fit=crop&q=60' },
+    { id: 17, category: 'fries', title: 'سیب زمینی چدار و قارچ', desc: 'سیب زمینی سرخ شده همراه با حمام سس پنیر چدار آب شده داغ و قارچ فرآوری شده', price: 115000, tag: 'best', img: 'https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=500&auto=format&fit=crop&q=60' },
+    { id: 18, category: 'fries', title: 'پیاز حلقه‌ای سوخاری (۱۰ عدد)', desc: 'حلقه‌های پیاز شیرین سوخاری شده فوق‌العاده ترد همراه با دیپ سس باربیکیو پلاس', price: 65000, tag: 'none', img: 'https://images.unsplash.com/photo-1639024471283-2bc7b3c6a267?w=500&auto=format&fit=crop&q=60' },
+    { id: 19, category: 'fries', title: 'قارچ سوخاری مخصوص کرانچی', desc: 'قارچ‌های دکمه‌ای تازه مرینت شده در آرد سوخاری پفکی و ترد پاپ کورنی', price: 90000, tag: 'special', img: 'https://images.unsplash.com/photo-1562967914-608f82629710?w=500&auto=format&fit=crop&q=60' },
 
-  // ===== باکت خانوادگی =====
-  {
-    id: 15,
-    name: 'باکت خانوادگی ۶ تایی',
-    desc: '۶ قطعه مرغ سوخاری + ۳ سیب زمینی + ۳ نوشابه',
-    price: 385000,
-    category: 'bucket',
-    icon: '🪣',
-    badges: ['special', 'hot'],
-    color: '#d4a017'
-  },
-  {
-    id: 16,
-    name: 'باکت خانوادگی ۱۰ تایی',
-    desc: '۱۰ قطعه مرغ + ۴ سیب زمینی + ۴ نوشابه + ۲ سس',
-    price: 590000,
-    category: 'bucket',
-    icon: '🪣',
-    badges: ['hot', 'special'],
-    color: '#c8102e'
-  },
-  {
-    id: 17,
-    name: 'باکت مهمانی ۱۵ تایی',
-    desc: '۱۵ قطعه مرغ + ۶ سیب زمینی + ۶ نوشابه + ۴ سس + دسر',
-    price: 845000,
-    category: 'bucket',
-    icon: '🎉',
-    badges: ['special'],
-    color: '#d4a017'
-  },
-  {
-    id: 18,
-    name: 'باکت دو نفره',
-    desc: '۴ قطعه مرغ + ۲ سیب زمینی + ۲ نوشابه',
-    price: 245000,
-    category: 'bucket',
-    icon: '🪣',
-    badges: [],
-    color: '#ff6b00'
-  },
+    // نوشیدنی‌ها
+    { id: 20, category: 'drinks', title: 'نوشابه قوطی کوکاکولا', desc: 'نوشابه گازدار قوطی خنک تگرگی ۳۳۰ میلی‌لیتر', price: 20000, tag: 'none', img: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=500&auto=format&fit=crop&q=60' },
+    { id: 21, category: 'drinks', title: 'نوشابه قوطی فانتا پرتقالی', desc: 'نوشابه قوطی طعم پرتقالی خنک گازدار اصل', price: 20000, tag: 'none', img: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=500&auto=format&fit=crop&q=60' },
+    { id: 22, category: 'drinks', title: 'دلستر لیمویی بالتیکا', desc: 'ماءالشعیر گازدار با طعم طبیعی لیمو مالت غنی شده', price: 25000, tag: 'none', img: 'https://images.unsplash.com/photo-1608270586620-248524c67de9?w=500&auto=format&fit=crop&q=60' },
+    { id: 23, category: 'drinks', title: 'موهیتو طبیعی و دست‌ساز', desc: 'نوشیدنی خنک و ارگانیک تهیه شده از لیمو تازه، برگ نعناع طبیعی و سودا ممتاز', price: 45000, tag: 'best', img: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=500&auto=format&fit=crop&q=60' },
 
-  // ===== سیب زمینی =====
-  {
-    id: 19,
-    name: 'سیب زمینی کلاسیک',
-    desc: 'سیب زمینی ترد طلایی با نمک دریا',
-    price: 45000,
-    category: 'fries',
-    icon: '🍟',
-    badges: [],
-    color: '#d4a017'
-  },
-  {
-    id: 20,
-    name: 'سیب زمینی پنیری',
-    desc: 'سیب زمینی با سس چدار داغ و پنیر پارمزان',
-    price: 62000,
-    category: 'fries',
-    icon: '🧀',
-    badges: ['hot'],
-    color: '#ff8c38'
-  },
-  {
-    id: 21,
-    name: 'سیب زمینی تند',
-    desc: 'سیب زمینی با پاپریکا، فلفل قرمز و ادویه تند',
-    price: 55000,
-    category: 'fries',
-    icon: '🌶️',
-    badges: [],
-    color: '#c8102e'
-  },
-  {
-    id: 22,
-    name: 'وجز فرانسوی',
-    desc: 'وِج سیب زمینی شکری با رزماری و سس دیپ',
-    price: 68000,
-    category: 'fries',
-    icon: '🍟',
-    badges: ['new'],
-    color: '#ff6b00'
-  },
+    // سس‌ها
+    { id: 24, category: 'sauces', title: 'دیپ سس سیر مخصوص هات', desc: 'سس غلیظ فرموله شده از سیر تازه ارگانیک، روغن زیتون و ادویه مدیترانه‌ای', price: 15000, tag: 'best', img: 'https://images.unsplash.com/photo-1619531040576-fba20077dfb8?w=500&auto=format&fit=crop&q=60' },
+    { id: 25, category: 'sauces', title: 'سس چدار گرم فشرده', desc: 'دیپ گرم پنیر چدار ذوب شده خالص و غنی مناسب برای غوطه‌ور کردن سوخاری', price: 25000, tag: 'special', img: 'https://images.unsplash.com/photo-1619531040576-fba20077dfb8?w=500&auto=format&fit=crop&q=60' },
+    { id: 26, category: 'sauces', title: 'سس بوفالو آتشین', desc: 'سس تند و تیز ترکیبی فلفل قرمز تند و کره ذوب شده مناسب برای عاشقان اسپایسی', price: 15000, tag: 'none', img: 'https://images.unsplash.com/photo-1619531040576-fba20077dfb8?w=500&auto=format&fit=crop&q=60' },
+    { id: 27, category: 'sauces', title: 'سس باربیکیو دودی خالص', desc: 'طعم اصیل دودی هیکوری با بافت کاراملی جذاب', price: 15000, tag: 'none', img: 'https://images.unsplash.com/photo-1619531040576-fba20077dfb8?w=500&auto=format&fit=crop&q=60' },
 
-  // ===== نوشیدنی =====
-  {
-    id: 23,
-    name: 'نوشابه قوطی',
-    desc: 'کوکاکولا، پپسی، اسپرایت و فانتا — به انتخاب شما',
-    price: 28000,
-    category: 'drinks',
-    icon: '🥤',
-    badges: [],
-    color: '#c8102e'
-  },
-  {
-    id: 24,
-    name: 'دوغ محلی',
-    desc: 'دوغ تازه با نعناع و زیره — محصول ایرانی',
-    price: 22000,
-    category: 'drinks',
-    icon: '🥛',
-    badges: [],
-    color: '#6bc5f8'
-  },
-  {
-    id: 25,
-    name: 'لیموناد تازه',
-    desc: 'لیموناد خانگی با نعناع تازه و شربت گلاب',
-    price: 38000,
-    category: 'drinks',
-    icon: '🍋',
-    badges: ['new'],
-    color: '#ffe066'
-  },
-  {
-    id: 26,
-    name: 'شیک پرتقال',
-    desc: 'شیک پرتقال تازه با خامه و توپ بستنی وانیل',
-    price: 55000,
-    category: 'drinks',
-    icon: '🍊',
-    badges: [],
-    color: '#ff8c38'
-  },
-
-  // ===== سس‌ها =====
-  {
-    id: 27,
-    name: 'سس باربیکیو',
-    desc: 'سس باربیکیو دودی دستساز با گوجه و قارچ دودی',
-    price: 18000,
-    category: 'sauce',
-    icon: '🫙',
-    badges: [],
-    color: '#c8102e'
-  },
-  {
-    id: 28,
-    name: 'سس تند اختصاصی',
-    desc: 'سس مخصوص هات کنتاکی با ۷ نوع فلفل محلی',
-    price: 22000,
-    category: 'sauce',
-    icon: '🌶️',
-    badges: ['special'],
-    color: '#ff6b00'
-  },
-
-  // ===== دسر =====
-  {
-    id: 29,
-    name: 'کاپ‌کیک شکلاتی',
-    desc: 'کاپ‌کیک نرم و خامه‌ای با روکش گاناش شکلات تلخ',
-    price: 48000,
-    category: 'dessert',
-    icon: '🧁',
-    badges: [],
-    color: '#8B4513'
-  },
-  {
-    id: 30,
-    name: 'بستنی وانیل',
-    desc: 'بستنی نرم وانیل با رویه عسل و تکه‌های کاراملی',
-    price: 42000,
-    category: 'dessert',
-    icon: '🍦',
-    badges: ['hot'],
-    color: '#ffe066'
-  },
-  {
-    id: 31,
-    name: 'چیزکیک توت فرنگی',
-    desc: 'چیزکیک کرمی با بیسکویت بوربون و کولیس توت فرنگی تازه',
-    price: 65000,
-    category: 'dessert',
-    icon: '🍰',
-    badges: ['new'],
-    color: '#ff6b8a'
-  },
-  {
-    id: 32,
-    name: 'دونات گلدن',
-    desc: 'دونات طلایی با پودر قند و مربای هلو',
-    price: 38000,
-    category: 'dessert',
-    icon: '🍩',
-    badges: [],
-    color: '#d4a017'
-  }
+    // دسرها
+    { id: 28, category: 'desserts', title: 'پای سیب داغ دارچینی', desc: 'پای دست‌ساز لایه‌ای سیب پخته شده معطر با پودر دارچین اعلا به همراه بستنی وانیلی', price: 55000, tag: 'special', img: 'https://images.unsplash.com/photo-1551024601-bec78aea704b?w=500&auto=format&fit=crop&q=60' },
+    { id: 29, category: 'desserts', title: 'مافین دبل شکلات بلژیکی', desc: 'کیک مافین نرم و مرطوب مغزدار غنی شده با تکه‌های شکلات تلخ ذوب شده', price: 40000, tag: 'none', img: 'https://images.unsplash.com/photo-1551024601-bec78aea704b?w=500&auto=format&fit=crop&q=60' },
+    { id: 30, category: 'desserts', title: 'بستنی مخصوص هات کنتاکی', desc: 'ژلاتو نرم ایتالیایی با مغز پسته و سس شکلات فرست کلاس', price: 50000, tag: 'best', img: 'https://images.unsplash.com/photo-1551024601-bec78aea704b?w=500&auto=format&fit=crop&q=60' }
 ];
 
-/* -------- SPECIAL OFFERS -------- */
-const SPECIALS = [
-  {
-    id: 's1',
-    name: 'باکت آتشین',
-    desc: '۸ قطعه مرغ تند ویژه + ۳ سیب زمینی + ۳ نوشابه + ۲ سس تند اختصاصی',
-    originalPrice: 520000,
-    specialPrice: 399000,
-    icon: '🔥',
-    ribbon: 'پرفروش',
-    productId: 16
-  },
-  {
-    id: 's2',
-    name: 'ست عاشقانه',
-    desc: '۲ برگر گلد + ۲ سیب زمینی پنیری + ۲ لیموناد تازه',
-    originalPrice: 405000,
-    specialPrice: 319000,
-    icon: '❤️',
-    ribbon: 'پیشنهاد ویژه',
-    productId: 10
-  },
-  {
-    id: 's3',
-    name: 'ست دانشجویی',
-    desc: 'برگر مرغ کلاسیک + سیب زمینی + نوشابه + سس باربیکیو',
-    originalPrice: 216000,
-    specialPrice: 169000,
-    icon: '🎓',
-    ribbon: 'صرفه‌جویی بیشتر',
-    productId: 6
-  },
-  {
-    id: 's4',
-    name: 'باکت هفتگی',
-    desc: '۱۵ قطعه مرغ + ۵ سیب زمینی + ۵ نوشابه + ۳ سس + دسر رایگان',
-    originalPrice: 1050000,
-    specialPrice: 799000,
-    icon: '👨‍👩‍👧‍👦',
-    ribbon: 'پرطرفدار',
-    productId: 17
-  }
-];
+// متغیر وضعیت سبد خرید (بارگذاری اولیه از LocalStorage در صورت وجود)
+let currentCart = JSON.parse(localStorage.getItem('hot_kentucky_cart')) || [];
 
-/* ============================================================
-   CART STATE
-   ============================================================ */
-const CART_KEY = 'hk_cart_v2';
-
-let cart = loadCart();
-let currentFilter = 'all';
-let searchQuery = '';
-
-function loadCart() {
-  try {
-    const raw = localStorage.getItem(CART_KEY);
-    return raw ? JSON.parse(raw) : [];
-  } catch { return []; }
-}
-
-function saveCart() {
-  localStorage.setItem(CART_KEY, JSON.stringify(cart));
-}
-
-function addToCart(productId) {
-  const product = PRODUCTS.find(p => p.id === productId);
-  if (!product) return;
-
-  const existing = cart.find(i => i.id === productId);
-  if (existing) {
-    existing.qty += 1;
-  } else {
-    cart.push({ id: product.id, name: product.name, price: product.price, icon: product.icon, qty: 1 });
-  }
-  saveCart();
-  updateCartUI();
-  showToast(`${product.icon} ${product.name} به سبد اضافه شد`);
-
-  // Button animation
-  const btn = document.querySelector(`.btn-add[data-id="${productId}"]`);
-  if (btn) {
-    btn.classList.add('added');
-    setTimeout(() => btn.classList.remove('added'), 600);
-  }
-}
-
-function removeFromCart(productId) {
-  cart = cart.filter(i => i.id !== productId);
-  saveCart();
-  updateCartUI();
-}
-
-function changeQty(productId, delta) {
-  const item = cart.find(i => i.id === productId);
-  if (!item) return;
-  item.qty += delta;
-  if (item.qty <= 0) {
-    removeFromCart(productId);
-    return;
-  }
-  saveCart();
-  updateCartUI();
-}
-
-function getTotal() {
-  return cart.reduce((sum, i) => sum + i.price * i.qty, 0);
-}
-
-function getItemCount() {
-  return cart.reduce((sum, i) => sum + i.qty, 0);
-}
-
-function formatPrice(n) {
-  return n.toLocaleString('fa-IR') + ' تومان';
-}
-
-/* ============================================================
-   CART UI
-   ============================================================ */
-function updateCartUI() {
-  const badge  = document.getElementById('cartBadge');
-  const body   = document.getElementById('cartItems');
-  const empty  = document.getElementById('cartEmpty');
-  const footer = document.getElementById('cartFooter');
-  const total  = document.getElementById('cartTotal');
-  const count  = getItemCount();
-
-  // Badge
-  badge.textContent = count.toLocaleString('fa-IR');
-  badge.style.display = count > 0 ? 'flex' : 'none';
-
-  // Items
-  body.querySelectorAll('.cart-item').forEach(el => el.remove());
-
-  if (cart.length === 0) {
-    empty.style.display  = 'flex';
-    footer.style.display = 'none';
-    return;
-  }
-
-  empty.style.display  = 'none';
-  footer.style.display = 'block';
-  total.textContent    = formatPrice(getTotal());
-
-  cart.forEach(item => {
-    const el = document.createElement('div');
-    el.className = 'cart-item';
-    el.innerHTML = `
-      <div class="cart-item-icon">${item.icon}</div>
-      <div class="cart-item-info">
-        <div class="cart-item-name">${item.name}</div>
-        <div class="cart-item-price">${formatPrice(item.price * item.qty)}</div>
-      </div>
-      <div class="cart-item-controls">
-        <button class="qty-btn" onclick="changeQty(${item.id},-1)" aria-label="کم کردن">−</button>
-        <span class="qty-display">${item.qty.toLocaleString('fa-IR')}</span>
-        <button class="qty-btn" onclick="changeQty(${item.id},1)" aria-label="زیاد کردن">+</button>
-        <button class="qty-remove" onclick="removeFromCart(${item.id})" aria-label="حذف">
-          <i class="fa-solid fa-trash-can"></i>
-        </button>
-      </div>
-    `;
-    body.appendChild(el);
-  });
-}
-
-/* ============================================================
-   CART DRAWER TOGGLE
-   ============================================================ */
-function openCart() {
-  document.getElementById('cartDrawer').classList.add('open');
-  document.getElementById('cartOverlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeCart() {
-  document.getElementById('cartDrawer').classList.remove('open');
-  document.getElementById('cartOverlay').classList.remove('open');
-  document.body.style.overflow = '';
-}
-
-/* ============================================================
-   TOAST
-   ============================================================ */
-function showToast(msg) {
-  const container = document.getElementById('toastContainer');
-  const toast = document.createElement('div');
-  toast.className = 'hk-toast';
-  toast.innerHTML = `<i class="fa-solid fa-circle-check"></i><span>${msg}</span>`;
-  container.appendChild(toast);
-
-  setTimeout(() => {
-    toast.classList.add('hide');
-    toast.addEventListener('animationend', () => toast.remove());
-  }, 3000);
-}
-
-/* ============================================================
-   RENDER MENU
-   ============================================================ */
-function renderMenu() {
-  const grid     = document.getElementById('menuGrid');
-  const noResult = document.getElementById('noResults');
-  const countEl  = document.getElementById('searchCount');
-
-  let filtered = PRODUCTS;
-
-  if (currentFilter !== 'all') {
-    filtered = filtered.filter(p => p.category === currentFilter);
-  }
-
-  if (searchQuery) {
-    const q = searchQuery.toLowerCase();
-    filtered = filtered.filter(p =>
-      p.name.includes(q) ||
-      p.desc.includes(q) ||
-      p.category.includes(q)
-    );
-  }
-
-  // Clear existing cards
-  grid.querySelectorAll('.product-card').forEach(el => el.remove());
-
-  if (searchQuery) {
-    countEl.textContent = `${filtered.length.toLocaleString('fa-IR')} محصول یافت شد`;
-  } else {
-    countEl.textContent = '';
-  }
-
-  if (filtered.length === 0) {
-    noResult.style.display = 'block';
-    return;
-  }
-
-  noResult.style.display = 'none';
-
-  filtered.forEach((product, i) => {
-    const card = createProductCard(product);
-    card.style.animationDelay = `${i * 40}ms`;
-    card.classList.add('card-appear');
-    grid.appendChild(card);
-  });
-}
-
-function createProductCard(product) {
-  const div = document.createElement('div');
-  div.className = 'product-card';
-  div.dataset.category = product.category;
-  div.dataset.id = product.id;
-
-  const badgeHTML = product.badges.map(b => {
-    const labels = { hot: '🔥 پرفروش', special: '⭐ ویژه', new: '✨ جدید' };
-    const cls    = { hot: 'badge-hot', special: 'badge-special', new: 'badge-new' };
-    return `<span class="${cls[b]}">${labels[b]}</span>`;
-  }).join('');
-
-  div.innerHTML = `
-    <div class="product-img-wrap" style="background: linear-gradient(135deg, ${product.color}18, #1a1a1a);">
-      <div class="product-img-icon" aria-hidden="true">${product.icon}</div>
-      ${product.badges.length ? `<div class="product-badges">${badgeHTML}</div>` : ''}
-    </div>
-    <div class="product-body">
-      <div class="product-name">${product.name}</div>
-      <div class="product-desc">${product.desc}</div>
-      <div class="product-footer">
-        <div class="product-price">
-          <small>قیمت</small>
-          ${formatPrice(product.price)}
-        </div>
-        <button class="btn-add" data-id="${product.id}" onclick="addToCart(${product.id})" aria-label="افزودن ${product.name} به سبد">
-          <i class="fa-solid fa-plus"></i>
-        </button>
-      </div>
-    </div>
-  `;
-
-  return div;
-}
-
-/* ============================================================
-   RENDER SPECIALS
-   ============================================================ */
-function renderSpecials() {
-  const grid = document.getElementById('specialsGrid');
-  if (!grid) return;
-
-  SPECIALS.forEach(s => {
-    const col = document.createElement('div');
-    col.className = 'col-lg-3 col-md-6';
-    col.dataset.animate = 'fade-up';
-
-    const discount = Math.round((1 - s.specialPrice / s.originalPrice) * 100);
-
-    col.innerHTML = `
-      <div class="special-card h-100">
-        <div class="special-card-header">
-          <div class="special-ribbon">${s.ribbon}</div>
-          <div class="special-icon" aria-hidden="true">${s.icon}</div>
-        </div>
-        <div class="special-card-body">
-          <div class="special-name">${s.name}</div>
-          <div class="special-desc">${s.desc}</div>
-          <div class="special-price-row">
-            <div class="price-group">
-              <span class="price-original">${formatPrice(s.originalPrice)}</span>
-              <span class="price-special">${formatPrice(s.specialPrice)}</span>
-            </div>
-            <button class="btn-special" onclick="addToCart(${s.productId})">
-              <i class="fa-solid fa-basket-shopping ms-1"></i>
-              سفارش (${discount}٪ تخفیف)
-            </button>
-          </div>
-        </div>
-      </div>
-    `;
-    grid.appendChild(col);
-  });
-}
-
-/* ============================================================
-   LOADING SCREEN
-   ============================================================ */
-function hideLoading() {
-  const screen = document.getElementById('loadingScreen');
-  if (!screen) return;
-  screen.classList.add('hidden');
-  setTimeout(() => screen.remove(), 700);
-}
-
-/* ============================================================
-   STICKY HEADER
-   ============================================================ */
-function handleScroll() {
-  const header    = document.getElementById('mainHeader');
-  const scrollBtn = document.getElementById('scrollTopBtn');
-  const y = window.scrollY;
-
-  if (y > 80) header.classList.add('scrolled');
-  else         header.classList.remove('scrolled');
-
-  if (y > 400) scrollBtn.classList.add('visible');
-  else          scrollBtn.classList.remove('visible');
-}
-
-/* ============================================================
-   SCROLL ANIMATIONS
-   ============================================================ */
-function initScrollAnimations() {
-  const elements = document.querySelectorAll('[data-animate]');
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const el = entry.target;
-        const delay = el.dataset.delay || 0;
-        setTimeout(() => el.classList.add('animated'), delay);
-        observer.unobserve(el);
-      }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
-
-  elements.forEach(el => observer.observe(el));
-}
-
-/* ============================================================
-   SMOOTH SCROLL NAV
-   ============================================================ */
-function initSmoothScroll() {
-  document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener('click', e => {
-      const target = document.querySelector(link.getAttribute('href'));
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth' });
-        // Close mobile menu
-        const collapse = document.getElementById('navMenu');
-        if (collapse && collapse.classList.contains('show')) {
-          const toggler = document.querySelector('.navbar-toggler');
-          if (toggler) toggler.click();
+/**
+ * مدیریت رویدادهای اولیه سیستم بارگذاری و رفتارهای صفحه (DOM Ready)
+ */
+document.addEventListener('DOMContentLoaded', () => {
+    // ۱. حذف انیمیشنی صفحه لودینگ اولیه پس از رندر کامل ساختار درخت DOM
+    const preloader = document.getElementById('preloader');
+    setTimeout(() => {
+        if (preloader) {
+            preloader.style.opacity = '0';
+            preloader.style.visibility = 'hidden';
         }
-      }
+    }, 800);
+
+    // ۲. رندر اولیه کلیه محصولات پایگاه داده در گرید سیستم منو
+    renderProducts(PRODUCTS_DATABASE);
+    updateCartUI();
+
+    // ۳. مدیریت سیستم پیشرفته فیلترینگ دسته‌بندی‌ها
+    const categoryButtons = document.querySelectorAll('.btn-category');
+    categoryButtons.forEach(button => {
+        button.addEventListener('click', (e) => {
+            categoryButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            filterMenu();
+        });
     });
-  });
 
-  // Active nav link on scroll
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks  = document.querySelectorAll('#navMenu .nav-link');
-
-  const sectionObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        navLinks.forEach(l => l.classList.remove('active'));
-        const active = document.querySelector(`#navMenu a[href="#${entry.target.id}"]`);
-        if (active) active.classList.add('active');
-      }
+    // ۴. مدیریت فیلترینگ زنده بر اساس فیلد ورودی متن جستجو
+    const searchInput = document.getElementById('liveSearchInput');
+    searchInput.addEventListener('input', () => {
+        filterMenu();
     });
-  }, { threshold: 0.35 });
 
-  sections.forEach(s => sectionObserver.observe(s));
-}
+    // ۵. مدیریت رفتار اسکرول مرورگر جهت تغییر وضعیت بصری نوار ناوبری و دکمه بازگشت به بالا
+    const navbar = document.querySelector('.custom-navbar');
+    const backToTopBtn = document.getElementById('backToTopBtn');
+    
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.classList.add('navbar-scrolled');
+        } else {
+            navbar.classList.remove('navbar-scrolled');
+        }
 
-/* ============================================================
-   CATEGORY FILTER
-   ============================================================ */
-function initCategories() {
-  document.querySelectorAll('.cat-card').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.cat-card').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      currentFilter = btn.dataset.filter || 'all';
-      renderMenu();
-
-      // Scroll to menu
-      const menu = document.getElementById('menu');
-      if (menu) {
-        setTimeout(() => menu.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
-      }
+        if (window.scrollY > 400) {
+            backToTopBtn.classList.add('show');
+        } else {
+            backToTopBtn.classList.remove('show');
+        }
     });
-  });
-}
 
-/* ============================================================
-   SEARCH
-   ============================================================ */
-function initSearch() {
-  const input    = document.getElementById('searchInput');
-  const clearBtn = document.getElementById('searchClear');
-  if (!input) return;
-
-  let debounceTimer;
-
-  input.addEventListener('input', () => {
-    searchQuery = input.value.trim();
-    clearBtn.style.display = searchQuery ? 'block' : 'none';
-
-    clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(renderMenu, 200);
-  });
-
-  clearBtn.addEventListener('click', () => {
-    input.value = '';
-    searchQuery = '';
-    clearBtn.style.display = 'none';
-    renderMenu();
-    input.focus();
-  });
-}
-
-/* ============================================================
-   LAZY LOAD IMAGES (emoji-based, no real img here)
-   Observer kept for future real images
-   ============================================================ */
-function initLazyLoad() {
-  // Intersection observer for product cards appearing
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.opacity = '1';
-        entry.target.style.transform = 'translateY(0)';
-        observer.unobserve(entry.target);
-      }
+    // ۶. پیوند رویداد کلیک دکمه بازگشت به بالا جهت اسکرول نرم به نقطه صفر صفحه
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-  }, { threshold: 0.05 });
+});
 
-  const observe = () => {
-    document.querySelectorAll('.product-card').forEach(card => {
-      observer.observe(card);
+/**
+ * متد جامع فیلترینگ همزمان دسته‌بندی و واژگان جستجوی زنده به صورت بلادرنگ
+ */
+function filterMenu() {
+    const activeCategory = document.querySelector('.btn-category.active').getAttribute('data-category');
+    const searchQuery = document.getElementById('liveSearchInput').value.trim().toLowerCase();
+
+    const filtered = PRODUCTS_DATABASE.filter(product => {
+        const matchesCategory = (activeCategory === 'all' || product.category === activeCategory);
+        const matchesSearch = product.title.toLowerCase().includes(searchQuery) || 
+                              product.desc.toLowerCase().includes(searchQuery);
+        return matchesCategory && matchesSearch;
     });
-  };
-  // Re-observe after renders
-  const mo = new MutationObserver(observe);
-  mo.observe(document.getElementById('menuGrid'), { childList: true });
+
+    renderProducts(filtered);
 }
 
-/* ============================================================
-   CARD APPEAR ANIMATION
-   ============================================================ */
-const cardStyle = document.createElement('style');
-cardStyle.textContent = `
-.card-appear {
-  opacity: 0;
-  transform: translateY(20px);
-  animation: cardIn .45s ease forwards;
-}
-@keyframes cardIn {
-  to { opacity: 1; transform: translateY(0); }
-}
-`;
-document.head.appendChild(cardStyle);
+/**
+ * رندر کردن و تولید پویا و ایمن کدهای HTML محصولات درون کانتینر هدف به همراه قابلیت Lazy Loading نیتیو مرورگر
+ */
+function renderProducts(productsList) {
+    const container = document.getElementById('productsGridContainer');
+    container.innerHTML = '';
 
-/* ============================================================
-   SCROLL TOP BUTTON
-   ============================================================ */
-function initScrollTop() {
-  const btn = document.getElementById('scrollTopBtn');
-  if (btn) {
-    btn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    if (productsList.length === 0) {
+        container.innerHTML = `
+            <div class="col-12 text-center py-5">
+                <i class="fa-solid fa-cookie-bite display-1 text-muted mb-3"></i>
+                <p class="text-muted fs-5">هیچ محصولی مطابق با فیلتر یا جستجوی شما یافت نشد.</p>
+            </div>
+        `;
+        return;
+    }
+
+    productsList.forEach(product => {
+        // تعیین تگ‌ها و لیبل‌های محصول ویژه یا پرفروش
+        let badgeHTML = '';
+        if (product.tag === 'best') {
+            badgeHTML = `<span class="product-badge badge-best"><i class="fa-solid fa-fire"></i> پرفروش</span>`;
+        } else if (product.tag === 'special') {
+            badgeHTML = `<span class="product-badge badge-special"><i class="fa-solid fa-star"></i> پیشنهاد ویژه</span>`;
+        }
+
+        const cardElement = document.createElement('div');
+        cardElement.className = 'col-sm-6 col-md-4 col-lg-3';
+        cardElement.innerHTML = `
+            <div class="product-card">
+                ${badgeHTML}
+                <div class="product-img-wrapper">
+                    <img src="${product.img}" alt="${product.title}" class="product-img" loading="lazy">
+                </div>
+                <div class="product-info d-flex flex-column justify-content-between w-100">
+                    <div>
+                        <h3 class="product-title">${product.title}</h3>
+                        <p class="product-desc">${product.desc}</p>
+                    </div>
+                    <div class="product-meta">
+                        <div class="product-price">${product.price.toLocaleString('fa-IR')} <span>تومان</span></div>
+                        <button onclick="addProductToCart(${product.id})" class="btn btn-add-to-cart" aria-label="افزودن به سبد خرید">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        `;
+        container.appendChild(cardElement);
     });
-  }
 }
 
-/* ============================================================
-   CART EVENTS
-   ============================================================ */
-function initCartEvents() {
-  document.getElementById('cartToggle')?.addEventListener('click', openCart);
-  document.getElementById('cartClose')?.addEventListener('click', closeCart);
-  document.getElementById('cartOverlay')?.addEventListener('click', closeCart);
+/**
+ * افزودن امن و بررسی عدم تکرار یک محصول به آرایه سبد خرید و ذخیره‌سازی داده‌ها
+ */
+function addProductToCart(productId) {
+    const targetProduct = PRODUCTS_DATABASE.find(p => p.id === productId);
+    if (!targetProduct) return;
 
-  // ESC key closes cart
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape') closeCart();
-  });
+    const existingCartItem = currentCart.find(item => item.id === productId);
+
+    if (existingCartItem) {
+        existingCartItem.quantity += 1;
+    } else {
+        currentCart.push({
+            id: targetProduct.id,
+            title: targetProduct.title,
+            price: targetProduct.price,
+            img: targetProduct.img,
+            quantity: 1
+        });
+    }
+
+    saveCartAndRefresh();
+    showToastNotification(`«${targetProduct.title}» با موفقیت به سبد خرید شما اضافه شد.`);
 }
 
-/* ============================================================
-   PERFORMANCE: requestAnimationFrame for scroll
-   ============================================================ */
-let ticking = false;
-function onScroll() {
-  if (!ticking) {
-    requestAnimationFrame(() => {
-      handleScroll();
-      ticking = false;
+/**
+ * کاهش مستقیم تعداد یا حذف کلی اقلام در صورت صفر شدن تعداد آیتم
+ */
+function decreaseProductQuantity(productId) {
+    const existingCartItem = currentCart.find(item => item.id === productId);
+    if (!existingCartItem) return;
+
+    if (existingCartItem.quantity > 1) {
+        existingCartItem.quantity -= 1;
+    } else {
+        currentCart = currentCart.filter(item => item.id !== productId);
+    }
+
+    saveCartAndRefresh();
+}
+
+/**
+ * حذف مستقیم یک ردیف کامل کالا بدون در نظر گرفتن تعداد شمارش شده آن
+ */
+function removeProductEntirely(productId) {
+    currentCart = currentCart.filter(item => item.id !== productId);
+    saveCartAndRefresh();
+}
+
+/**
+ * همگام‌سازی ذخیره‌ساز LocalStorage و بازسازی کامل رابط کاربری سبد خرید
+ */
+function saveCartAndRefresh() {
+    localStorage.setItem('hot_kentucky_cart', JSON.stringify(currentCart));
+    updateCartUI();
+}
+
+/**
+ * بروزرسانی جامع و تزریق داده‌های محاسباتی جدید به اجزای گرافیکی فاکتور سبد خرید
+ */
+function updateCartUI() {
+    const cartCountBadge = document.getElementById('cartCountBadge');
+    const itemsContainer = document.getElementById('cartItemsContainer');
+    const totalPriceElement = document.getElementById('cartTotalPrice');
+    const checkoutBtn = document.getElementById('checkoutBtn');
+
+    // محاسبه کل اقلام موجود در سبد خرید
+    const totalItemsCount = currentCart.reduce((acc, current) => acc + current.quantity, 0);
+    
+    if (totalItemsCount > 0) {
+        cartCountBadge.textContent = totalItemsCount.toLocaleString('fa-IR');
+        cartCountBadge.classList.remove('text-none', 'd-none');
+        checkoutBtn.classList.remove('disabled');
+    } else {
+        cartCountBadge.classList.add('d-none');
+        checkoutBtn.classList.add('disabled');
+    }
+
+    // بازسازی بخش آیتم‌های داخل سایدبار
+    itemsContainer.innerHTML = '';
+    let accumulatedPrice = 0;
+
+    if (currentCart.length === 0) {
+        itemsContainer.innerHTML = `
+            <div class="text-center py-5 text-muted">
+                <i class="fa-solid fa-basket-shopping display-4 mb-3 d-block opacity-30"></i>
+                <p class="small">سبد خرید شما در حال حاضر خالی است.</p>
+            </div>
+        `;
+        totalPriceElement.textContent = `۰ تومان`;
+        return;
+    }
+
+    currentCart.forEach(item => {
+        const rowTotalPrice = item.price * item.quantity;
+        accumulatedPrice += rowTotalPrice;
+
+        const rowElement = document.createElement('div');
+        rowElement.className = 'cart-item-row d-flex align-items-center gap-3 mb-3';
+        rowElement.innerHTML = `
+            <img src="${item.img}" alt="${item.title}" class="cart-item-img">
+            <div class="flex-grow-1">
+                <h4 class="h6 text-white mb-1 fw-bold truncate-1">${item.title}</h4>
+                <div class="text-gold small fw-bold">${rowTotalPrice.toLocaleString('fa-IR')} تومان</div>
+            </div>
+            <div class="d-flex flex-column align-items-end gap-2">
+                <button onclick="removeProductEntirely(${item.id})" class="btn-cart-remove" aria-label="حذف کامل"><i class="fa-solid fa-trash-can"></i></button>
+                <div class="quantity-control-group">
+                    <button onclick="addProductToCart(${item.id})" class="btn-qty" aria-label="افزایش"><i class="fa-solid fa-plus"></i></button>
+                    <span class="qty-value">${item.quantity.toLocaleString('fa-IR')}</span>
+                    <button onclick="decreaseProductQuantity(${item.id})" class="btn-qty" aria-label="کاهش"><i class="fa-solid fa-minus"></i></button>
+                </div>
+            </div>
+        `;
+        itemsContainer.appendChild(rowElement);
     });
-    ticking = true;
-  }
+
+    totalPriceElement.textContent = `${accumulatedPrice.toLocaleString('fa-IR')} تومان`;
 }
 
-/* ============================================================
-   INIT
-   ============================================================ */
-function init() {
-  // Render content first
-  renderMenu();
-  renderSpecials();
-  updateCartUI();
+/**
+ * سیستم شلیک توسترهای سفارشی به صورت کاملاً داینامیک و غنی بدون نشت حافظه
+ */
+function showToastNotification(messageText) {
+    const container = document.getElementById('toastContainer');
+    
+    const toastNode = document.createElement('div');
+    toastNode.className = 'toast custom-toast show align-items-center text-white border-0 mb-2';
+    toastNode.setAttribute('role', 'alert');
+    toastNode.setAttribute('aria-live', 'assertive');
+    toastNode.setAttribute('aria-atomic', 'true');
+    
+    toastNode.innerHTML = `
+        <div class="d-flex">
+            <div class="toast-body d-flex align-items-center gap-2">
+                <i class="fa-solid fa-circle-check text-success fs-5"></i>
+                <span>${messageText}</span>
+            </div>
+            <button type="button" class="btn-close btn-close-white me-auto m-auto pe-3" data-bs-dismiss="toast" aria-label="بستن"></button>
+        </div>
+    `;
+    
+    container.appendChild(toastNode);
 
-  // Interactions
-  initCategories();
-  initSearch();
-  initScrollTop();
-  initCartEvents();
-
-  // Scroll-based
-  window.addEventListener('scroll', onScroll, { passive: true });
-  handleScroll();
-
-  // Animations (after a tick to let DOM settle)
-  requestAnimationFrame(() => {
-    initScrollAnimations();
-    initSmoothScroll();
-    initLazyLoad();
-  });
-
-  // Hide loading after render
-  setTimeout(hideLoading, 2200);
-
-  // Animate hero elements after loading
-  setTimeout(() => {
-    document.querySelectorAll('#hero [data-animate]').forEach((el, i) => {
-      setTimeout(() => el.classList.add('animated'), i * 150 + 400);
-    });
-  }, 2400);
-}
-
-// Boot
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', init);
-} else {
-  init();
+    // حذف خودکار تگ المان بعد از اتمام مهلت نمایش جهت جلوگیری از کندی مرورگر
+    setTimeout(() => {
+        toastNode.classList.remove('show');
+        setTimeout(() => toastNode.remove(), 300);
+    }, 3500);
 }
