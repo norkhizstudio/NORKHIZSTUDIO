@@ -1,404 +1,472 @@
+```html
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>فرم ثبت‌نام</title>
+    <title>ثبت نام ادمین | نورخیز استودیو</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+            font-family: 'Vazirmatn', sans-serif;
+            -webkit-tap-highlight-color: transparent;
         }
 
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+        /* Neon Background Glows */
+        .bg-glow-1 {
+            position: absolute;
+            top: -10%; left: -10%; width: 50vw; height: 50vw;
+            background: radial-gradient(circle, rgba(6,182,212,0.15) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%; filter: blur(60px); z-index: 0;
+            animation: pulse 6s infinite alternate;
+        }
+        .bg-glow-2 {
+            position: absolute;
+            bottom: -10%; right: -10%; width: 50vw; height: 50vw;
+            background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%; filter: blur(60px); z-index: 0;
+            animation: pulse 8s infinite alternate-reverse;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(1.1); opacity: 1; }
         }
 
-        .container {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            padding: 40px;
-            width: 100%;
-            max-width: 500px;
-            animation: slideIn 0.5s ease-out;
+        /* Animations */
+        .fade-in { animation: fadeIn 0.4s ease-out forwards; }
+        .slide-up { animation: slideUp 0.4s ease-out forwards; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 28px;
-        }
-        .subtitle {
-            text-align: center;
-            color: #666;
-            margin-bottom: 30px;
-            font-size: 14px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #555;
-            font-weight: 600;
-            font-size: 14px;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        input[type="tel"],
-        input[type="password"] {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 15px;
-            transition: all 0.3s ease;
-            font-family: inherit;
-        }
-
+        /* Hide specific steps initially */
+        #step-2, #step-3 { display: none; }
+        
+        /* Glass input focus */
         input:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
         }
 
-        input.error {
-            border-color: #e74c3c;
-        }
-
-        input.success {
-            border-color: #2ecc71;
-        }
-
-        .error-message {
-            color: #e74c3c;            font-size: 12px;
-            margin-top: 5px;
-            display: none;
-        }
-
-        .error-message.show {
-            display: block;
-            animation: shake 0.3s ease;
-        }
-
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            25% { transform: translateX(-5px); }
-            75% { transform: translateX(5px); }
-        }
-
-        .password-strength {
-            margin-top: 8px;
-            height: 5px;
-            background: #e0e0e0;
-            border-radius: 3px;
-            overflow: hidden;
-        }
-
-        .strength-bar {
-            height: 100%;
-            width: 0;
-            transition: all 0.3s ease;
-            border-radius: 3px;
-        }
-
-        .strength-text {
-            font-size: 12px;
-            margin-top: 5px;
-            color: #666;
-        }
-
-        .checkbox-group {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 25px;
-        }
-
-        input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            cursor: pointer;
-        }
-        .checkbox-group label {
-            margin: 0;
-            font-weight: normal;
-            cursor: pointer;
-        }
-
-        .checkbox-group a {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .checkbox-group a:hover {
-            text-decoration: underline;
-        }
-
-        button {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        /* Copy Tooltip */
+        .copy-tooltip {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(6, 182, 212, 0.9);
             color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: inherit;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
         }
-
-        button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
-        }
-
-        button:active {
-            transform: translateY(0);
-        }
-
-        button:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .login-link {
-            text-align: center;
-            margin-top: 20px;
-            color: #666;
-            font-size: 14px;        }
-
-        .login-link a {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .login-link a:hover {
-            text-decoration: underline;
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                padding: 30px 20px;
-            }
-
-            h1 {
-                font-size: 24px;
-            }
-        }
+        .copy-tooltip.show { opacity: 1; }
     </style>
 </head>
-<body>
-    <div class="container">
-        <h1>ایجاد حساب کاربری</h1>
-        <p class="subtitle">برای شروع، اطلاعات خود را وارد کنید</p>
+<body class="min-h-screen bg-gray-950 text-white overflow-x-hidden relative flex items-center justify-center p-4">
+
+    <!-- Background Elements -->
+    <div class="bg-glow-1 pointer-events-none"></div>
+    <div class="bg-glow-2 pointer-events-none"></div>
+    <div class="absolute inset-0 opacity-5 pointer-events-none mix-blend-overlay" style="background-image: url('https://www.transparenttextures.com/patterns/cubes.png');"></div>
+
+    <!-- Main Container -->
+    <div class="relative z-10 w-full max-w-md mx-auto bg-gray-900/60 backdrop-blur-2xl border border-cyan-500/20 shadow-[0_0_40px_rgba(6,182,212,0.15)] rounded-3xl p-6 md:p-8 overflow-hidden">
         
-        <form id="registerForm" novalidate>
-            <div class="form-group">
-                <label for="fullName">نام و نام خانوادگی</label>
-                <input type="text" id="fullName" name="fullName" placeholder="مثال: علی احمدی" required>
-                <span class="error-message" id="fullNameError">لطفاً نام و نام خانوادگی خود را وارد کنید</span>
+        <!-- Header Section -->
+        <div class="text-center mb-8 fade-in">
+            <div class="relative inline-block mb-4">
+                <div class="absolute inset-0 bg-cyan-500 rounded-2xl blur-xl opacity-30"></div>
+                <img 
+                    src="https://s25.uupload.ir/files/aslidxx/IMG_20260801_222047_054.jpg" 
+                    alt="لوگو نورخیز استودیو" 
+                    class="relative w-24 h-24 mx-auto rounded-2xl object-cover border-2 border-cyan-400/50 shadow-lg"
+                    onerror="this.src='https://placehold.co/150x150/0f172a/06b6d4?text=Norkhiz'"
+                />
             </div>
+            <h1 class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+                نورخیز استودیو
+            </h1>
+            <p class="text-gray-400 text-sm mt-1 font-medium">سامانه هوشمند ثبت‌نام ادمین</p>
+        </div>
 
-            <div class="form-group">
-                <label for="email">ایمیل</label>
-                <input type="email" id="email" name="email" placeholder="example@email.com" required>
-                <span class="error-message" id="emailError">لطفاً یک ایمیل معتبر وارد کنید</span>
-            </div>
+        <!-- Error Message Container -->
+        <div id="error-box" class="hidden mb-6 p-3 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-sm items-start gap-2">
+            <i data-lucide="info" class="w-5 h-5 shrink-0 mt-0.5"></i>
+            <p id="error-text"></p>
+        </div>
 
-            <div class="form-group">
-                <label for="phone">شماره موبایل</label>
-                <input type="tel" id="phone" name="phone" placeholder="09123456789" required>
-                <span class="error-message" id="phoneError">لطفاً شماره موبایل معتبر وارد کنید (11 رقم)</span>
-            </div>
-
-            <div class="form-group">
-                <label for="password">رمز عبور</label>
-                <input type="password" id="password" name="password" placeholder="حداقل 8 کاراکتر" required>                <div class="password-strength">
-                    <div class="strength-bar" id="strengthBar"></div>
+        <!-- ================= STEP 1: User Info ================= -->
+        <div id="step-1" class="space-y-5 slide-up">
+            <div class="space-y-4">
+                <!-- Name -->
+                <div class="relative">
+                    <div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
+                        <i data-lucide="user" class="w-5 h-5 text-cyan-400/70"></i>
+                    </div>
+                    <input type="text" id="fullName" placeholder="نام و نام خانوادگی" class="w-full bg-black/40 border border-white/10 rounded-xl py-3.5 pr-11 pl-4 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400/70 focus:ring-1 focus:ring-cyan-400/70 transition-all shadow-inner">
                 </div>
-                <div class="strength-text" id="strengthText"></div>
-                <span class="error-message" id="passwordError">رمز عبور باید حداقل 8 کاراکتر باشد</span>
+
+                <!-- Phone -->
+                <div class="relative">
+                    <div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
+                        <i data-lucide="phone" class="w-5 h-5 text-cyan-400/70"></i>
+                    </div>
+                    <input type="tel" id="phone" dir="ltr" placeholder="شماره تماس (مثال: 0912...)" class="w-full bg-black/40 border border-white/10 rounded-xl py-3.5 pr-11 pl-4 text-white text-right placeholder-gray-500 focus:outline-none focus:border-cyan-400/70 focus:ring-1 focus:ring-cyan-400/70 transition-all shadow-inner">
+                </div>
+
+                <!-- Age -->
+                <div class="relative">
+                    <div class="absolute inset-y-0 right-0 pr-4 flex items-center pointer-events-none">
+                        <i data-lucide="calendar" class="w-5 h-5 text-cyan-400/70"></i>
+                    </div>
+                    <input type="number" id="age" placeholder="سن شما" class="w-full bg-black/40 border border-white/10 rounded-xl py-3.5 pr-11 pl-4 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400/70 focus:ring-1 focus:ring-cyan-400/70 transition-all shadow-inner">
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="confirmPassword">تکرار رمز عبور</label>
-                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="رمز عبور را دوباره وارد کنید" required>
-                <span class="error-message" id="confirmPasswordError">رمز عبور مطابقت ندارد</span>
-            </div>
-
-            <div class="checkbox-group">
-                <input type="checkbox" id="terms" name="terms" required>
-                <label for="terms">
-                    <a href="#" onclick="alert('قوانین و مقررات سایت'); return false;">قوانین و مقررات</a> را می‌پذیرم
+            <!-- Experience Selection -->
+            <div class="mt-6">
+                <label class="flex text-sm font-semibold text-gray-300 mb-3 items-center gap-2">
+                    <i data-lucide="shield-check" class="w-4 h-4 text-cyan-400"></i>
+                    آیا تا به حال ادمین بوده‌اید؟
                 </label>
+                <div class="grid grid-cols-2 gap-3">
+                    <button type="button" onclick="selectExperience('yes')" id="exp-yes" class="exp-btn py-3 px-4 rounded-xl border transition-all duration-300 flex items-center justify-center font-medium bg-black/40 border-white/5 text-gray-400 hover:bg-white/5">
+                        بله، بوده‌ام
+                    </button>
+                    <button type="button" onclick="selectExperience('no')" id="exp-no" class="exp-btn py-3 px-4 rounded-xl border transition-all duration-300 flex items-center justify-center font-medium bg-black/40 border-white/5 text-gray-400 hover:bg-white/5">
+                        خیر، نبوده‌ام
+                    </button>
+                </div>
             </div>
 
-            <button type="submit" id="submitBtn">ثبت‌نام</button>
+            <button onclick="goToStep2()" class="w-full mt-6 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white border-0 rounded-xl py-4 font-bold text-lg transition-all shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] flex items-center justify-center gap-2">
+                مرحله بعد: پرداخت
+                <i data-lucide="arrow-left" class="w-5 h-5"></i>
+            </button>
+        </div>
 
-            <div class="login-link">
-                قبلاً ثبت‌نام کرده‌اید؟ <a href="#">وارد شوید</a>
+        <!-- ================= STEP 2: Payment ================= -->
+        <div id="step-2" class="space-y-5 slide-up">
+            <div class="flex items-center gap-3 mb-6">
+                <button onclick="goToStep1()" class="p-2 bg-white/5 hover:bg-white/10 rounded-lg transition-colors border border-white/10">
+                    <i data-lucide="arrow-right" class="w-5 h-5 text-gray-300"></i>
+                </button>
+                <h2 class="text-xl font-bold text-white">پرداخت هزینه ثبت‌نام</h2>
             </div>
-        </form>
+
+            <!-- Price Display -->
+            <div class="bg-cyan-950/30 border border-cyan-500/20 rounded-2xl p-4 text-center shadow-inner">
+                <p class="text-gray-400 text-sm mb-1">مبلغ قابل پرداخت:</p>
+                <div id="price-display" class="text-3xl font-black text-cyan-400 drop-shadow-[0_0_8px_rgba(6,182,212,0.8)]">
+                    -- <span class="text-lg font-medium text-cyan-500">تومان</span>
+                </div>
+            </div>
+
+            <!-- Neon Card Info -->
+            <div class="relative bg-black/50 border border-cyan-500/40 rounded-2xl p-5 text-center shadow-[0_0_20px_rgba(6,182,212,0.15)] mt-4">
+                <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-2xl pointer-events-none"></div>
+                <p class="text-gray-400 text-sm mb-2">شماره کارت جهت واریز:</p>
+                
+                <div class="relative group cursor-pointer inline-block" onclick="copyCardNumber()">
+                    <div id="copyTooltip" class="copy-tooltip">کپی شد!</div>
+                    <p class="text-2xl md:text-3xl font-black tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 to-blue-400 drop-shadow-[0_0_10px_rgba(6,182,212,0.6)] font-mono" dir="ltr">
+                        6219 8614 1704 8104
+                    </p>
+                </div>
+                
+                <div class="mt-3 flex items-center justify-center gap-2 text-cyan-200">
+                    <i data-lucide="user-check" class="w-4 h-4"></i>
+                    <span class="font-bold">به نام: لیلا موسوی</span>
+                </div>
+                <p class="text-xs text-gray-500 mt-2">برای کپی کردن روی شماره کارت کلیک کنید</p>
+            </div>
+
+            <div class="space-y-3 pt-2">
+                <label class="block text-sm font-semibold text-gray-300">ارسال رسید پرداخت</label>
+                
+                <!-- File Upload Box -->
+                <div class="relative border-2 border-dashed border-cyan-500/40 hover:border-cyan-400 bg-cyan-950/10 rounded-2xl p-6 text-center transition-all cursor-pointer group" onclick="document.getElementById('receiptImage').click()">
+                    <input type="file" id="receiptImage" accept="image/*" class="hidden" onchange="handleFileSelect(event)">
+                    
+                    <div id="upload-prompt" class="flex flex-col items-center gap-2">
+                        <i data-lucide="upload" class="w-10 h-10 text-gray-400 group-hover:text-cyan-400 transition-colors"></i>
+                        <span class="text-gray-300 font-medium mt-1">آپلود عکس رسید پرداخت</span>
+                        <span class="text-xs text-gray-500">فرمت‌های مجاز: JPG, PNG</span>
+                    </div>
+
+                    <div id="upload-success" class="hidden flex-col items-center gap-2">
+                        <i data-lucide="file-check" class="w-10 h-10 text-cyan-400 drop-shadow-[0_0_8px_rgba(6,182,212,0.5)]"></i>
+                        <span id="file-name-display" class="text-cyan-300 text-sm font-medium">عکس انتخاب شد</span>
+                        <span class="text-xs text-cyan-500/70">برای تغییر رسید، دوباره کلیک کنید</span>
+                    </div>
+                </div>
+
+                <!-- Tracking Code -->
+                <input type="text" id="receiptCode" placeholder="شماره پیگیری (اختیاری)" class="w-full bg-black/40 border border-white/10 rounded-xl py-3 px-4 text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400/70 focus:ring-1 focus:ring-cyan-400/70 transition-all text-center tracking-widest mt-2">
+            </div>
+
+            <button id="submitBtn" onclick="submitForm()" class="w-full mt-6 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white border-0 rounded-xl py-4 font-bold text-lg transition-all shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.5)] flex items-center justify-center gap-3">
+                <span id="btnText">تکمیل ثبت نام</span>
+                <i id="btnIcon" data-lucide="check-circle" class="w-5 h-5"></i>
+                <i id="loadingIcon" data-lucide="loader-2" class="w-5 h-5 animate-spin hidden"></i>
+            </button>
+        </div>
+
+        <!-- ================= STEP 3: Success ================= -->
+        <div id="step-3" class="text-center space-y-6 py-8 slide-up">
+            <div class="relative w-28 h-28 mx-auto flex items-center justify-center">
+                <div class="absolute inset-0 bg-cyan-500/20 rounded-full animate-ping"></div>
+                <div class="absolute inset-2 bg-cyan-500/20 rounded-full"></div>
+                <i data-lucide="check-circle" class="w-20 h-20 text-cyan-400 relative z-10 drop-shadow-[0_0_15px_rgba(34,211,238,0.8)]"></i>
+            </div>
+            
+            <div class="space-y-2">
+                <h2 class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-cyan-400">
+                    عملیات با موفقیت انجام شد!
+                </h2>
+                <p class="text-gray-300 leading-relaxed text-sm px-4">
+                    اطلاعات شما در سیستم ثبت شد. پس از بررسی مدارک، برای ثبت نهایی به شما پیام می‌دهیم.
+                </p>
+            </div>
+            
+            <div class="mt-10 p-5 bg-black/40 border border-cyan-500/20 rounded-2xl backdrop-blur-sm relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-cyan-500 to-transparent"></div>
+                <p class="text-sm text-gray-400 mb-3">پشتیبانی و ارتباط با ما:</p>
+                <a href="https://t.me/NORKHIZ_STUDIO" target="_blank" class="inline-flex items-center justify-center gap-2 bg-white/5 hover:bg-cyan-500/10 border border-white/10 hover:border-cyan-500/30 text-cyan-400 font-bold text-lg py-2 px-6 rounded-xl transition-all">
+                    <i data-lucide="send" class="w-5 h-5"></i>
+                    @NORKHIZ_STUDIO
+                </a>
+            </div>
+
+            <button onclick="resetForm()" class="mt-6 text-sm text-gray-500 hover:text-cyan-400 transition-colors">
+                ثبت نام جدید
+            </button>
+        </div>
+
     </div>
 
     <script>
-        const form = document.getElementById('registerForm');
-        const fullName = document.getElementById('fullName');
-        const email = document.getElementById('email');
-        const phone = document.getElementById('phone');
-        const password = document.getElementById('password');
-        const confirmPassword = document.getElementById('confirmPassword');
-        const terms = document.getElementById('terms');
-        const submitBtn = document.getElementById('submitBtn');
+        // Initialize Icons
+        lucide.createIcons();
 
-        // Validation functions
-        function validateFullName() {
-            const value = fullName.value.trim();
-            const isValid = value.length >= 3;
-            toggleError(fullName, 'fullNameError', isValid);
-            return isValid;
+        // State Variables
+        let selectedExperience = null;
+        let selectedFile = null;
+
+        // UI Elements
+        const errorBox = document.getElementById('error-box');
+        const errorText = document.getElementById('error-text');
+        const step1 = document.getElementById('step-1');
+        const step2 = document.getElementById('step-2');
+        const step3 = document.getElementById('step-3');
+
+        function showError(msg) {
+            errorText.innerText = msg;
+            errorBox.classList.remove('hidden');
+            errorBox.classList.add('flex');
+            setTimeout(() => {
+                errorBox.classList.add('hidden');
+                errorBox.classList.remove('flex');
+            }, 4000);
         }
 
-        function validateEmail() {
-            const value = email.value.trim();
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            const isValid = emailRegex.test(value);            toggleError(email, 'emailError', isValid);
-            return isValid;
-        }
-
-        function validatePhone() {
-            const value = phone.value.trim();
-            const phoneRegex = /^09\d{9}$/;
-            const isValid = phoneRegex.test(value);
-            toggleError(phone, 'phoneError', isValid);
-            return isValid;
-        }
-
-        function validatePassword() {
-            const value = password.value;
-            const isValid = value.length >= 8;
-            toggleError(password, 'passwordError', isValid);
-            updatePasswordStrength(value);
-            return isValid;
-        }
-
-        function validateConfirmPassword() {
-            const value = confirmPassword.value;
-            const isValid = value === password.value && value.length > 0;
-            toggleError(confirmPassword, 'confirmPasswordError', isValid);
-            return isValid;
-        }
-
-        function toggleError(input, errorId, isValid) {
-            const errorElement = document.getElementById(errorId);
-            if (isValid) {
-                input.classList.remove('error');
-                input.classList.add('success');
-                errorElement.classList.remove('show');
-            } else {
-                input.classList.remove('success');
-                input.classList.add('error');
-                errorElement.classList.add('show');
-            }
-        }
-
-        function updatePasswordStrength(password) {
-            const strengthBar = document.getElementById('strengthBar');
-            const strengthText = document.getElementById('strengthText');
+        function selectExperience(val) {
+            selectedExperience = val;
+            const btnYes = document.getElementById('exp-yes');
+            const btnNo = document.getElementById('exp-no');
             
-            let strength = 0;
-            if (password.length >= 8) strength++;
-            if (password.match(/[a-z]/) && password.match(/[A-Z]/)) strength++;
-            if (password.match(/\d/)) strength++;
-            if (password.match(/[^a-zA-Z0-9]/)) strength++;
-            const strengthLevels = [
-                { width: '0%', color: '#e0e0e0', text: '' },
-                { width: '25%', color: '#e74c3c', text: 'ضعیف' },
-                { width: '50%', color: '#f39c12', text: 'متوسط' },
-                { width: '75%', color: '#3498db', text: 'خوب' },
-                { width: '100%', color: '#2ecc71', text: 'عالی' }
-            ];
+            // Reset styles
+            const activeClasses = ['bg-cyan-500/20', 'border-cyan-400', 'text-cyan-300', 'shadow-[0_0_15px_rgba(6,182,212,0.3)]'];
+            const inactiveClasses = ['bg-black/40', 'border-white/5', 'text-gray-400'];
 
-            const level = strengthLevels[strength];
-            strengthBar.style.width = level.width;
-            strengthBar.style.background = level.color;
-            strengthText.textContent = level.text;
-            strengthText.style.color = level.color;
+            btnYes.classList.remove(...activeClasses);
+            btnYes.classList.add(...inactiveClasses);
+            btnNo.classList.remove(...activeClasses);
+            btnNo.classList.add(...inactiveClasses);
+
+            // Apply styles to selected
+            const targetBtn = val === 'yes' ? btnYes : btnNo;
+            targetBtn.classList.remove(...inactiveClasses);
+            targetBtn.classList.add(...activeClasses);
         }
 
-        // Event listeners
-        fullName.addEventListener('blur', validateFullName);
-        email.addEventListener('blur', validateEmail);
-        phone.addEventListener('blur', validatePhone);
-        password.addEventListener('blur', validatePassword);
-        password.addEventListener('input', () => {
-            updatePasswordStrength(password.value);
-            if (confirmPassword.value) validateConfirmPassword();
-        });
-        confirmPassword.addEventListener('blur', validateConfirmPassword);
+        function goToStep2() {
+            const fullName = document.getElementById('fullName').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const age = document.getElementById('age').value.trim();
 
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const isFullNameValid = validateFullName();
-            const isEmailValid = validateEmail();
-            const isPhoneValid = validatePhone();
-            const isPasswordValid = validatePassword();
-            const isConfirmPasswordValid = validateConfirmPassword();
-            const isTermsChecked = terms.checked;
-
-            if (!isTermsChecked) {
-                alert('لطفاً قوانین و مقررات را بپذیرید');
+            if (!fullName || !phone || !age || !selectedExperience) {
+                showError('لطفاً تمامی فیلدها را پر کنید.');
                 return;
             }
 
-            if (isFullNameValid && isEmailValid && isPhoneValid && isPasswordValid && isConfirmPasswordValid && isTermsChecked) {
-                submitBtn.disabled = true;
-                submitBtn.textContent = 'در حال ثبت‌نام...';
+            // Set Price Text
+            const priceEl = document.getElementById('price-display');
+            priceEl.innerHTML = selectedExperience === 'yes' 
+                ? '۱۰۰,۰۰۰ <span class="text-lg font-medium text-cyan-500">تومان</span>' 
+                : '۳۵۰,۰۰۰ <span class="text-lg font-medium text-cyan-500">تومان</span>';
 
-                // Simulate API call
-                setTimeout(() => {
-                    alert('ثبت‌نام با موفقیت انجام شد!');
-                    form.reset();
-                    submitBtn.disabled = false;                    submitBtn.textContent = 'ثبت‌نام';
-                    document.querySelectorAll('input').forEach(input => {
-                        input.classList.remove('success', 'error');
-                    });
-                    document.getElementById('strengthBar').style.width = '0%';
-                    document.getElementById('strengthText').textContent = '';
-                }, 1500);
+            step1.style.display = 'none';
+            step2.style.display = 'block';
+        }
+
+        function goToStep1() {
+            step2.style.display = 'none';
+            step1.style.display = 'block';
+        }
+
+        function copyCardNumber() {
+            const cardNumber = "6219861417048104";
+            
+            // Fallback for older browsers
+            const textArea = document.createElement("textarea");
+            textArea.value = cardNumber;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                const tooltip = document.getElementById('copyTooltip');
+                tooltip.classList.add('show');
+                setTimeout(() => tooltip.classList.remove('show'), 2000);
+            } catch (err) {
+                console.error('Copy failed', err);
             }
-        });
+            document.body.removeChild(textArea);
+        }
+
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file) {
+                selectedFile = file;
+                document.getElementById('upload-prompt').classList.add('hidden');
+                document.getElementById('upload-prompt').classList.remove('flex');
+                
+                document.getElementById('upload-success').classList.remove('hidden');
+                document.getElementById('upload-success').classList.add('flex');
+                
+                // Truncate file name if too long
+                let fileName = file.name;
+                if(fileName.length > 20) fileName = fileName.substring(0, 15) + '...' + fileName.slice(-4);
+                document.getElementById('file-name-display').innerText = fileName;
+            }
+        }
+
+        async function submitForm() {
+            const receiptCode = document.getElementById('receiptCode').value.trim();
+            
+            if (!selectedFile && !receiptCode) {
+                showError('لطفاً عکس رسید پرداخت یا شماره پیگیری را وارد کنید.');
+                return;
+            }
+
+            const fullName = document.getElementById('fullName').value;
+            const phone = document.getElementById('phone').value;
+            const age = document.getElementById('age').value;
+            const priceText = selectedExperience === 'yes' ? '100,000' : '350,000';
+
+            // Loading state
+            const btn = document.getElementById('submitBtn');
+            const btnText = document.getElementById('btnText');
+            const btnIcon = document.getElementById('btnIcon');
+            const loadingIcon = document.getElementById('loadingIcon');
+            
+            btn.disabled = true;
+            btn.classList.add('opacity-70', 'cursor-not-allowed');
+            btnText.innerText = 'در حال ارسال...';
+            btnIcon.classList.add('hidden');
+            loadingIcon.classList.remove('hidden');
+
+            const BOT_TOKEN = "8764686694:AAFsNdmjcjpKCdmff9aYak9VEWlOhooYDpk";
+            const CHAT_ID = "7403377873";
+            
+            const caption = `
+🔹 **ثبت نام جدید ادمین نورخیز استودیو** 🔹
+
+👤 **نام:** ${fullName}
+📱 **شماره:** ${phone}
+🎂 **سن:** ${age}
+💼 **سابقه:** ${selectedExperience === 'yes' ? 'دارد' : 'ندارد'}
+💰 **مبلغ پرداختی:** ${priceText} تومان
+🧾 **کد پیگیری:** ${receiptCode || 'ثبت نشده'}
+            `.trim();
+
+            try {
+                if (selectedFile) {
+                    const fd = new FormData();
+                    fd.append('chat_id', CHAT_ID);
+                    fd.append('photo', selectedFile);
+                    fd.append('caption', caption);
+                    
+                    const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+                        method: 'POST',
+                        body: fd
+                    });
+                    if (!res.ok) throw new Error('Network error');
+                } else {
+                    const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ chat_id: CHAT_ID, text: caption })
+                    });
+                    if (!res.ok) throw new Error('Network error');
+                }
+                
+                // Success
+                step2.style.display = 'none';
+                step3.style.display = 'block';
+            } catch (err) {
+                showError('مشکلی در ارسال اطلاعات پیش آمد. اینترنت خود را بررسی کنید.');
+            } finally {
+                // Reset Button state
+                btn.disabled = false;
+                btn.classList.remove('opacity-70', 'cursor-not-allowed');
+                btnText.innerText = 'تکمیل ثبت نام';
+                btnIcon.classList.remove('hidden');
+                loadingIcon.classList.add('hidden');
+            }
+        }
+
+        function resetForm() {
+            // Reset inputs
+            document.getElementById('fullName').value = '';
+            document.getElementById('phone').value = '';
+            document.getElementById('age').value = '';
+            document.getElementById('receiptCode').value = '';
+            document.getElementById('receiptImage').value = '';
+            
+            // Reset selection
+            selectedExperience = null;
+            const btnYes = document.getElementById('exp-yes');
+            const btnNo = document.getElementById('exp-no');
+            const inactiveClasses = ['bg-black/40', 'border-white/5', 'text-gray-400'];
+            btnYes.className = `exp-btn py-3 px-4 rounded-xl border transition-all duration-300 flex items-center justify-center font-medium ${inactiveClasses.join(' ')} hover:bg-white/5`;
+            btnNo.className = `exp-btn py-3 px-4 rounded-xl border transition-all duration-300 flex items-center justify-center font-medium ${inactiveClasses.join(' ')} hover:bg-white/5`;
+
+            // Reset File UI
+            selectedFile = null;
+            document.getElementById('upload-prompt').classList.remove('hidden');
+            document.getElementById('upload-prompt').classList.add('flex');
+            document.getElementById('upload-success').classList.add('hidden');
+            document.getElementById('upload-success').classList.remove('flex');
+
+            // Go to step 1
+            step3.style.display = 'none';
+            step1.style.display = 'block';
+        }
     </script>
 </body>
 </html>
+
+```
+
